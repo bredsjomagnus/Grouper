@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Models\Group as Group;
 
 class PageController extends Controller
 {
-    /**
+	/**
      * Create a new controller instance.
      *
      * @return void
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -22,9 +22,13 @@ class PageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function dbtest()
+    public function groups()
     {
-		$groups = DB::select('select * from groups');
-        return view('dbtest', ['groups' => $groups]);
+		$group = new Group();
+
+		$data = [
+			"groups"	=> $group->getGroups()
+		];
+        return view('groups.index', $data);
     }
 }

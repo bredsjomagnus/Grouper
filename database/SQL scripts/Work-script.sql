@@ -1,5 +1,5 @@
 use grouper;
-
+SET SQL_SAFE_UPDATES = 0;
 -- DROP TABLE IF EXISTS `groups`;
 
 show tables;
@@ -11,8 +11,11 @@ show tables;
 --     PRIMARY KEY (id)
 -- );
 
--- INSERT INTO `groups` (`groupname`) VALUES ('Klass 7A');
+-- INSERT INTO `groups` (`groupname`, `member`, `organization`) VALUES ('Klass 7A', 'Maj-Björn', 'Klockarhagsskolan');
 
+-- DELETE FROM `groups` WHERE groupname = 'Klass 5B';
 SELECT * FROM `groups`;
 
 SELECT * FROM `users`;
+
+SELECT * FROM `migrations`;

@@ -38,9 +38,5 @@
 			<script src="{{ URL::asset('js/import.js') }}" type='text/javascript'></script>
 		@endif
 
-		@if(Request::path() == "addgroups")
-			<script src="{{ URL::asset('js/import.js') }}" type='text/javascript'></script>
-		@endif
-
 	</body>
 </html>

@@ -22,3 +22,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 // GroupController
 Route::get('/groups', 'GroupController@groupsDashboard')->name('groupsdashboard');
 Route::get('/addgroups', 'GroupController@addGroup')->name('addgroup');
+Route::post('/addgroupconfirm', 'GroupController@addGroupConfirm')->name('addgroupconfirm');
+Route::post('/addgroupprocess', 'GroupController@addGroupProcess')->name('addgroupprocess');

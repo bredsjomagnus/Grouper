@@ -18,4 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/groups', 'PageController@groups')->name('groups');
+
+// GroupController
+Route::get('/groups', 'GroupController@groupsDashboard')->name('groupsdashboard');
+Route::get('/addgroups', 'GroupController@addGroup')->name('addgroup');

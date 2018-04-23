@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS `groups` (
+	id INTEGER NOT NULL AUTO_INCREMENT,
+    groupname VARCHAR(255),
+    
+    PRIMARY KEY (id)
+);
+

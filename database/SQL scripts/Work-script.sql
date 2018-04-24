@@ -13,9 +13,13 @@ show tables;
 
 -- INSERT INTO `groups` (`groupname`, `member`, `organization`) VALUES ('Klass 7A', 'Maj-Björn', 'Klockarhagsskolan');
 
--- DELETE FROM `groups` WHERE groupname = 'Klass 5B';
+SELECT * FROM `groups` WHERE (SELECT DISTINCT(groupname) FROM groups);
+
+DELETE FROM `groups` WHERE groupname = 'Klass 5B';
+
 SELECT * FROM `groups`;
 
 SELECT * FROM `users`;
 
 SELECT * FROM `migrations`;
+

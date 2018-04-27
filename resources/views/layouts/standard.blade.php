@@ -18,19 +18,25 @@
 
 		<!-- Own sheet -->
 		<link rel="stylesheet" href="{{ URL::asset('css/main.css') }}" type="text/css">
+		<!-- <link rel="stylesheet" href="{{ URL::asset('css/app.css') }}" type="text/css"> -->
 
-
-        <!-- Styles -->
     </head>
 	<body>
-		<div class="container">
-			@yield('content')
-		</div>
+		{{-- This is the main navbar --}}
+        @include('includes.inloggednavbar')
+
+        <div class='container'>
+            @yield('content')
+        </div>
 
 		<!-- JQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+		<!-- Script handeling import .csv feature -->
+		@if(Request::path() == "addgroups")
+			<script src="{{ URL::asset('js/import.js') }}" type='text/javascript'></script>
+		@endif
+		
 	</body>
 	</html>

@@ -54,17 +54,4 @@ class Group extends Model
 	public function getGroupName($id) {
 		return $this::find($id);
 	}
-	
-	/**
-	* Check if choosen groupname already exists. If it does returns true.
-	*
-	* @param String groupmane
-	* @return Boolean true if gropname exists
-	*/
-	public function groupNameExists($groupname) {
-		// Get all results where groupname is the choosen groupname
-		$res = $this::All()->where('groupname', $groupname);
-
-		return !$res->isEmpty();
-	}
 }

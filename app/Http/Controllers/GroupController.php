@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Models\Group as Group;
 use App\Models\Member as Member;
-
 class GroupController extends Controller
 {
 	/**
@@ -17,7 +14,6 @@ class GroupController extends Controller
     {
         $this->middleware('auth');
     }
-
     /**
      * Show the application dashboard.
      *
@@ -27,16 +23,12 @@ class GroupController extends Controller
     {
 		$group 		= new Group();
 		$groups 	= $group->getGroupsBelongingToOrganization("Klockarhagsskolan");
-
 		/*----------------------------*/
-
 		$data = [
 			"groups"	=> $groups
 		];
-
         return view('groups.dashboard', $data);
     }
-
     /**
      * Show the application dashboard.
      *
@@ -51,7 +43,6 @@ class GroupController extends Controller
 		];
         return view('groups.addgroup', $data);
     }
-
     /**
      * Show the application dashboard.
      *
@@ -61,16 +52,12 @@ class GroupController extends Controller
     {
 		$group				= new Group();
 		$groupname 			= $_POST['groupname'];
-
 		// PHP_EOL build array with End Of Line as delimiter
 		// array_filter trims array so that empty elements is removed
 		$file 				= file_get_contents($_FILES['file']['tmp_name']);
 		$csvarray 			= explode(PHP_EOL, $file);
-
 		$groupnameexists 	= $group->groupNameExists($groupname, "Klockarhagsskolan");
-
 		/*----------------------------*/
-
 		$data = [
 			"members"			=> array_filter($csvarray),
 			"groupname"			=> $groupname,
@@ -78,7 +65,6 @@ class GroupController extends Controller
 		];
 		return view('groups.addgroup', $data);
     }
-
     /**
      * Create new group and add members to it
      *
@@ -90,32 +76,22 @@ class GroupController extends Controller
 		$member		= new Member();
 		$members 	= $_POST['members'];
 		$groupname 	= $_POST['groupname'];
-
 		/*----------------------------*/
-
 		$groupid 	= $group->addGroup($groupname, 'Klockarhagsskolan');
 		$member->addMembers($members, $groupid);
-
 		return redirect("/groups");
     }
-
 	public function editGroup($groupid) {
 		$group		= new Group();
 		$member		= new Member();
-
 		/*----------------------------*/
-
 		$groupres	= $group->getGroupName($groupid);
 		$members	= $member->getMembers($groupid); // associative array [id => membername, ...]
-
 		/*----------------------------*/
-
 		$data = [
 			"group"		=> $groupres,
 			"members"		=> $members
 		];
-
 		return view('groups.edit', $data);
 	}
-
 }

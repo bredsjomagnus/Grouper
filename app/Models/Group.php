@@ -1,9 +1,6 @@
 <?php
-
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
-
 class Group extends Model
 {
 	/*
@@ -11,7 +8,6 @@ class Group extends Model
     * groupname VARCHAR(255),
     * organization VARCHAR(255),
 	*/
-
 	/**
 	 * Get groups.
 	 *
@@ -21,7 +17,6 @@ class Group extends Model
 	{
 		return $this::All();
 	}
-
 	/**
 	 * Get a organizations different unique groups.
 	 *
@@ -44,7 +39,6 @@ class Group extends Model
 	public function addGroup($groupname, $organization) {
 		return $this::insertGetId(['groupname' => $groupname, 'organization' => $organization]);
 	}
-
 	/**
 	* Check if choosen groupname already exists. If it does returns true.
 	*
@@ -55,10 +49,8 @@ class Group extends Model
 	public function groupNameExists($groupname, $organization) {
 		// Get all results where groupname is the choosen groupname
 		$res = $this::All()->where('groupname', $groupname)->where('organization', $organization);
-
 		return !$res->isEmpty();
 	}
-
 	public function getGroupName($id) {
 		return $this::find($id);
 	}

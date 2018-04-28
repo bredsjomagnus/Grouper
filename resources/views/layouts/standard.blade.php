@@ -33,9 +33,18 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<!-- Latest compiled and minified JavaScript -->
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-		<!-- Script handeling import .csv feature -->
+
+		<?php
+		$urlsegemnts = Request::segments(); // get path segmetns in array eg. [groups, 'edit', '<parameter>']
+		?>
+
 		@if(Request::path() == "addgroups")
+		<!-- Script handeling import .csv feature -->
 			<script src="{{ URL::asset('js/import.js') }}" type='text/javascript'></script>
+		@endif
+		@if(count($urlsegemnts) >= 3 && $urlsegemnts[0] == 'groups' && $urlsegemnts[1] == 'edit')
+		<!-- Script handeling editing members on one page -->
+			<script src="{{ URL::asset('js/editonpage.js') }}" type='text/javascript'></script>
 		@endif
 
 	</body>

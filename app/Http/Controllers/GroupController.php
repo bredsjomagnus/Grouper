@@ -79,6 +79,7 @@ class GroupController extends Controller
 		/*----------------------------*/
 		$groupid 	= $group->addGroup($groupname, 'Klockarhagsskolan');
 		$member->addMembers($members, $groupid);
+
 		return redirect("/groups");
     }
 	public function editGroup($groupid) {
@@ -90,7 +91,8 @@ class GroupController extends Controller
 		/*----------------------------*/
 		$data = [
 			"group"		=> $groupres,
-			"members"		=> $members
+			"members"	=> $members,
+
 		];
 		return view('groups.edit', $data);
 	}

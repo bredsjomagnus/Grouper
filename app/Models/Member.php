@@ -51,4 +51,10 @@ class Member extends Model
 		}
 		return $members;
 	}
+
+	public function editMemberMembername($id, $newmembername) {
+		$member = $this::find($id);
+		$member->membername = $newmembername;
+		$member->save();
+	}
 }

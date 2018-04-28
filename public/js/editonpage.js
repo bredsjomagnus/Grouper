@@ -1,4 +1,4 @@
-function toForm(divid, id, value, field) {
+function toForm(divid, id, groupid, value, field) {
     // console.log("Klickade på " + value+" med id " + id);
     console.log("value: " + value);
     console.log("field: " + field);
@@ -8,8 +8,10 @@ function toForm(divid, id, value, field) {
     var input = document.createElement("input");
     var inputhiddenfield = document.createElement("input");
     var inputhiddenid = document.createElement("input");
+	var baseURL = window.location.protocol + "//" + window.location.host + "/Programmering/Gruppindelare/Grouper/public/";
+	var editURL = baseURL + "members/edit/"+id;
 
-    form.setAttribute("action", "/member/edit");
+    form.setAttribute("action", "../../members/edit/"+id);
     form.setAttribute("method", "post");
 
     input.setAttribute("value", value);
@@ -24,6 +26,10 @@ function toForm(divid, id, value, field) {
     inputhiddenid.setAttribute("type", "hidden");
     inputhiddenid.setAttribute("name", "id");
     inputhiddenid.setAttribute("value", id);
+
+    inputhiddenid.setAttribute("type", "hidden");
+    inputhiddenid.setAttribute("name", "groupid");
+    inputhiddenid.setAttribute("value", groupid);
     // input.blur(function() {
     //     console.log("Tappar fokus");
     //     // form.parentNode.replaceChild(paramholder, form);
@@ -33,3 +39,4 @@ function toForm(divid, id, value, field) {
     form.appendChild(inputhiddenfield);
     form.appendChild(inputhiddenid);
     paramholder.parentNode.replaceChild(form, paramholder);
+}

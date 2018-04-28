@@ -17,7 +17,9 @@
 		<tbody>
 		@foreach($members as $id => $membername)
 			<tr>
-				<td>{{$membername}}</t>
+				<!-- <td><div id='firstname_#{result[index]._id}' onclick="toForm('firstname_#{result[index]._id}', '#{result[index]._id}', '#{result[index].firstname}', 'firstname')">#{result[index].firstname}</div></td> -->
+				<td><div id='firstname_{{$id}}' onclick="toForm('firstname_{{$id}}', {{$id}}, {{$group->id}}, '{{$membername}}', 'membername')">{{$membername}}</div></td>
+				<!-- <td>{{$membername}}</td> -->
 				<td><a href="#">rename</a>,&nbsp;&nbsp;</td>
 				<td> <a href="#"> delete</a></td>
 			</tr>

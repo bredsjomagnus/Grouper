@@ -24,6 +24,7 @@ SELECT * FROM `groups`;
 SELECT * FROM `users`;
 
 SELECT * FROM members;
+-- UPDATE members SET membername = 'Göran' WHERE id = 12;
 
 SELECT * FROM groupmembers;
 

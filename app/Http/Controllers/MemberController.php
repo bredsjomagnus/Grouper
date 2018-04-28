@@ -25,8 +25,18 @@ class MemberController extends Controller
 		/*-----------------------------------*/
 
 		$member->editMemberMembername($id, $membername);
-
 		return redirect("/groups/edit/".$groupid);
+	}
 
+	public function addMemberProcess() {
+		$member 	= new Member();
+		$membername = $_POST['newvalue'];
+		$groupid	= $_POST['groupid'];
+
+		/*-----------------------------------*/
+
+		$member->addMembers([$membername], $groupid);
+		
+		return redirect("/groups/edit/".$groupid);
 	}
 }

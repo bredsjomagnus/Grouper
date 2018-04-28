@@ -25,7 +25,7 @@
 			</tr>
 		@endforeach
 			<tr style='height: 40px'>
-				<td colspan='3'>+ Add member</td>
+				<td colspan='1'><div id='addmember' onclick="toFormAdd({{$group->id}})">+ Add member</div></td>
 			</tr>
 		</tbody>
 	</table>

@@ -16,6 +16,7 @@ CREATE TABLE IF NOT EXISTS groups (
 CREATE TABLE IF NOT EXISTS members (
 	id INT(11) AUTO_INCREMENT,
     membername VARCHAR(255),
+    updated_at DATETIME,
 
     PRIMARY KEY(id)
 );

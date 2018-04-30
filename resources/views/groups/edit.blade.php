@@ -23,7 +23,7 @@
 				<!-- <td><div id='firstname_#{result[index]._id}' onclick="toForm('firstname_#{result[index]._id}', '#{result[index]._id}', '#{result[index].firstname}', 'firstname')">#{result[index].firstname}</div></td> -->
 				<td><div id='firstname_{{$id}}' onclick="toForm('firstname_{{$id}}', {{$id}}, {{$group->id}}, '{{$membername}}', 'membername')">{{$membername}}</div></td>
 				<!-- <td>{{$membername}}</td> -->
-				<td> <a href="{{$deleteurl}}"> delete</a></td>
+				<td> <a href="{{$deleteurl}}" onclick="return confirm('Are you sure you want to delete this item?');"> delete</a></td>
 			</tr>
 		@endforeach
 			<tr style='height: 40px'>
@@ -31,9 +31,4 @@
 			</tr>
 		</tbody>
 	</table>
-	<?php
-	if(isset($groupmembersrow)) {
-		var_dump($groupmembersrow);
-	}
-	?>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Member as Member;
+use App\Models\Group as Group;
 
 class MemberController extends Controller
 {
@@ -30,13 +31,29 @@ class MemberController extends Controller
 
 	public function addMemberProcess() {
 		$member 	= new Member();
-		$membername = $_POST['newvalue'];
+		$membername = htmlspecialchars(trim($_POST['newvalue']));
 		$groupid	= $_POST['groupid'];
 
 		/*-----------------------------------*/
 
-		$member->addMembers([$membername], $groupid);
-		
+		if(strlen($membername) > 0) {
+			$member->addMembers([$membername], $groupid);
+		}
+
+
+		/*-----------------------------------*/
+
+		return redirect("/groups/edit/".$groupid);
+	}
+
+	public function deleteMember($id) {
+		$member		= new Member();
+		$groupid	= $_GET['groupid'];
+
+		/*-----------------------------------*/
+
+		$groupmembersrow = $member->deleteMember($id, $groupid);
+
 		return redirect("/groups/edit/".$groupid);
 	}
 }

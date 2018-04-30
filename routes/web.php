@@ -24,3 +24,4 @@ Route::get('/groups/edit/{id}', 'GroupController@editGroup')->name('editgroup');
 // MemberController
 Route::post('/members/edit/{id}', 'MemberController@editMemberProcess');
 Route::post('/members/addprocess', 'MemberController@addMemberProcess');
+Route::get('/members/delete/{id}', 'MemberController@deleteMember');

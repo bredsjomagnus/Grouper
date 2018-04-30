@@ -43,6 +43,13 @@ class Member extends Model
 		return $members;
 	}
 
+	/**
+	* Get members of a group by id via talbe groupmembers
+	*
+	* @param Object groupmembers {id, groupid, memberid} from one group
+	*
+	* @return Array groupmembers ['id' => 'membername', ...]
+	*/
 	public function getMembersByIds($groupmembers) {
 		$members = [];
 		foreach($groupmembers as $groupmember) {
@@ -52,9 +59,42 @@ class Member extends Model
 		return $members;
 	}
 
+	/**
+	* Edit members name.
+	*
+	* @param Integer id of member
+	* @param String new membername
+	*
+	* @return void
+	*/
 	public function editMemberMembername($id, $newmembername) {
 		$member = $this::find($id);
 		$member->membername = $newmembername;
 		$member->save();
+	}
+
+	/**
+	* Delete member from tables 'member' and 'groupmembers'
+	*
+	* @param Integer id of member to delete
+	* @param Integer id of group from with member is being deleted
+	*
+	* @return void
+	*/
+	public function deleteMember($id, $groupid) {
+		/* First checking if member is part of other groups
+		* If so just delete member from current group,
+		* otherwise, if this was the only group for that
+		* member, delete member from both 'groupmembers'
+		* and from 'members'.
+		*/
+		$numberofgroups = DB::table('groupmembers')->where('memberid', $id)->count();
+		if($numberofgroups > 1) {
+			$groupmembersrow = DB::table('groupmembers')->where('groupid', $groupid)->where('memberid', $id)->delete();
+			// $groupmembersrow->delete();
+		} else {
+			$groupmembersrow = DB::table('groupmembers')->where('groupid', $groupid)->where('memberid', $id)->delete();
+			$this::find($id)->delete();
+		}
 	}
 }

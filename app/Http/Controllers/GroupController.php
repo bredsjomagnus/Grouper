@@ -43,6 +43,7 @@ class GroupController extends Controller
 		];
         return view('groups.addgroup', $data);
     }
+
     /**
      * Show the application dashboard.
      *
@@ -65,6 +66,7 @@ class GroupController extends Controller
 		];
 		return view('groups.addgroup', $data);
     }
+	
     /**
      * Create new group and add members to it
      *

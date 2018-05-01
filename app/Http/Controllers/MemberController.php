@@ -56,4 +56,19 @@ class MemberController extends Controller
 
 		return redirect("/groups/edit/".$groupid);
 	}
+
+	public function moveMember() {
+		$member		= new Member();
+		$memberid	= $_GET['member'];
+		$fromgroup	= $_GET['from'];
+		$togroup	= $_GET['to'];
+
+		/*-----------------------------------*/
+
+		$member->moveMember($memberid, $fromgroup, $togroup);
+
+		/*-----------------------------------*/
+
+		return redirect("/groups/edit/".$fromgroup);
+	}
 }

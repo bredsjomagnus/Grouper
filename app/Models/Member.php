@@ -97,4 +97,9 @@ class Member extends Model
 			$this::find($id)->delete();
 		}
 	}
+
+	public function moveMember($memberid, $fromgroup, $togroup) {
+		DB::table('groupmembers')->where('groupid', $fromgroup)->where('memberid', $memberid)->delete();
+		DB::insert('insert into groupmembers (groupid, memberid) values (?, ?)', [$togroup, $memberid]);
+	}
 }

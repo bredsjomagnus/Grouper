@@ -66,7 +66,7 @@ class GroupController extends Controller
 		];
 		return view('groups.addgroup', $data);
     }
-	
+
     /**
      * Create new group and add members to it
      *
@@ -90,10 +90,12 @@ class GroupController extends Controller
 		/*----------------------------*/
 		$groupres	= $group->getGroupName($groupid);
 		$members	= $member->getMembers($groupid); // associative array [id => membername, ...]
+		$groups		= $group->getGroupsBelongingToOrganization('Klockarhagsskolan');
 		/*----------------------------*/
 		$data = [
 			"group"		=> $groupres,
 			"members"	=> $members,
+			"groups"	=> $groups,
 
 		];
 		return view('groups.edit', $data);

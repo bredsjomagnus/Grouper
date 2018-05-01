@@ -1,8 +1,8 @@
 html, body {
 	background-color: #ffffff;
 	/* color: #636b6f; */
-	font-family: 'Raleway', sans-serif;
-	font-weight: 200;
+	/* font-family: 'Raleway', sans-serif; */
+	/* font-weight: 200; */
 	height: 100vh;
 	margin: 0;
 }
@@ -11,7 +11,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 p {
 	color: black;
-	font-weight: 400;
+	font-weight: 200;
 }
 a {
 	font-weight: 400;
@@ -55,6 +55,12 @@ input {
 	letter-spacing: .1rem;
 	text-decoration: none;
 	text-transform: uppercase;
+}
+
+.dropdown-menu > li > a.disabled-link{
+	color: #c4c4c4;
+	pointer-events: none;
+	cursor: none;
 }
 
 .m-b-md {

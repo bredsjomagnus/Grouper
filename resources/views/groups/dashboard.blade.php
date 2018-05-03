@@ -6,10 +6,20 @@
 	<a href="{{ route('groupsdashboard')}}">Dashboard</a>
 	<a href="{{ route('addgroup')}}">Add group</a>
 	<h1>GROUPS</h1>
-	@foreach($groups as $group)
-		<?php
-			$editurl = url('/groups/edit/'.$group->id);
-		?>
-		<a href="{{ $editurl }}">{{$group->groupname}}</a>
-	@endforeach
+	<ul class='group-list'>
+
+
+		@foreach($groups as $group)
+			<?php
+				$editurl = url('/groups/edit/'.$group->id);
+			?>
+			<li class='group-list-item'>
+				<a href="{{ $editurl }}">
+			<div class="group-paneldiv">
+				<center>{{$group->groupname}}</center>
+			</div>
+			</a>
+			</li>
+		@endforeach
+		</ul>
 @endsection

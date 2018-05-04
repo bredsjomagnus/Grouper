@@ -125,4 +125,26 @@ class GroupController extends Controller
 		/*----------------------------*/
 		return redirect("/groups/edit/".$groupid);
 	}
+
+	/**
+	* Delete a group along with all it's memebers
+	*/
+	public function deleteGroupProcess($groupid) {
+		$group 		= new Group();
+
+		$group->deleteGroup($groupid);
+
+		$groups 	= $group->getGroupsBelongingToOrganization("Klockarhagsskolan");
+		$groupsizes	= $group->getGroupSize();
+
+		/*----------------------------*/
+
+		$data = [
+			"groups"		=> $groups,
+			"groupsizes"	=> $groupsizes,
+			"counter"		=> 0
+		];
+
+		return view('groups.dashboard', $data);
+	}
 }

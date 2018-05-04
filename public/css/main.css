@@ -8,6 +8,8 @@ html, body {
 }
 h1, h2, h3, h4, h5, h6 {
 	color: black;
+	font-family: 'Raleway', sans-serif; */
+	font-weight: 200;
 }
 p {
 	color: black;
@@ -94,6 +96,27 @@ input {
   color: gray;
   font-size: 12px
 }
+
+/*
+Table inside every paneldivlink
+*/
+.groupdashboardtable {
+	width: 100%;
+}
+.groupnamecell {
+	padding-bottom:5px;
+}
+.groupinforow {
+	background-color: #dedede;
+}
+.groupemptystylecell {
+	width:10%;
+	height: 29px;
+	padding: 5px
+}
+
+
+
 .paneldivlink:hover {
 	text-decoration: none;
 }

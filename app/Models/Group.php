@@ -2,6 +2,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use App\Models\Member as Member;
 
 class Group extends Model
 {
@@ -82,5 +83,24 @@ class Group extends Model
 		$group = $this::find($groupid);
 		$group->groupname = $newname;
 		$group->save();
+	}
+
+	/**
+	* Deöete group along with all its memebers
+	*
+	* @param Integer $groupid - group id
+	*
+	* @return void
+	*/
+	public function deleteGroup($groupid) {
+		$member = new Member();
+		$res = DB::table('groupmembers')
+									->where('groupid', $groupid)
+									->get();
+		foreach($res as $row) {
+			$member->deleteMember($row->memberid, $groupid);
+		}
+
+		$this::find($groupid)->delete();
 	}
 }

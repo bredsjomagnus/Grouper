@@ -21,6 +21,7 @@ Route::post('/addgroupconfirm', 'GroupController@addGroupConfirm')->name('addgro
 Route::post('/addgroupprocess', 'GroupController@addGroupProcess')->name('addgroupprocess');
 Route::get('/groups/edit/{id}', 'GroupController@editGroup')->name('editgroup');
 Route::post('/groups/editnameprocess', 'GroupController@editGroupName')->name('editgroupnameprocess');
+Route::get('/groups/delete/{id}', 'GroupController@deleteGroupProcess')->name('deletegroup');
 
 // MemberController
 Route::post('/members/edit/{id}', 'MemberController@editMemberProcess');

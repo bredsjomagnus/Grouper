@@ -65,20 +65,38 @@ input {
 	float: left;
 	margin: 5px 5px 5px 5px;
 }
+
 .group-paneldiv {
-  padding-top: 10px;
-  height: 50px;
-  width: 200px;
-  border: 1px solid gray;
-  border-radius: 5%;
-  border-bottom: 5px solid #bdbdcc;
-  border-top: 5px solid #bdbdcc;
+	padding-top: 10px;
+	height: 70px;
+	width: 200px;
+	border: 1px solid gray;
+	/* border-radius: 5%; */
+	border-top: 5px solid #bdbdcc;
+	background-color: #eeeeee;
+	-webkit-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+	-moz-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+	box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+}
+.group-paneldiv:hover {
+	padding-top: 10px;
+	height: 70px;
+	width: 200px;
+	border: 1px solid gray;
+	/* border-radius: 5%; */
+	border-top: 5px solid #82bf5e;
+	background-color: #f2f2f2;
+	-webkit-box-shadow: 0px 0px 22px -15px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 0px 22px -15px rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 22px -15px rgba(0,0,0,0.5);
 }
 .group-panelinfo {
   color: gray;
   font-size: 12px
 }
-
+.paneldivlink:hover {
+	text-decoration: none;
+}
 .dropdown-menu > li > a.disabled-link{
 	color: #c4c4c4;
 	pointer-events: none;

@@ -20,6 +20,7 @@ Route::get('/addgroups', 'GroupController@addGroup')->name('addgroup');
 Route::post('/addgroupconfirm', 'GroupController@addGroupConfirm')->name('addgroupconfirm');
 Route::post('/addgroupprocess', 'GroupController@addGroupProcess')->name('addgroupprocess');
 Route::get('/groups/edit/{id}', 'GroupController@editGroup')->name('editgroup');
+Route::post('/groups/editnameprocess', 'GroupController@editGroupName')->name('editgroupnameprocess');
 
 // MemberController
 Route::post('/members/edit/{id}', 'MemberController@editMemberProcess');

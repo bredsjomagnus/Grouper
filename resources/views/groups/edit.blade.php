@@ -6,7 +6,13 @@
 	<a href="{{ route('groupsdashboard')}}">Dashboard</a>
 	<a href="{{ route('addgroup')}}">Add group</a>
 
-	<h1>EDIT {{$group->groupname}}</h1>
+	<div class="row">
+		<div class="col-md-3">
+			<h1>EDIT</h1>
+			<h2><div id='edit_groupname' onclick="toFormGroupName({{$group->id}})">{{$group->groupname}}</div></h2>
+		</div>
+	</div>
+
 	<table>
 		<thead>
 			<tr>

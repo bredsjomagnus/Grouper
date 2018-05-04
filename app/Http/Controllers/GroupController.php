@@ -23,11 +23,17 @@ class GroupController extends Controller
     {
 		$group 		= new Group();
 		$groups 	= $group->getGroupsBelongingToOrganization("Klockarhagsskolan");
+		$groupsizes	= $group->getGroupSize();
+
 		/*----------------------------*/
+
 		$data = [
-			"groups"	=> $groups
+			"groups"		=> $groups,
+			"groupsizes"	=> $groupsizes,
+			"counter"		=> 0
 		];
-        return view('groups.dashboard', $data);
+
+		return view('groups.dashboard', $data);
     }
     /**
      * Show the application dashboard.
@@ -84,6 +90,11 @@ class GroupController extends Controller
 
 		return redirect("/groups");
     }
+
+	/**
+	* Get to view where one can edit a group
+	*
+	*/
 	public function editGroup($groupid) {
 		$group		= new Group();
 		$member		= new Member();
@@ -99,5 +110,19 @@ class GroupController extends Controller
 
 		];
 		return view('groups.edit', $data);
+	}
+
+	/**
+	* The process to edit a groups name
+	*
+	*/
+	public function editGroupName() {
+		$group 		= new Group();
+		$newgroupname	= $_POST['newvalue'];
+		$groupid 		= $_POST['groupid'];
+		/*----------------------------*/
+		$group->editGroupName($groupid, $newgroupname);
+		/*----------------------------*/
+		return redirect("/groups/edit/".$groupid);
 	}
 }

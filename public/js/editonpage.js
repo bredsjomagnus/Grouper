@@ -48,7 +48,6 @@ function toForm(divid, id, groupid, value, field) {
 }
 
 function toFormAdd(groupid) {
-	console.log("Kommer hit");
     var paramholder = document.getElementById('addmember');
     var form = document.createElement("form");
     var input = document.createElement("input");
@@ -66,10 +65,30 @@ function toFormAdd(groupid) {
     inputhiddenid.setAttribute("type", "hidden");
     inputhiddenid.setAttribute("name", "groupid");
     inputhiddenid.setAttribute("value", groupid);
-    // input.blur(function() {
-    //     console.log("Tappar fokus");
-    //     // form.parentNode.replaceChild(paramholder, form);
-    // });
+
+    form.appendChild(input);
+    form.appendChild(inputhiddenid);
+    paramholder.parentNode.replaceChild(form, paramholder);
+}
+
+function toFormGroupName(groupid) {
+    var paramholder = document.getElementById('edit_groupname');
+    var form = document.createElement("form");
+    var input = document.createElement("input");
+    var inputhiddenid = document.createElement("input");
+
+    form.setAttribute("action", "../../groups/editnameprocess");
+    form.setAttribute("method", "post");
+
+    input.setAttribute("value", "");
+    input.setAttribute("placeholder", "New Groupname");
+    input.setAttribute("type", "text");
+    input.setAttribute("name", "newvalue");
+    input.setAttribute("class", "form-control");
+
+    inputhiddenid.setAttribute("type", "hidden");
+    inputhiddenid.setAttribute("name", "groupid");
+    inputhiddenid.setAttribute("value", groupid);
 
     form.appendChild(input);
     form.appendChild(inputhiddenid);

@@ -1,6 +1,8 @@
 <?php
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+
 class Group extends Model
 {
 	/*
@@ -51,7 +53,34 @@ class Group extends Model
 		$res = $this::All()->where('groupname', $groupname)->where('organization', $organization);
 		return !$res->isEmpty();
 	}
+
 	public function getGroupName($id) {
 		return $this::find($id);
+	}
+
+	public function getGroupSize() {
+		// selects groups by groupid and count them to get each groupsize
+		// i nuläget summerar den ALLA grupperna. Måste eventuellt se till att den bara summerar grupperna
+		// som tillhör just den aktuella organisationen.
+		$groupsizes = DB::table('groupmembers')
+                 		->select('groupid', DB::raw('count(*) as numberofmembers'))
+                 		->groupBy('groupid')
+                 		->get();
+
+		return $groupsizes;
+	}
+
+	/**
+	* Edit a groups name
+	*
+	* @param Integer $groupid - group id
+	* @param String $newname - new group name
+	*
+	* @return void
+	*/
+	public function editGroupName($groupid, $newname) {
+		$group = $this::find($groupid);
+		$group->groupname = $newname;
+		$group->save();
 	}
 }

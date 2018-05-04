@@ -7,19 +7,23 @@
 	<a href="{{ route('addgroup')}}">Add group</a>
 	<h1>GROUPS</h1>
 	<ul class='group-list'>
-
-
 		@foreach($groups as $group)
 			<?php
 				$editurl = url('/groups/edit/'.$group->id);
 			?>
 			<li class='group-list-item'>
-				<a href="{{ $editurl }}">
+				<a class='paneldivlink' href="{{ $editurl }}">
 			<div class="group-paneldiv">
-				<center>{{$group->groupname}}</center>
+				<center>
+					<span>{{$group->groupname}}</span><br>
+					@if($groupsizes[$counter]->groupid == $group->id)
+						<span class='group-panelinfo'>Members: {{$groupsizes[$counter]->numberofmembers}}</span>
+					@endif
+				</center>
 			</div>
 			</a>
 			</li>
+			<?php $counter++; ?>
 		@endforeach
 		</ul>
 @endsection

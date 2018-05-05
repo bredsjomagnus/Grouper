@@ -121,7 +121,11 @@ class GroupController extends Controller
 		$newgroupname	= $_POST['newvalue'];
 		$groupid 		= $_POST['groupid'];
 		/*----------------------------*/
-		$group->editGroupName($groupid, $newgroupname);
+
+		// Just nu en boolean som inte skickas ut till vyn. Fixar det sen.
+		// Den finns för att kunna meddela om ett namnbyte kunde fixas eller ej
+		// beroende på om namnet redan existerar eller inte.
+		$successfullnamechange = $group->editGroupName($groupid, $newgroupname, 'Klockarhagsskolan');
 		/*----------------------------*/
 		return redirect("/groups/edit/".$groupid);
 	}

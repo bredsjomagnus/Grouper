@@ -9,7 +9,14 @@
 	<div class="row">
 		<div class="col-md-3">
 			<h1>EDIT</h1>
-			<h2><div id='edit_groupname' onclick="toFormGroupName({{$group->id}})">{{$group->groupname}}</div></h2>
+			<h2><div id='edit_groupname' onclick="toFormGroupName({{$group->id}}, '{{$group->groupname}}')">{{$group->groupname}}</div></h2>
+			<?php
+			if(isset($successfullnamechange)) {
+				if(!$successfullnamechange) {
+					echo "<p>name already exists</p>";
+				}
+			}
+			?>
 		</div>
 	</div>
 

@@ -72,17 +72,23 @@ class Group extends Model
 	}
 
 	/**
-	* Edit a groups name
+	* Edit a groups name if there is no other group in the organization with that name
 	*
 	* @param Integer $groupid - group id
 	* @param String $newname - new group name
 	*
-	* @return void
+	* @return Boolean if successfull or not
 	*/
-	public function editGroupName($groupid, $newname) {
-		$group = $this::find($groupid);
-		$group->groupname = $newname;
-		$group->save();
+	public function editGroupName($groupid, $newname, $organization) {
+		$success = false;
+		if(!$this->groupNameExists($newname, $organization)) {
+			$group = $this::find($groupid);
+			$group->groupname = $newname;
+			$group->save();
+			$success = true;
+		}
+
+		return $success;
 	}
 
 	/**

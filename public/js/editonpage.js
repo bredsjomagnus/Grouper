@@ -71,7 +71,7 @@ function toFormAdd(groupid) {
     paramholder.parentNode.replaceChild(form, paramholder);
 }
 
-function toFormGroupName(groupid) {
+function toFormGroupName(groupid, oldname) {
     var paramholder = document.getElementById('edit_groupname');
     var form = document.createElement("form");
     var input = document.createElement("input");
@@ -80,8 +80,8 @@ function toFormGroupName(groupid) {
     form.setAttribute("action", "../../groups/editnameprocess");
     form.setAttribute("method", "post");
 
-    input.setAttribute("value", "");
-    input.setAttribute("placeholder", "New Groupname");
+    input.setAttribute("value", oldname);
+    // input.setAttribute("placeholder", oldname);
     input.setAttribute("type", "text");
     input.setAttribute("name", "newvalue");
     input.setAttribute("class", "form-control");

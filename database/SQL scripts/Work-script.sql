@@ -14,13 +14,11 @@ show tables;
 -- INSERT INTO `groups` (`groupname`, `member`, `organization`) VALUES ('Klass 7A', 'Maj-Björn', 'Klockarhagsskolan');
 -- INSERT INTO organizations (organizationname) VALUES ('Klockarhagsskolan');
 
-ALTER TABLE `groups` ADD updated_at DATETIME; 
+-- ALTER TABLE `groups` ADD updated_at DATETIME; 
 
 SELECT * FROM `groups` WHERE (SELECT DISTINCT(groupname) FROM groups);
 
 SELECT * FROM organizations;
-
-DELETE FROM `groups` WHERE groupname = 'Klass 5B';
 
 SELECT * FROM `groups`;
 

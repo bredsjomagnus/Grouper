@@ -59,6 +59,14 @@ input {
 	text-transform: uppercase;
 }
 
+.panelbackground {
+	background-color: #f2f2f2;
+	-webkit-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+	padding: 10px 0 10px 0;
+}
+
 .group-list {
 	margin: 0;
 	list-style-type:none;

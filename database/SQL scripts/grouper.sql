@@ -8,6 +8,7 @@ CREATE TABLE IF NOT EXISTS groups (
 	id INT(11) AUTO_INCREMENT,
     groupname VARCHAR(255),
     organization VARCHAR(255),
+    updated_at DATETIME,
 
     PRIMARY KEY (id)
 );

@@ -25,7 +25,10 @@
 		{{-- This is the main navbar --}}
         @include('includes.inloggednavbar')
 
+
+
         <div class='container'>
+			@include('includes.links')
             @yield('content')
         </div>
 

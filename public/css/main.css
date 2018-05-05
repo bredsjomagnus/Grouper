@@ -59,6 +59,20 @@ input {
 	text-transform: uppercase;
 }
 
+/*
+navbar
+*/
+ul.nav.navbar-nav.mainnav > li > a {
+	color: #777;
+}
+.mainnavbarrow {
+	background-color: #f2f2f2;
+}
+ul.nav.navbar-nav.mainnav > li.nav-active {
+	background-color: #dce0d7;
+}
+
+
 .panelbackground {
 	background-color: #f2f2f2;
 	-webkit-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);

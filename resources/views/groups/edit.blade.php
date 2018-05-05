@@ -3,8 +3,6 @@
 @section('title', 'Groups')
 
 @section('content')
-	<a href="{{ route('groupsdashboard')}}">Dashboard</a>
-	<a href="{{ route('addgroup')}}">Add group</a>
 
 	<div class="row">
 		<div class="col-md-3">

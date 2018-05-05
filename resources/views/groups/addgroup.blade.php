@@ -3,9 +3,6 @@
 @section('title', 'Groups')
 
 @section('content')
-
-	<a href="{{ route('groupsdashboard')}}">Dashboard</a>
-	<a href="{{ route('addgroup')}}">Add group</a>
 	<h1>ADD GROUP</h1>
 	<table width="600px">
 		<form action="{{ route('addgroupconfirm') }}" method="post" enctype="multipart/form-data">

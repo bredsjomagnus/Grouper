@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS groupmembers;
 DROP TABLE IF EXISTS groups;
 DROP TABLE IF EXISTS members;
 DROP TABLE IF EXISTS organizations;
+DROP TABLE IF EXISTS choices;
 
 CREATE TABLE IF NOT EXISTS groups (
 	id INT(11) AUTO_INCREMENT,
@@ -50,3 +51,13 @@ CREATE TABLE IF NOT EXISTS groupmembers (
     FOREIGN KEY (groupid) REFERENCES groups (id),
     FOREIGN KEY (memberid) REFERENCES members (id)
 );
+
+CREATE TABLE IF NOT EXISTS choices (
+	id INTEGER AUTO_INCREMENT,
+    choicename VARCHAR(255),
+    updated_at DATETIME,
+    deleted_at DATETIME,
+    
+    PRIMARY KEY(id)
+);
+

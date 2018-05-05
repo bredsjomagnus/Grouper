@@ -25,10 +25,9 @@
 		{{-- This is the main navbar --}}
         @include('includes.inloggednavbar')
 
-
+		@include('includes.links')
 
         <div class='container'>
-			@include('includes.links')
             @yield('content')
         </div>
 
@@ -41,7 +40,7 @@
 		$urlsegemnts = Request::segments(); // get path segmetns in array eg. [groups, 'edit', '<parameter>']
 		?>
 
-		@if(Request::path() == "addgroups")
+		@if(Request::path() == "addgroups" || Request::path() == "addchoice")
 		<!-- Script handeling import .csv feature -->
 			<script src="{{ URL::asset('js/import.js') }}" type='text/javascript'></script>
 		@endif

@@ -16,7 +16,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 // GroupController
 Route::get('/groups', 'GroupController@groupsDashboard')->name('groupsdashboard');
-Route::get('/addgroups', 'GroupController@addGroup')->name('addgroup');
+Route::get('/groups/addgroups', 'GroupController@addGroups')->name('addgroups');
 Route::post('/addgroupconfirm', 'GroupController@addGroupConfirm')->name('addgroupconfirm');
 Route::post('/addgroupprocess', 'GroupController@addGroupProcess')->name('addgroupprocess');
 Route::get('/groups/edit/{id}', 'GroupController@editGroup')->name('editgroup');
@@ -30,4 +30,6 @@ Route::get('/members/delete/{id}', 'MemberController@deleteMember');
 Route::get('/members/move', 'MemberController@moveMember');
 
 // ChoiceController
-Route::get('/choices/addchoice', 'ChoiceController@addChoice')->name('addchoice');
+Route::get('/choices/addchoices', 'ChoiceController@addChoices')->name('addchoices');
+Route::post('/choices/addchoicesconfirm', 'ChoiceController@addChoicesConfirm')->name('addchoicesconfirm');
+Route::post('/choices/addprocess', 'ChoiceController@addChoicesProcess')->name('addchoicesprocess');

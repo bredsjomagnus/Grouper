@@ -40,9 +40,13 @@
 		$urlsegemnts = Request::segments(); // get path segmetns in array eg. [groups, 'edit', '<parameter>']
 		?>
 
-		@if(Request::path() == "addgroups" || Request::path() == "addchoice")
-		<!-- Script handeling import .csv feature -->
+		@if(Request::path() == "groups/addgroups")
+		<!-- Script handeling import group via .csv feature -->
 			<script src="{{ URL::asset('js/import.js') }}" type='text/javascript'></script>
+		@endif
+		@if(Request::path() == "choices/addchoices")
+		<!-- Script handeling import choice via .csv feature -->
+			<script src="{{ URL::asset('js/importchoice.js') }}" type='text/javascript'></script>
 		@endif
 		@if(count($urlsegemnts) >= 3 && $urlsegemnts[0] == 'groups' && $urlsegemnts[1] == 'edit')
 		<!-- Script handeling editing members on one page -->

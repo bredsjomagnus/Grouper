@@ -34,3 +34,5 @@ SELECT * FROM groupmembers WHERE groupid LIKE 1;
 SELECT groupid, count(groupid) AS numberofmembers FROM groupmembers WHERE groupid LIKE '%%' GROUP BY groupid;
 
 SELECT * FROM `migrations`;
+
+SELECT * FROM choices;

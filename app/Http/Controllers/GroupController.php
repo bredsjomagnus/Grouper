@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Group as Group;
 use App\Models\Member as Member;
+use App\Models\Choice as Choice;
 class GroupController extends Controller
 {
 	/**
@@ -22,6 +23,12 @@ class GroupController extends Controller
     public function groupsDashboard()
     {
 		$group 		= new Group();
+		$choice		= new Choice();
+
+		/*----------------------------*/
+
+		$choices	= $choice->getChoicesBelongingToOrganization('Klockarhagsskolan');
+
 		$groups 	= $group->getGroupsBelongingToOrganization("Klockarhagsskolan");
 		$groupsizes	= $group->getGroupSize();
 
@@ -29,6 +36,7 @@ class GroupController extends Controller
 
 		$data = [
 			"groups"		=> $groups,
+			"choices"		=> $choices,
 			"groupsizes"	=> $groupsizes,
 			"counter"		=> 0
 		];
@@ -40,14 +48,14 @@ class GroupController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function addGroup()
+    public function addGroups()
     {
 		// Data to fill up variables when coming from dashboard.
 		$data = [
 			"members" 			=>	[],
 			"groupnameexists"	=> false
 		];
-        return view('groups.addgroup', $data);
+        return view('groups.addgroups', $data);
     }
 
     /**
@@ -70,7 +78,7 @@ class GroupController extends Controller
 			"groupname"			=> $groupname,
 			"groupnameexists"	=> $groupnameexists
 		];
-		return view('groups.addgroup', $data);
+		return view('groups.addgroups', $data);
     }
 
     /**

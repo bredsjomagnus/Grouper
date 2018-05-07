@@ -27,9 +27,17 @@
 
 		@include('includes.links')
 
-        <div class='container'>
+		<div class="col-md-2">
+			@yield('leftsidepanel')
+		</div>
+
+        <div class='col-md-6'>
             @yield('content')
         </div>
+
+		<div class="col-md-4">
+			@yield('rightsidepanel')
+		</div>
 
 		<!-- JQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -43,6 +51,10 @@
 		@if(Request::path() == "groups/addgroups")
 		<!-- Script handeling import group via .csv feature -->
 			<script src="{{ URL::asset('js/import.js') }}" type='text/javascript'></script>
+		@endif
+		@if(Request::path() == "choices/edit")
+		<!-- Script handeling import group via .csv feature -->
+			<script src="{{ URL::asset('js/editchoiceonpage.js') }}" type='text/javascript'></script>
 		@endif
 		@if(Request::path() == "choices/addchoices")
 		<!-- Script handeling import choice via .csv feature -->

@@ -32,4 +32,8 @@ Route::get('/members/move', 'MemberController@moveMember');
 // ChoiceController
 Route::get('/choices/addchoices', 'ChoiceController@addChoices')->name('addchoices');
 Route::post('/choices/addchoicesconfirm', 'ChoiceController@addChoicesConfirm')->name('addchoicesconfirm');
+Route::post('/choices/addoneprocess', 'ChoiceController@addChoiceProcess')->name('addchoiceprocess');
 Route::post('/choices/addprocess', 'ChoiceController@addChoicesProcess')->name('addchoicesprocess');
+Route::get('/choices/edit', 'ChoiceController@editChoices')->name('editchoice');
+Route::get('/choices/delete/{id}', 'ChoiceController@deleteChoicesProcess')->name('deletechoice');
+Route::post('/choices/newname/{id}', 'ChoiceController@editChoicesProcess')->name('editchoiceprocess');

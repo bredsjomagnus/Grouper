@@ -74,11 +74,21 @@ ul.nav.navbar-nav.mainnav > li.nav-active {
 
 
 .panelbackground {
-	background-color: #f2f2f2;
+	/* background-color: #f3fff1; */
 	-webkit-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
 	box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
 	padding: 10px 0 10px 0;
+	border: 1px solid #eeffee;
+}
+
+.choicepanelbackground {
+	/* background-color: #f2f7ff; */
+	-webkit-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+	-moz-box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+	box-shadow: inset 0px 0px 5px 0px rgba(0,0,0,0.75);
+	padding: 10px 0 10px 0;
+	border: 1px solid #ededff;
 }
 
 .group-list {
@@ -114,6 +124,31 @@ ul.nav.navbar-nav.mainnav > li.nav-active {
 	-moz-box-shadow: 0px 0px 22px -15px rgba(0,0,0,0.5);
 	box-shadow: 0px 0px 22px -15px rgba(0,0,0,0.5);
 }
+
+.choice-paneldiv {
+	padding-top: 10px;
+	height: 70px;
+	width: 200px;
+	border: 1px solid gray;
+	/* border-radius: 5%; */
+	border-top: 5px solid #bdbdcc;
+	background-color: #eeeeee;
+	-webkit-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+	-moz-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+	box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+}
+.choice-paneldiv:hover {
+	padding-top: 10px;
+	height: 70px;
+	width: 200px;
+	border: 1px solid gray;
+	/* border-radius: 5%; */
+	border-top: 5px solid #5e88bf;
+	background-color: #f2f2f2;
+	-webkit-box-shadow: 0px 0px 22px -15px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0px 0px 22px -15px rgba(0,0,0,0.5);
+	box-shadow: 0px 0px 22px -15px rgba(0,0,0,0.5);
+}
 .group-panelinfo {
   color: gray;
   font-size: 12px
@@ -133,6 +168,11 @@ Table inside every paneldivlink
 }
 .groupemptystylecell {
 	width:10%;
+	height: 29px;
+	padding: 5px
+}
+.choiceemptystylecell {
+	width:85%;
 	height: 29px;
 	padding: 5px
 }

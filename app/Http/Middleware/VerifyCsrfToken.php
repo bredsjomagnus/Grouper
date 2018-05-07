@@ -14,6 +14,7 @@ class VerifyCsrfToken extends Middleware
     protected $except = [
         // 'http://localhost/Programmering/Gruppindelare/Grouper/public/*'
 		'/members/*',
-		'groups/*'
+		'groups/*',
+		'choices/*'
     ];
 }

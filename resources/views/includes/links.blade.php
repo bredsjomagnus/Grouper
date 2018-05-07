@@ -6,7 +6,7 @@
 				<a href="{{ route('groupsdashboard')}}" >DASHBOARD</a>
 			</li>
 
-			<li class="dropdown {{ Request::path() == '/groups/addgroups' ? 'nav-active' : '' }}">
+			<li class="dropdown {{ Request::path() == 'groups/addgroups' ? 'nav-active' : '' }}">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">ADD GROUP <span class="caret"></span></a>
 				<ul class="dropdown-menu" role="menu">
 					<li><a href="{{ route('addgroups')}}">With csv file</a></li>

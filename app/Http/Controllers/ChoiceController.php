@@ -49,4 +49,43 @@ class ChoiceController extends Controller
 
 		return redirect("/groups");
 	}
+
+	public function addChoiceProcess(Request $request) {
+		$choice		= new Choice;
+		$choices 	= $request->input('choice');
+
+		/*-----------------------------------*/
+
+		$choice->addChoice($choices, 'Klockarhagsskolan');
+
+		/*-----------------------------------*/
+
+		return redirect('/choices/edit');
+	}
+
+	public function deleteChoicesProcess($id) {
+		$choice 	= new Choice;
+		$choice->deleteChoice($id);
+
+		return redirect("/groups");
+	}
+
+	public function editChoices() {
+		$choice 		= new Choice;
+		$choices 		= $choice->getAllChoices();
+
+		$data = [
+			"choices"	=> $choices
+		];
+		return view('choice.edit', $data);
+	}
+
+	public function editChoicesProcess($id) {
+		$choice		= new Choice;
+		$newname	= $_POST['newvalue'];
+		$choice->editChoice($id, $newname);
+
+
+		return redirect('/choices/edit');
+	}
 }

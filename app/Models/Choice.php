@@ -8,12 +8,19 @@ class Choice extends Model
 {
     public function addChoices($choices, $organization) {
 		foreach($choices as $choice) {
-			$this::insert(['choicename' => htmlspecialchars(trim($choice)), 'organization' => $organization]);
+			$alreadyexists = $this::All()->where('choicename', $choice);
+			if($alreadyexists->isEmpty()) {
+				$this::insert(['choicename' => htmlspecialchars(trim($choice)), 'organization' => $organization]);
+			}
+
 		}
 	}
 
     public function addChoice($choice, $organization) {
-		$this::insert(['choicename' => htmlspecialchars(trim($choice)), 'organization' => $organization]);
+		$alreadyexists = $this::All()->where('choicename', $choice);
+		if($alreadyexists->isEmpty()) {
+			$this::insert(['choicename' => htmlspecialchars(trim($choice)), 'organization' => $organization]);
+		}
 	}
 
 	public function getChoicesBelongingToOrganization($organization) {

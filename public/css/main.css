@@ -8,7 +8,7 @@ html, body {
 }
 h1, h2, h3, h4, h5, h6 {
 	color: black;
-	font-family: 'Raleway', sans-serif; */
+	font-family: 'Raleway', sans-serif;
 	font-weight: 200;
 }
 p {
@@ -21,6 +21,70 @@ a {
 input {
 	color: black;
 }
+
+/*
+SIDEPANEL left
+*/
+.sidenav {
+    height: 90%;
+	margin-top: 50px;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav h4 {
+    padding: 2px 8px 2px 32px;
+    color: #aeaeae;
+	font-weight:bolder;
+    display: block;
+    transition: 0.3s;
+	background-color: #333;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+	top: -15px;
+	right: 0;
+    font-size: 25px;
+    margin-left: 30px;
+}
+.opensidepanelbtn {
+	font-size:20px;
+	cursor:pointer;
+	color: #b7b7b7;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+#main {
+	transition: 0.5s;
+}
+/*
+/SIDEPANEL left
+*/
+
 .full-height {
 	height: 100vh;
 }

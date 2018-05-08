@@ -27,17 +27,20 @@
 
 		@include('includes.links')
 
-		<div class="col-md-2">
-			@yield('leftsidepanel')
+		<div id='main'>
+			<div class="col-md-1">
+				@yield('leftsidepanel')
+			</div>
+
+	        <div class='col-md-8'>
+	            @yield('content')
+	        </div>
+
+			<div class="col-md-2">
+				@yield('rightsidepanel')
+			</div>
 		</div>
 
-        <div class='col-md-6'>
-            @yield('content')
-        </div>
-
-		<div class="col-md-4">
-			@yield('rightsidepanel')
-		</div>
 
 		<!-- JQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -48,6 +51,10 @@
 		$urlsegemnts = Request::segments(); // get path segmetns in array eg. [groups, 'edit', '<parameter>']
 		?>
 
+		@if(Request::path() == "groups")
+		<!-- Script handeling open left sidepanel feature -->
+			<script src="{{ URL::asset('js/sidepanel.js') }}" type="text/javascript"></script>
+		@endif
 		@if(Request::path() == "groups/addgroups")
 		<!-- Script handeling import group via .csv feature -->
 			<script src="{{ URL::asset('js/import.js') }}" type='text/javascript'></script>

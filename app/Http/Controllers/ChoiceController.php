@@ -67,7 +67,8 @@ class ChoiceController extends Controller
 		$choice 	= new Choice;
 		$choice->deleteChoice($id);
 
-		return redirect("/groups");
+		// return redirect("/groups");
+		return back();
 	}
 
 	public function editChoices() {

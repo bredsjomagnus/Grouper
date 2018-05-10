@@ -50,7 +50,8 @@ SIDEPANEL left
 
 .sidenav h4 {
     padding: 2px 8px 2px 32px;
-    color: #aeaeae;
+    /* color: #aeaeae; */
+    color: #94c374;
 	font-weight:bolder;
     display: block;
     transition: 0.3s;

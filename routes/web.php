@@ -37,3 +37,6 @@ Route::post('/choices/addprocess', 'ChoiceController@addChoicesProcess')->name('
 Route::get('/choices/edit', 'ChoiceController@editChoices')->name('editchoice');
 Route::get('/choices/delete/{id}', 'ChoiceController@deleteChoicesProcess')->name('deletechoice');
 Route::post('/choices/newname/{id}', 'ChoiceController@editChoicesProcess')->name('editchoiceprocess');
+
+// EventController
+Route::get('/events/create', 'EventController@createEvent')->name('createevent');

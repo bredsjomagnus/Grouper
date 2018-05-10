@@ -51,7 +51,7 @@
 		$urlsegemnts = Request::segments(); // get path segmetns in array eg. [groups, 'edit', '<parameter>']
 		?>
 
-		@if(Request::path() == "groups")
+		@if(Request::path() == "groups" || Request::path() == "events/create")
 		<!-- Script handeling open left sidepanel feature -->
 			<script src="{{ URL::asset('js/sidepanel.js') }}" type="text/javascript"></script>
 		@endif

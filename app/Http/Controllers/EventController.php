@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Event as Event;
 use App\Models\Group as Group;
 use App\Models\Choice as Choice;
 
@@ -26,5 +27,16 @@ class EventController extends Controller
 
 		];
 		return view('events.create', $data);
+	}
+
+	public function createEventProcess(Request $request) {
+		$event		= new Event;
+		$eventname	= $request->input('eventname');
+		$groups		= $request->input('groups');
+		$choices	= $request->input('choices');
+
+		$event->createEvent($eventname, 'Klockarhagsskolan', $groups, $choices);
+
+		return redirect("/groups");
 	}
 }

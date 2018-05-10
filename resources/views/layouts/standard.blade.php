@@ -36,7 +36,7 @@
 	            @yield('content')
 	        </div>
 
-			<div class="col-md-2">
+			<div class="col-md-3">
 				@yield('rightsidepanel')
 			</div>
 		</div>

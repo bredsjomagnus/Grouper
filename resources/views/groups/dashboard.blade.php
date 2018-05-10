@@ -78,7 +78,7 @@
 											<tr>
 												<td colspan='2' class='groupnamecell'><center>{{$choice->choicename}}</center></td>
 											</tr>
-											<tr class='groupinforow'>
+											<tr class='choiceinforow'>
 												<td class='choiceemptystylecell'></td>
 
 												<td>
@@ -92,7 +92,6 @@
 								</div>
 							</a>
 						</li>
-						<?php $counter++; ?>
 					@endforeach
 				</ul>
 
@@ -106,5 +105,43 @@
 @endsection
 
 @section('rightsidepanel')
-<h3>RIGHT SIDE PANEL</h3>
+<h1 style='padding-left:40px;'>EVENTS</h1>
+@if(isset($events))
+	<br>
+	<div class="row eventpanelbackground">
+		<div class="col-md-12">
+			<ul class='group-list'>
+				@foreach($events as $event)
+					<?php
+					$editeventurl = url('/events/edit/'.$event->id);
+					$deleteeventurl = url('/choices/delete/'.$choice->id);
+					?>
+					<li class='group-list-item'>
+						<a class='paneldivlink' href="{{ $editeventurl }}">
+							<div class="event-paneldiv">
+								<center>
+									<table class='groupdashboardtable'>
+										<tr>
+											<td colspan='2' class='groupnamecell'><center>{{$event->eventname}}</center></td>
+										</tr>
+										<tr class='eventinforow'>
+											<td class='choiceemptystylecell'></td>
+											<td>
+												<a href='{{ $deleteeventurl }}' onclick='return confirm("Do you want to delete this event?");'>
+													<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+												</a>
+											</td>
+										</tr>
+									</table>
+								</center>
+							</div>
+						</a>
+					</li>
+				@endforeach
+			</ul>
+		</div>
+	</div>
+@else
+	<p>No events yet!</p>
+@endif
 @endsection

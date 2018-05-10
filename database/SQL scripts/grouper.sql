@@ -1,12 +1,15 @@
 DROP TABLE IF EXISTS organizationgroups;
 DROP TABLE IF EXISTS groupmembers;
+DROP TABLE IF EXISTS eventgroups;
+DROP TABLE IF EXISTS eventchoices;
+DROP TABLE IF EXISTS memberchoices;
+
 DROP TABLE IF EXISTS groups;
 DROP TABLE IF EXISTS members;
 DROP TABLE IF EXISTS organizations;
 DROP TABLE IF EXISTS choices;
 DROP TABLE IF EXISTS `events`;
-DROP TABLE IF EXISTS eventgroups;
-DROP TABLE IF EXISTS eventchoices;
+
 -- DROP TABLE IF EXISTS organizationschoices;
 
 CREATE TABLE IF NOT EXISTS groups (
@@ -69,9 +72,10 @@ CREATE TABLE IF NOT EXISTS choices (
 CREATE TABLE IF NOT EXISTS `events` (
 	id INTEGER AUTO_INCREMENT,
     eventname VARCHAR(255),
+    organization VARCHAR(255),
     created_at DATETIME,
     updated_at DATETIME,
-    deleted_ad DATETIME,
+    deleted_at DATETIME,
     
     PRIMARY KEY(id)
 );
@@ -97,6 +101,18 @@ CREATE TABLE IF NOT EXISTS eventchoices (
     
     PRIMARY KEY(id),
     FOREIGN KEY (eventid) REFERENCES `events` (id),
+    FOREIGN KEY (choiceid) REFERENCES choices (id)
+);
+
+CREATE TABLE IF NOT EXISTS memberchoices (
+	id INTEGER AUTO_INCREMENT,
+    memberid INTEGER,
+    choiceid INTEGER,
+    updated_at DATETIME,
+    deleted_at DATETIME,
+    
+    PRIMARY KEY(id),
+    FOREIGN KEY (memberid) REFERENCES members (id),
     FOREIGN KEY (choiceid) REFERENCES choices (id)
 );
 -- CREATE TABLE IF NOT EXISTS organizationschoices (

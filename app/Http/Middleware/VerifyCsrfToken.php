@@ -15,6 +15,7 @@ class VerifyCsrfToken extends Middleware
         // 'http://localhost/Programmering/Gruppindelare/Grouper/public/*'
 		'/members/*',
 		'groups/*',
-		'choices/*'
+		'choices/*',
+		'events/*'
     ];
 }

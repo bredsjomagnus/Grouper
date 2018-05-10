@@ -40,3 +40,4 @@ Route::post('/choices/newname/{id}', 'ChoiceController@editChoicesProcess')->nam
 
 // EventController
 Route::get('/events/create', 'EventController@createEvent')->name('createevent');
+Route::post('/events/createprocess', 'EventController@createEventProcess')->name('createeventprocess');

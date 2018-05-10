@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use App\Models\Group as Group;
 use App\Models\Member as Member;
 use App\Models\Choice as Choice;
+use App\Models\Event as Event;
 class GroupController extends Controller
 {
 	/**
@@ -24,6 +25,7 @@ class GroupController extends Controller
     {
 		$group 		= new Group();
 		$choice		= new Choice();
+		$event		= new Event();
 
 		/*----------------------------*/
 
@@ -32,11 +34,14 @@ class GroupController extends Controller
 		$groups 	= $group->getGroupsBelongingToOrganization("Klockarhagsskolan");
 		$groupsizes	= $group->getGroupSize();
 
+		$events		= $event->getEventsBelongingToOrganization('Klockarhagsskolan');
+
 		/*----------------------------*/
 
 		$data = [
 			"groups"		=> $groups,
 			"choices"		=> $choices,
+			"events"		=> $events,
 			"groupsizes"	=> $groupsizes,
 			"counter"		=> 0
 		];

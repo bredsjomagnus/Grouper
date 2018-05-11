@@ -3,10 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+use App\Models\Eventchoice as Eventchoice;
 
 class Choice extends Model
 {
-    public function addChoices($choices, $organization) {
+	use SoftDeletes;
+
+	public function addChoices($choices, $organization) {
 		foreach($choices as $choice) {
 			$alreadyexists = $this::All()->where('choicename', $choice);
 			if($alreadyexists->isEmpty()) {

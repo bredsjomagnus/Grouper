@@ -29,21 +29,28 @@ class GroupController extends Controller
 
 		/*----------------------------*/
 
-		$choices	= $choice->getChoicesBelongingToOrganization('Klockarhagsskolan');
+		$choices			= $choice->getChoicesBelongingToOrganization('Klockarhagsskolan');
 
-		$groups 	= $group->getGroupsBelongingToOrganization("Klockarhagsskolan");
-		$groupsizes	= $group->getGroupSize();
+		$groups 			= $group->getGroupsBelongingToOrganization("Klockarhagsskolan");
+		$groupsizes			= $group->getGroupSize('Klockarhagsskolan');
 
-		$events		= $event->getEventsBelongingToOrganization('Klockarhagsskolan');
+		$events				= $event->getEventsBelongingToOrganization('Klockarhagsskolan');
+		$numberofgroups 	= $event->getNumberOfGroups('Klockarhagsskolan');
+		$numberofmembers	= $event->getNumberOfMembers('Klockarhagsskolan');
+		$numberofchoices	= $event->getNumberOfChoices('Klockarhagsskolan');
 
 		/*----------------------------*/
 
 		$data = [
-			"groups"		=> $groups,
-			"choices"		=> $choices,
-			"events"		=> $events,
-			"groupsizes"	=> $groupsizes,
-			"counter"		=> 0
+			"groups"				=> $groups,
+			"choices"				=> $choices,
+			"events"				=> $events,
+			"groupsizes"			=> $groupsizes,
+			"numberofgroups"		=> $numberofgroups,
+			"numberofmembers"		=> $numberofmembers,
+			"numberofchoices"		=> $numberofchoices,
+			"groupmemberscounter"	=> 0,
+			"numberofgroupscounter"	=> 0
 		];
 
 		return view('groups.dashboard', $data);
@@ -99,7 +106,7 @@ class GroupController extends Controller
 		$groupname 	= $_POST['groupname'];
 		/*----------------------------*/
 		$groupid 	= $group->addGroup($groupname, 'Klockarhagsskolan');
-		$member->addMembers($members, $groupid);
+		$member->addMembers($members, $groupid, 'Klockarhagsskolan');
 
 		return redirect("/groups");
     }

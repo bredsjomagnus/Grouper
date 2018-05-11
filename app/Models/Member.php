@@ -19,13 +19,14 @@ class Member extends Model
 	*
 	* @param Array members to add to table.
 	* @param Integer id of group members is associated to
+	* @param String organization for with the members is part of
 	*
 	* @return void
 	*/
-    public function addMembers($members, $groupid) {
+    public function addMembers($members, $groupid, $organization) {
 		foreach($members as $member) {
-			$memberid = $this::insertGetId(['membername' => htmlspecialchars(trim($member))]);
-			DB::insert('insert into groupmembers (groupid, memberid) values (?, ?)', [$groupid, $memberid]);
+			$memberid = $this::insertGetId(['membername' => htmlspecialchars(trim($member)), 'organization' => $organization]);
+			DB::insert('insert into groupmembers (groupid, memberid, organization) values (?, ?, ?)', [$groupid, $memberid, $organization]);
 		}
 	}
 
@@ -98,8 +99,8 @@ class Member extends Model
 		}
 	}
 
-	public function moveMember($memberid, $fromgroup, $togroup) {
+	public function moveMember($memberid, $fromgroup, $togroup, $organization) {
 		DB::table('groupmembers')->where('groupid', $fromgroup)->where('memberid', $memberid)->delete();
-		DB::insert('insert into groupmembers (groupid, memberid) values (?, ?)', [$togroup, $memberid]);
+		DB::insert('insert into groupmembers (groupid, memberid, organization) values (?, ?, ?)', [$togroup, $memberid, $organization]);
 	}
 }

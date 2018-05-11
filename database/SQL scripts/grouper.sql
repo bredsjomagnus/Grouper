@@ -17,6 +17,7 @@ CREATE TABLE IF NOT EXISTS groups (
     groupname VARCHAR(255),
     organization VARCHAR(255),
     updated_at DATETIME,
+    deleted_at DATETIME,
 
     PRIMARY KEY (id)
 );
@@ -25,7 +26,9 @@ CREATE TABLE IF NOT EXISTS groups (
 CREATE TABLE IF NOT EXISTS members (
 	id INT(11) AUTO_INCREMENT,
     membername VARCHAR(255),
+    organization VARCHAR(255),
     updated_at DATETIME,
+    deleted_at DATETIME,
 
     PRIMARY KEY(id)
 );
@@ -33,6 +36,7 @@ CREATE TABLE IF NOT EXISTS members (
 CREATE TABLE IF NOT EXISTS organizations (
 	id INT(11) AUTO_INCREMENT,
     organizationname VARCHAR(255),
+    
 
     PRIMARY KEY(id)
 );
@@ -42,6 +46,8 @@ CREATE TABLE IF NOT EXISTS organizationgroups (
 	id INTEGER NOT NULL AUTO_INCREMENT,
     organizationid INT(11),
     groupid INT(11),
+    updated_at DATETIME,
+    deleted_at DATETIME,
 
     PRIMARY KEY(id),
     FOREIGN KEY (organizationid) REFERENCES organizations (id),
@@ -53,7 +59,10 @@ CREATE TABLE IF NOT EXISTS groupmembers (
 	id INTEGER AUTO_INCREMENT,
     groupid INT(11),
     memberid INT(11),
-
+	organization VARCHAR(255),
+    updated_at DATETIME,
+    deleted_at DATETIME,
+    
     PRIMARY KEY(id),
     FOREIGN KEY (groupid) REFERENCES groups (id),
     FOREIGN KEY (memberid) REFERENCES members (id)
@@ -84,6 +93,7 @@ CREATE TABLE IF NOT EXISTS eventgroups (
 	id INTEGER AUTO_INCREMENT,
     eventid INTEGER,
     groupid INTEGER,
+    organization VARCHAR(255),
     updated_at DATETIME,
     deleted_at DATETIME,
     
@@ -96,6 +106,7 @@ CREATE TABLE IF NOT EXISTS eventchoices (
 	id INTEGER AUTO_INCREMENT,
     eventid INTEGER,
     choiceid INTEGER,
+    organization VARCHAR(255),
     updated_at DATETIME,
     deleted_at DATETIME,
     
@@ -108,6 +119,7 @@ CREATE TABLE IF NOT EXISTS memberchoices (
 	id INTEGER AUTO_INCREMENT,
     memberid INTEGER,
     choiceid INTEGER,
+    organization VARCHAR(255),
     updated_at DATETIME,
     deleted_at DATETIME,
     

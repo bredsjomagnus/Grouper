@@ -37,7 +37,7 @@ class MemberController extends Controller
 		/*-----------------------------------*/
 
 		if(strlen($membername) > 0) {
-			$member->addMembers([$membername], $groupid);
+			$member->addMembers([$membername], $groupid, 'Klockarhagsskolan');
 		}
 
 
@@ -65,7 +65,7 @@ class MemberController extends Controller
 
 		/*-----------------------------------*/
 
-		$member->moveMember($memberid, $fromgroup, $togroup);
+		$member->moveMember($memberid, $fromgroup, $togroup, 'Klockarhagsskolan');
 
 		/*-----------------------------------*/
 

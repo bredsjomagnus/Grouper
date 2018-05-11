@@ -7,6 +7,7 @@
 @endsection
 
 @section('content')
+
 	<h1>GROUPS</h1>
 	<!-- GROUPS -->
 	@if(isset($groups) && count($groups) > 0)
@@ -30,8 +31,8 @@
 												<tr class='groupinforow'>
 													<td class='groupemptystylecell'></td>
 													<td>
-														@if($groupsizes[$counter]->groupid == $group->id)
-															<span class='group-panelinfo'>Members: {{$groupsizes[$counter]->numberofmembers}} </span>
+														@if($groupsizes[$groupmemberscounter]->groupid == $group->id)
+															<span class='group-panelinfo'>Members: {{$groupsizes[$groupmemberscounter]->numberofmembers}} </span>
 														@endif
 													</td>
 													<td>
@@ -45,7 +46,7 @@
 									</div>
 								</a>
 							</li>
-							<?php $counter++; ?>
+							<?php $groupmemberscounter++; ?>
 						@endforeach
 					</ul>
 
@@ -105,7 +106,7 @@
 @endsection
 
 @section('rightsidepanel')
-<h1 style='padding-left:40px;'>EVENTS</h1>
+<h1 style='padding-left:40px;'>UPCOMING EVENTS</h1>
 @if(isset($events))
 	<br>
 	<div class="row eventpanelbackground">
@@ -125,7 +126,18 @@
 											<td colspan='2' class='groupnamecell'><center>{{$event->eventname}}</center></td>
 										</tr>
 										<tr class='eventinforow'>
-											<td class='choiceemptystylecell'></td>
+											<td class='groupemptystylecell'></td>
+											<td>
+												@if($numberofgroups[$numberofgroupscounter]->eventid == $event->id)
+													<span class='group-panelinfo'>Groups: {{$numberofgroups[$numberofgroupscounter]->numberofgroups}}</span><br>
+												@endif
+
+												<span class='group-panelinfo'>Members: {{ $numberofmembers[$event->id] }}</span><br>
+
+												@if($numberofchoices[$numberofgroupscounter]->eventid == $event->id)
+													<span class='group-panelinfo'>Choices: {{$numberofchoices[$numberofgroupscounter]->numberofchoices}}</span>
+												@endif
+											</td>
 											<td>
 												<a href='{{ $deleteeventurl }}' onclick='return confirm("Do you want to delete this event?");'>
 													<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
@@ -137,6 +149,7 @@
 							</div>
 						</a>
 					</li>
+					<?php $numberofgroupscounter++; ?>
 				@endforeach
 			</ul>
 		</div>

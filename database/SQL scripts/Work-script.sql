@@ -36,3 +36,14 @@ SELECT groupid, count(groupid) AS numberofmembers FROM groupmembers WHERE groupi
 SELECT * FROM `migrations`;
 
 SELECT * FROM choices;
+
+SELECT * FROM `events`;
+
+SELECT * FROM eventchoices;
+
+SELECT * FROM eventgroups;
+
+SELECT * FROM groups WHERE organization LIKE 'Klockarhagsskolan';
+
+
+-- DELETE FROM `events` WHERE id = 3;

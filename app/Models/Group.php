@@ -1,11 +1,13 @@
 <?php
 namespace App\Models;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use App\Models\Member as Member;
 
 class Group extends Model
 {
+	use SoftDeletes;
 	/*
 	* id INT(11) AUTO_INCREMENT,
     * groupname VARCHAR(255),
@@ -31,6 +33,7 @@ class Group extends Model
 		return $this::All()->where('organization', $organization);
 	}
 	// ['member' => htmlspecialchars(trim($member))
+
 	/**
 	 * Create new group by adding an array of members to table
 	 *
@@ -59,20 +62,32 @@ class Group extends Model
 		return $this::find($id);
 	}
 
-	public function getGroupSize() {
+	/**
+	* Gets number of members of a group. By default all groups of an organization
+	*
+	* @param String the organization for the groups
+	* @param Integer the id of the group that will be checked for group size. By default all groups.
+	*
+	* @return Object With all requested groups group sizes - columns [groupid, numberofmembers]
+	*/
+	public function getGroupSize($organization, $id="'%%'") {
 		// selects groups by groupid and count them to get each groupsize
 		// i nuläget summerar den ALLA grupperna. Måste eventuellt se till att den bara summerar grupperna
 		// som tillhör just den aktuella organisationen.
-		$groupsizes = DB::table('groupmembers')
-                 		->select('groupid', DB::raw('count(*) as numberofmembers'))
-                 		->groupBy('groupid')
-                 		->get();
+		// $groupsizes = DB::table('groupmembers')
+        //          		->select('groupid', DB::raw('count(*) as numberofmembers'))
+        //          		->groupBy('groupid')
+        //          		->get();
 
+		$groupsizes = DB::select(
+						DB::raw(
+							"SELECT groupid, count(groupid) AS numberofmembers FROM groupmembers WHERE groupid LIKE ".$id." AND organization LIKE '".$organization."' GROUP BY groupid"
+							));
 		return $groupsizes;
 	}
 
 	/**
-	* Edit a groups name if there is no other group in the organization with that name
+	* Edit a groups name if there is no other group in the organization with that new name
 	*
 	* @param Integer $groupid - group id
 	* @param String $newname - new group name
@@ -92,7 +107,7 @@ class Group extends Model
 	}
 
 	/**
-	* Deöete group along with all its memebers
+	* Delete group along with all its memebers
 	*
 	* @param Integer $groupid - group id
 	*

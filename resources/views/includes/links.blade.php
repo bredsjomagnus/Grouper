@@ -21,6 +21,9 @@
 					<li><a href="#">One at a time</a></li>
 				</ul>
 			</li>
+			<li {{ Request::path() == "events/create" ? 'class=nav-active' : '' }}>
+				<a href="{{ route('createevent') }}" >CREATE EVENT</a>
+			</li>
 		</ul>
 	</div>
 </div>

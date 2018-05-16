@@ -5,6 +5,8 @@ use App\Models\Group as Group;
 use App\Models\Member as Member;
 use App\Models\Choice as Choice;
 use App\Models\Event as Event;
+use App\Models\Eventchoice as Eventchoice;
+use App\Models\Eventgroup as Eventgroup;
 class GroupController extends Controller
 {
 	/**
@@ -23,9 +25,11 @@ class GroupController extends Controller
      */
     public function groupsDashboard()
     {
-		$group 		= new Group();
-		$choice		= new Choice();
-		$event		= new Event();
+		$group 			= new Group();
+		$choice			= new Choice();
+		$event			= new Event();
+		$eventgroup 	= new Eventgroup();
+		$eventchoice	= new Eventchoice();
 
 		/*----------------------------*/
 
@@ -39,6 +43,11 @@ class GroupController extends Controller
 		$numberofmembers	= $event->getNumberOfMembers('Klockarhagsskolan');
 		$numberofchoices	= $event->getNumberOfChoices('Klockarhagsskolan');
 
+		// Info about what gourps and choices that is in events. These should not be able to delete och modify.
+		$eventgroupids		= $eventgroup->getEventGroupsIds('Klockarhagsskolan');
+		$eventchoiceids		= $eventchoice->getEventChoicesIds('Klockarhagsskolan');
+		// $eventchoiceids		= $evnetchoice->getEventChoiceIds('Klockarhagsskolan');
+
 		/*----------------------------*/
 
 		$data = [
@@ -49,6 +58,8 @@ class GroupController extends Controller
 			"numberofgroups"		=> $numberofgroups,
 			"numberofmembers"		=> $numberofmembers,
 			"numberofchoices"		=> $numberofchoices,
+			"eventgroupids"			=> $eventgroupids,
+			"eventchoiceids"		=> $eventchoiceids,
 			"groupmemberscounter"	=> 0,
 			"numberofgroupscounter"	=> 0
 		];
@@ -158,17 +169,18 @@ class GroupController extends Controller
 
 		$group->deleteGroup($groupid);
 
-		$groups 	= $group->getGroupsBelongingToOrganization("Klockarhagsskolan");
-		$groupsizes	= $group->getGroupSize();
-
-		/*----------------------------*/
-
-		$data = [
-			"groups"		=> $groups,
-			"groupsizes"	=> $groupsizes,
-			"counter"		=> 0
-		];
-
-		return view('groups.dashboard', $data);
+		// $groups 	= $group->getGroupsBelongingToOrganization("Klockarhagsskolan");
+		// $groupsizes	= $group->getGroupSize('Klockarhagsskolan');
+		//
+		// /*----------------------------*/
+		//
+		// $data = [
+		// 	"groups"		=> $groups,
+		// 	"groupsizes"	=> $groupsizes,
+		// 	"counter"		=> 0
+		// ];
+		//
+		// return view('groups.dashboard', $data);
+		return redirect("/groups");
 	}
 }

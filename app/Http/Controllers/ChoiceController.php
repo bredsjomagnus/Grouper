@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Choice as Choice;
+use App\Models\Eventchoice as Eventchoice;
 
 class ChoiceController extends Controller
 {
@@ -64,10 +65,12 @@ class ChoiceController extends Controller
 	}
 
 	public function deleteChoicesProcess($id) {
-		$choice 	= new Choice;
-		$choice->deleteChoice($id);
+		$choice 		= new Choice;
+		$eventchoice	= new Eventchoice;
 
-		// return redirect("/groups");
+		$choice->deleteChoice($id);
+		$eventchoice->deleteByChoiceid($id);
+
 		return back();
 	}
 
@@ -85,7 +88,6 @@ class ChoiceController extends Controller
 		$choice		= new Choice;
 		$newname	= $_POST['newvalue'];
 		$choice->editChoice($id, $newname);
-
 
 		return redirect('/choices/edit');
 	}

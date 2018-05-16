@@ -8,6 +8,7 @@
 
 @section('content')
 <h1>CREATE EVENT</h1>
+<p class='text-muted'>Every field must be set! The event has to have a name, groups and choices to be created.</p>
 <div class="col-md-4">
 	<form action="{{ route('createeventprocess') }}" method="post">
 		<label for="eventname">EVENT NAME:</label><br>

@@ -11,7 +11,7 @@
 	<h1>GROUPS</h1>
 	<!-- GROUPS -->
 	@if(isset($groups) && count($groups) > 0)
-		<div class="row panelbackground">
+		<div class="row">
 			<div class="col-md-12">
 
 					<ul class='group-list'>
@@ -22,7 +22,7 @@
 							?>
 							<li class='group-list-item'>
 								<a class='paneldivlink' href="{{ $editurl }}">
-									<div class="group-paneldiv">
+									<div class={{ in_array($group->id, $eventgroupids ) ? 'group-paneldiv': 'group-paneldiv' }}>
 										<center>
 											<table class='groupdashboardtable'>
 												<tr>
@@ -30,15 +30,19 @@
 												</tr>
 												<tr class='groupinforow'>
 													<td class='groupemptystylecell'></td>
+													<!-- $groupsizes is an associative array as follows [groupid => numberofmembers,...] -->
 													<td>
 														@if($groupsizes[$groupmemberscounter]->groupid == $group->id)
 															<span class='group-panelinfo'>Members: {{$groupsizes[$groupmemberscounter]->numberofmembers}} </span>
 														@endif
 													</td>
 													<td>
-														<a href='{{ $deleteurl }}' onclick='return confirm("Do you want to delete this group along with all its members");'>
-															<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+														<a href='{{ in_array($group->id, $eventgroupids ) ? '#' : $deleteurl }}' onclick='return confirm("Do you want to delete this group along with all its members");'>
+															<span class="{{ in_array($group->id, $eventgroupids ) ? '': 'glyphicon glyphicon-trash' }}" aria-hidden="true"></span>
+
 														</a>
+														<!-- $eventgroupids contains all ids of every group that is in an event -->
+														<span class='inevent-panelinfo'>{{ in_array($group->id, $eventgroupids ) ? 'IN EVENT': '' }}</span>
 													</td>
 												</tr>
 											</table>
@@ -63,7 +67,7 @@
 	<h1>CHOICES</h1>
 	<!-- CHOICES -->
 	@if(isset($choices) && count($choices) > 0)
-		<div class="row choicepanelbackground">
+		<div class="row">
 			<div class="col-md-12">
 				<ul class='group-list'>
 					@foreach($choices as $choice)
@@ -80,12 +84,14 @@
 												<td colspan='2' class='groupnamecell'><center>{{$choice->choicename}}</center></td>
 											</tr>
 											<tr class='choiceinforow'>
-												<td class='choiceemptystylecell'></td>
+												<td class="{{ in_array($choice->id, $eventchoiceids ) ? 'choiceemptyineventstylecell': 'choiceemptystylecell' }}"></td>
 
 												<td>
 													<a href='{{ $deletechoiceurl }}' onclick='return confirm("Do you want to delete this choice?");'>
-														<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+														<span class="{{ in_array($choice->id, $eventchoiceids ) ? '': 'glyphicon glyphicon-trash' }}" aria-hidden="true"></span>
 													</a>
+													<!-- $eventchoiceids contains all ids of every group that is in an event -->
+													<span class='inevent-panelinfo'>{{ in_array($choice->id, $eventchoiceids ) ? 'IN EVENT': '' }}</span>
 												</td>
 											</tr>
 										</table>
@@ -107,7 +113,7 @@
 
 @section('rightsidepanel')
 <h1 style='padding-left:40px;'>UPCOMING EVENTS</h1>
-@if(isset($events))
+@if(isset($events) && count($events) > 0)
 	<br>
 	<div class="row eventpanelbackground">
 		<div class="col-md-12">
@@ -115,7 +121,7 @@
 				@foreach($events as $event)
 					<?php
 					$editeventurl = url('/events/edit/'.$event->id);
-					$deleteeventurl = url('/choices/delete/'.$choice->id);
+					$deleteeventurl = url('/events/delete/'.$event->id);
 					?>
 					<li class='group-list-item'>
 						<a class='paneldivlink' href="{{ $editeventurl }}">
@@ -133,9 +139,12 @@
 												@endif
 
 												<span class='group-panelinfo'>Members: {{ $numberofmembers[$event->id] }}</span><br>
-
-												@if($numberofchoices[$numberofgroupscounter]->eventid == $event->id)
-													<span class='group-panelinfo'>Choices: {{$numberofchoices[$numberofgroupscounter]->numberofchoices}}</span>
+												@if(count($numberofchoices) > 0)
+													@if($numberofchoices[$numberofgroupscounter]->eventid == $event->id)
+														<span class='group-panelinfo'>Choices: {{$numberofchoices[$numberofgroupscounter]->numberofchoices}}</span>
+													@endif
+												@else
+													<span class='group-panelinfo'>Choices: No choices!</span>
 												@endif
 											</td>
 											<td>
@@ -155,6 +164,8 @@
 		</div>
 	</div>
 @else
-	<p>No events yet!</p>
+<div class="row">
+	<h4 class='text-danger'>No events yet. Add events in side panel menu->'Create'!</h4>
+</div>
 @endif
 @endsection

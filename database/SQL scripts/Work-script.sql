@@ -1,5 +1,5 @@
 use grouper;
-SET SQL_SAFE_UPDATES = 0;
+-- SET SQL_SAFE_UPDATES = 0;
 -- DROP TABLE IF EXISTS `groups`;
 
 show tables;
@@ -31,7 +31,7 @@ SELECT * FROM groupmembers;
 
 SELECT * FROM groupmembers WHERE groupid LIKE 1;
 
-SELECT groupid, count(groupid) AS numberofmembers FROM groupmembers WHERE groupid LIKE '%%' GROUP BY groupid;
+SELECT groupid, count(groupid) AS numberofmembers FROM groupmembers WHERE groupid LIKE '%%' AND organization LIKE 'Klockarhagsskolan' GROUP BY groupid;
 
 SELECT * FROM `migrations`;
 
@@ -41,7 +41,15 @@ SELECT * FROM `events`;
 
 SELECT * FROM eventchoices;
 
+SELECT eventid, count(eventid) AS numberofchoices FROM eventchoices WHERE eventid LIKE '%%' AND organization LIKE 'Klockarhagsskolan' GROUP BY eventid;
+
 SELECT * FROM eventgroups;
+
+SELECT groupid FROM eventgroups WHERE organization LIKE 'Klockarhagsskolan';
+
+SELECT eventid, count(eventid) AS numberofgroups FROM eventgroups WHERE eventid LIKE '%%' AND organization LIKE 'Klockarhagsskolan' GROUP BY eventid;
+
+SELECT eventid, groupid FROM eventgroups WHERE eventid LIKE 1 AND organization LIKE 'Klockarhagsskolan';
 
 SELECT * FROM groups WHERE organization LIKE 'Klockarhagsskolan';
 

@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event as Event;
+use App\Models\Eventchoice as Eventchoice;
+use App\Models\Eventgroup as Eventgroup;
+
 use App\Models\Group as Group;
 use App\Models\Choice as Choice;
+
 
 class EventController extends Controller
 {
@@ -35,8 +39,22 @@ class EventController extends Controller
 		$groups		= $request->input('groups');
 		$choices	= $request->input('choices');
 
-		$event->createEvent($eventname, 'Klockarhagsskolan', $groups, $choices);
+		if(isset($eventname) || trim($eventname) != '' && isset($groups) && isset($choices)) {
+			$event->createEvent(htmlspecialchars(trim($eventname)), 'Klockarhagsskolan', $groups, $choices);
+		}
 
 		return redirect("/groups");
+	}
+
+	public function deleteEventProcess($id) {
+		$event			= new Event;
+		$eventgroup		= new Eventgroup;
+		$eventchoice	= new Eventchoice;
+
+		$eventgroup->deleteByEventid($id);
+		$eventchoice->deleteByEventid($id);
+		$event->deleteEvent($id);
+
+		return back();
 	}
 }

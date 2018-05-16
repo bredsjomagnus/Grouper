@@ -100,4 +100,8 @@ class Event extends Model
 							));
 		return $numberofchoices;
 	}
+
+	public function deleteEvent($id) {
+		$this::find($id)->delete();
+	}
 }

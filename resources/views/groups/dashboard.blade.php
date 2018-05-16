@@ -165,7 +165,7 @@
 	</div>
 @else
 <div class="row">
-	<h4 class='text-danger'>No events yet. Add events in side panel menu->'Create'!</h4>
+	<h4 class='text-danger'>No events yet. Add events in menu 'Create Event'!</h4>
 </div>
 @endif
 @endsection

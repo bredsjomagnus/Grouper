@@ -8,7 +8,9 @@ use App\Models\Eventchoice as Eventchoice;
 use App\Models\Eventgroup as Eventgroup;
 
 use App\Models\Group as Group;
+use App\Models\Groupmember as Groupmember;
 use App\Models\Choice as Choice;
+use App\Models\Member as Member;
 
 
 class EventController extends Controller
@@ -56,5 +58,29 @@ class EventController extends Controller
 		$event->deleteEvent($id);
 
 		return back();
+	}
+
+	public function editEvent($id) {
+		$eventgroup		= new Eventgroup;
+		$eventchoice	= new Eventchoice;
+		$group			= new Group;
+		$groupmember	= new Groupmember;
+		$choice			= new Choice;
+		$member			= new Member;
+
+		$groupids		= $eventgroup->getEventGroupsById($id); // Array: [groupid, groupid, groupid...]
+		$groups			= $group->getGroupsByIds($groupids); // Array; ['groupid' => groupid, 'groupname' => groupname]
+
+		$choiceids		= $eventchoice->getEventChoicesById($id);
+		$choices		= $choice->getChoicesByIds($choiceids);
+
+		$members		= $groupmember->getGroupMembersByIds($groupids);
+
+		$data = [
+			"groups"		=> $groups,
+			"choices"		=> $choices,
+			"members"		=> $members
+		];
+		return view('events.overview', $data);
 	}
 }

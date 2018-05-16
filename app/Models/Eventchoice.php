@@ -16,7 +16,7 @@ class Eventchoice extends Model
 		$this::where('eventid', $eventid)->delete();
 	}
 
-	public function getEventChoicesIds($organization) {
+	public function getAllEventChoicesIds($organization) {
 		$choiceids = [];
 		$res = $this::select('choiceid')
 						->where('organization', $organization)
@@ -26,5 +26,14 @@ class Eventchoice extends Model
 		}
 
 		return $choiceids;
+	}
+	public function getEventChoicesById($eventid) {
+		$res = $this::select('choiceid')->where('eventid', $eventid)->get();
+
+		$createdarray;
+		foreach($res as $row) {
+			$createdarray[] = $row->choiceid;
+		}
+		return $createdarray;
 	}
 }

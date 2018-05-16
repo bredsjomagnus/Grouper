@@ -44,8 +44,8 @@ class GroupController extends Controller
 		$numberofchoices	= $event->getNumberOfChoices('Klockarhagsskolan');
 
 		// Info about what gourps and choices that is in events. These should not be able to delete och modify.
-		$eventgroupids		= $eventgroup->getEventGroupsIds('Klockarhagsskolan');
-		$eventchoiceids		= $eventchoice->getEventChoicesIds('Klockarhagsskolan');
+		$eventgroupids		= $eventgroup->getAllEventGroupsIds('Klockarhagsskolan');
+		$eventchoiceids		= $eventchoice->getAllEventChoicesIds('Klockarhagsskolan');
 		// $eventchoiceids		= $evnetchoice->getEventChoiceIds('Klockarhagsskolan');
 
 		/*----------------------------*/

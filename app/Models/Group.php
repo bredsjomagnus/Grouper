@@ -13,6 +13,8 @@ class Group extends Model
     * groupname VARCHAR(255),
     * organization VARCHAR(255),
 	*/
+
+
 	/**
 	 * Get groups.
 	 *
@@ -22,6 +24,27 @@ class Group extends Model
 	{
 		return $this::All();
 	}
+
+	/**
+	* Get groups by groupid.
+	*
+	* @param Array $groupids
+	*
+	* @return Array ['groupid' => groupid, 'groupname' => groupname]
+	*/
+	public function getGroupsByIds($groupids) {
+		$groups = [];
+
+		foreach($groupids as $groupid) {
+			$res = $this::find($groupid);
+			$groups[] = [
+				"groupid"	=> $groupid,
+				"groupname"	=> $res->groupname
+			];
+		}
+		return $groups;
+	}
+
 	/**
 	 * Get a organizations different unique groups.
 	 *

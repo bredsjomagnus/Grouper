@@ -44,6 +44,19 @@ class Choice extends Model
 		return $this::All();
 	}
 
+	public function getChoicesByIds($chouiceids) {
+		$choices = [];
+
+		foreach($chouiceids as $choiceid) {
+			$res = $this::find($choiceid);
+			$choices[] = [
+				"choiceid"		=> $choiceid,
+				"choicename"	=> $res->choicename
+			];
+		}
+		return $choices;
+	}
+
 	public function editChoice($id, $newname) {
 		$choice = $this::find($id);
 		$choice->choicename = $newname;

@@ -39,25 +39,29 @@ class Member extends Model
 	*/
 	public function getMembers($groupid) {
 		$groupmembers = DB::table('groupmembers')->where('groupid', $groupid)->get();
-		$members = $this->getMembersByIds($groupmembers);
+		$members = $this->getMembersByObject($groupmembers);
 
 		return $members;
 	}
 
 	/**
-	* Get members of a group by id via talbe groupmembers
+	* Get members of a group by object via table groupmembers
 	*
 	* @param Object groupmembers {id, groupid, memberid} from one group
 	*
 	* @return Array groupmembers ['id' => 'membername', ...]
 	*/
-	public function getMembersByIds($groupmembers) {
+	public function getMembersByObject($groupmembers) {
 		$members = [];
 		foreach($groupmembers as $groupmember) {
 			$member = $this::find($groupmember->memberid);
 			$members[$member->id] = $member->membername;
 		}
 		return $members;
+	}
+
+	public function getMembersByIds($groupids) {
+		//
 	}
 
 	/**
@@ -103,4 +107,5 @@ class Member extends Model
 		DB::table('groupmembers')->where('groupid', $fromgroup)->where('memberid', $memberid)->delete();
 		DB::insert('insert into groupmembers (groupid, memberid, organization) values (?, ?, ?)', [$togroup, $memberid, $organization]);
 	}
+
 }

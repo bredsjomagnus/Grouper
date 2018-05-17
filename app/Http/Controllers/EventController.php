@@ -11,6 +11,7 @@ use App\Models\Group as Group;
 use App\Models\Groupmember as Groupmember;
 use App\Models\Choice as Choice;
 use App\Models\Member as Member;
+use App\Models\Memberchoice as Memberchoice;
 
 
 class EventController extends Controller
@@ -67,6 +68,7 @@ class EventController extends Controller
 		$groupmember	= new Groupmember;
 		$choice			= new Choice;
 		$member			= new Member;
+		$memberchoice	= new Memberchoice;
 
 		$groupids		= $eventgroup->getEventGroupsById($id); // Array: [groupid, groupid, groupid...]
 		$groups			= $group->getGroupsByIds($groupids); // Array; ['groupid' => groupid, 'groupname' => groupname]
@@ -76,11 +78,32 @@ class EventController extends Controller
 
 		$members		= $groupmember->getGroupMembersByIds($groupids);
 
+		$memberchoices	= $memberchoice->getMemberChoices($id);
+
 		$data = [
 			"groups"		=> $groups,
 			"choices"		=> $choices,
-			"members"		=> $members
+			"members"		=> $members,
+			"eventid"		=> $id,
+			"memberchoices"	=> $memberchoices
 		];
 		return view('events.overview', $data);
+	}
+
+	public function makeChoicesProcess(Request $request){
+		$memberchoice	= new Memberchoice;
+
+		if(isset($_POST['savechoicesbtn'])) {
+			$madechoices	= $request->input('choices'); // Array with String 'memberid_choiceid'
+			$groupid		= $request->input('groupid');
+			$eventid		=$request->input('eventid');
+			$memberchoice->makeChoices($madechoices, 'Klockarhagsskolan', $groupid, $eventid);
+		} elseif(isset($_POST['resetchoicesbtn'])) {
+			$groupid		= $request->input('groupid');
+			$memberchoice->resetGroup($groupid);
+		}
+
+
+		return back();
 	}
 }

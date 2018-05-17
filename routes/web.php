@@ -43,3 +43,4 @@ Route::get('/events/create', 'EventController@createEvent')->name('createevent')
 Route::post('/events/createprocess', 'EventController@createEventProcess')->name('createeventprocess');
 Route::get('/events/delete/{id}', 'EventController@deleteEventProcess')->name('deleteeventprocess');
 Route::get('/events/edit/{id}', 'EventController@editEvent')->name('editevent');
+Route::post('/events/makechoices', 'EventController@makeChoicesProcess')->name('makechoicesprocess');

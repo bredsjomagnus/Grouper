@@ -22,7 +22,7 @@ class Memberchoice extends Model
 	* @return void
 	*/
 	public function makeChoices($madechoices, $organization, $groupid, $eventid) {
-		$this::where('groupid', $groupid)->delete();
+		$this::where('groupid', $groupid)->where('eventid', $eventid)->delete();
 		if(isset($madechoices)) {
 			foreach ($madechoices as $choice) {
 				$choiceparams = explode('_', $choice); // ['memberid', 'choiceid']
@@ -52,7 +52,7 @@ class Memberchoice extends Model
 		return $memberchoices;
 	}
 
-	public function resetGroup($groupid) {
-		$this::where('groupid', $groupid)->delete();
+	public function resetGroup($groupid, $eventid) {
+		$this::where('groupid', $groupid)->where('eventid', $eventid)->delete();
 	}
 }

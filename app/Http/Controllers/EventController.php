@@ -96,11 +96,12 @@ class EventController extends Controller
 		if(isset($_POST['savechoicesbtn'])) {
 			$madechoices	= $request->input('choices'); // Array with String 'memberid_choiceid'
 			$groupid		= $request->input('groupid');
-			$eventid		=$request->input('eventid');
+			$eventid		= $request->input('eventid');
 			$memberchoice->makeChoices($madechoices, 'Klockarhagsskolan', $groupid, $eventid);
 		} elseif(isset($_POST['resetchoicesbtn'])) {
 			$groupid		= $request->input('groupid');
-			$memberchoice->resetGroup($groupid);
+			$eventid		= $request->input('eventid');
+			$memberchoice->resetGroup($groupid, $eventid);
 		}
 
 

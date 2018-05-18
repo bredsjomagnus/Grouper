@@ -119,13 +119,17 @@ CREATE TABLE IF NOT EXISTS memberchoices (
 	id INTEGER AUTO_INCREMENT,
     memberid INTEGER,
     choiceid INTEGER,
+    eventid INTEGER,
+    groupid INTEGER,
     organization VARCHAR(255),
     updated_at DATETIME,
     deleted_at DATETIME,
     
     PRIMARY KEY(id),
     FOREIGN KEY (memberid) REFERENCES members (id),
-    FOREIGN KEY (choiceid) REFERENCES choices (id)
+    FOREIGN KEY (choiceid) REFERENCES choices (id),
+    FOREIGN KEY (eventid) REFERENCES `events` (id),
+    FOREIGN KEY (groupid) REFERENCES `groups` (id)
 );
 -- CREATE TABLE IF NOT EXISTS organizationschoices (
 -- 	id INTEGER AUTO_INCREMENT,

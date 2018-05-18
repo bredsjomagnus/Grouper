@@ -26,6 +26,9 @@ SELECT * FROM `users`;
 
 SELECT * FROM members;
 -- UPDATE members SET membername = 'Göran' WHERE id = 12;
+SELECT * FROM memberchoices;
+
+SELECT memberid, GROUP_CONCAT(choiceid) as choices FROM memberchoices WHERE eventid = 1 GROUP BY memberid;
 
 SELECT * FROM groupmembers;
 

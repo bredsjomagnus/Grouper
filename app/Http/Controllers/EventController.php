@@ -13,6 +13,8 @@ use App\Models\Choice as Choice;
 use App\Models\Member as Member;
 use App\Models\Memberchoice as Memberchoice;
 
+use App\Src\Dev as Devtool;
+
 
 class EventController extends Controller
 {
@@ -73,7 +75,7 @@ class EventController extends Controller
 		$groupids		= $eventgroup->getEventGroupsById($id); // Array: [groupid, groupid, groupid...]
 		$groups			= $group->getGroupsByIds($groupids); // Array; ['groupid' => groupid, 'groupname' => groupname]
 
-		$choiceids		= $eventchoice->getEventChoicesById($id);
+		$choiceids		= $eventchoice->getEventChoicesById($id); // Array: [choiceid, choiceid,...]
 		$choices		= $choice->getChoicesByIds($choiceids);
 
 		$members		= $groupmember->getGroupMembersByIds($groupids);
@@ -103,8 +105,31 @@ class EventController extends Controller
 			$eventid		= $request->input('eventid');
 			$memberchoice->resetGroup($groupid, $eventid);
 		}
-
-
 		return back();
+	}
+
+	public function randomizeEvent($eventid) {
+		$eventchoice		= new Eventchoice;
+		$eventgroup			= new Eventgroup;
+		$dev				= new Devtool;
+
+		$choicesids			= $eventchoice->getEventChoicesById($eventid);
+		$numberofchoices 	= $eventchoice->getNumberOfChoices($eventid);
+
+		$memberids			= $eventgroup->getMemberIdsInEvent($eventid); // [memberid, memberid,...]
+
+		$weightarray		= $dev->weightArray($choicesids);
+		$dev->randomChoices($memberids, $weightarray);
+
+
+		$data = [
+			"numberofchoices"	=> $numberofchoices,
+			"choicesids"		=> $choicesids,
+			"weightarray"		=> $weightarray,
+			"memberids"			=> $memberids
+		];
+
+		return view('events.random', $data);
+
 	}
 }

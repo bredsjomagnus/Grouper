@@ -27,6 +27,14 @@ class Eventchoice extends Model
 
 		return $choiceids;
 	}
+
+	/**
+	* Get event choices ids in array.
+	*
+	* @param Integer event id
+	*
+	* @return Array choices ids in event; [choiceid, choiceid,...]
+	*/
 	public function getEventChoicesById($eventid) {
 		$res = $this::select('choiceid')->where('eventid', $eventid)->get();
 
@@ -36,4 +44,19 @@ class Eventchoice extends Model
 		}
 		return $createdarray;
 	}
+
+	/**
+	* Get number of choices in event.
+	*
+	* @param Integer event id
+	*
+	* @return Integer number of choices in event with event id.
+	*/
+	public function getNumberOfChoices($eventid) {
+		$choices = $this->getEventChoicesById($eventid);
+		return count($choices);
+	}
+
+	
+
 }

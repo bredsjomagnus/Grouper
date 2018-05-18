@@ -7,7 +7,16 @@
 @endsection
 
 @section('content')
+
 	<h1>Event overview</h1>
+	<br>
+	<?php
+	$randomurl = url('/events/randomize/'.$eventid);
+	?>
+	<a class='btn btn-default' href="{{ $randomurl }}">Slumpa</a>
+	<a class='btn btn-default' href="#">Rensa allt</a>
+	<br>
+	<br>
 	<ul class="nav nav-tabs">
 		<?php $counter = 1; ?>
 		@foreach($groups as $group)
@@ -17,7 +26,6 @@
 			<?php $counter++; ?>
 		@endforeach
 	</ul>
-
 	<div class="tab-content">
 	<?php $activepanecounter = 1; ?>
 	@foreach($groups as $group)

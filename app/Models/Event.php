@@ -104,4 +104,6 @@ class Event extends Model
 	public function deleteEvent($id) {
 		$this::find($id)->delete();
 	}
+
+	
 }

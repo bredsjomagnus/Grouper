@@ -10,6 +10,13 @@ class Groupmember extends Model
 {
     // use SoftDeletes;
 
+	/**
+	* Get all groupmembers with groupid, memberid and membername in array.
+	*
+	* @param Array groupids [groupid, groupid,...]
+	*
+	* @return Array members ['groupid' => groupid, 'memberid' => memberid, 'membername']
+	*/
 	public function getGroupMembersByIds($groupids) {
 		$member = new Member;
 		$members = [];

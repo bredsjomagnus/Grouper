@@ -108,29 +108,61 @@ class EventController extends Controller
 		return back();
 	}
 
-	public function randomizeEvent($eventid) {
+	// public function randomizeEvent($eventid) {
+	// 	$eventchoice		= new Eventchoice;
+	// 	$eventgroup			= new Eventgroup;
+	// 	$dev				= new Devtool;
+	//
+	// 	$choicesids			= $eventchoice->getEventChoicesById($eventid);
+	// 	$numberofchoices 	= $eventchoice->getNumberOfChoices($eventid);
+	//
+	// 	$memberids			= $eventgroup->getMemberIdsInEvent($eventid); // [memberid, memberid,...]
+	//
+	// 	$weightarray		= $dev->weightArray($choicesids);
+	// 	$switcharray		= $dev->switchArray($weightarray);
+	// 	$dev->randomChoices($eventid, $memberids, $choicesids, $switcharray, 'Klockarhagsskolan');
+	//
+	//
+	// 	$data = [
+	// 		"numberofchoices"	=> $numberofchoices,
+	// 		"choicesids"		=> $choicesids,
+	// 		"weightarray"		=> $weightarray,
+	// 		"memberids"			=> $memberids
+	// 	];
+	//
+	// 	return back();
+	// }
+	//
+	// public function deleteAllInEvent($eventid) {
+	// 	$memberchoice	= new Memberchoice;
+	//
+	// 	$memberchoice->resetEventChoices($eventid);
+	//
+	// 	return back();
+	// }
+
+	public function devOptions(Request $request) {
+		$memberchoice		= new Memberchoice;
 		$eventchoice		= new Eventchoice;
 		$eventgroup			= new Eventgroup;
 		$dev				= new Devtool;
 
-		$choicesids			= $eventchoice->getEventChoicesById($eventid);
-		$numberofchoices 	= $eventchoice->getNumberOfChoices($eventid);
+		$eventid			= $request->input('eventid');
+		$choosingnumber		= $request->input('choosingnumber');
 
-		$memberids			= $eventgroup->getMemberIdsInEvent($eventid); // [memberid, memberid,...]
+		if(isset($_POST['randomizeall'])) {
+			$choicesids			= $eventchoice->getEventChoicesById($eventid);
+			$numberofchoices 	= $eventchoice->getNumberOfChoices($eventid);
 
-		$weightarray		= $dev->weightArray($choicesids);
-		$choicepool			= $dev->randomChoices($memberids, $choicesids, $weightarray);
+			$memberids			= $eventgroup->getMemberIdsInEvent($eventid); // [memberid, memberid,...]
 
+			$weightarray		= $dev->weightArray($choicesids);
+			$switcharray		= $dev->switchArray($weightarray);
+			$dev->randomChoices($eventid, $memberids, $choicesids, $switcharray, $choosingnumber, 'Klockarhagsskolan');
+		} else if(isset($_POST['deleteall'])){
+			$memberchoice->resetEventChoices($eventid);
+		}
 
-		$data = [
-			"numberofchoices"	=> $numberofchoices,
-			"choicesids"		=> $choicesids,
-			"weightarray"		=> $weightarray,
-			"choicepool"		=> $choicepool,
-			"memberids"			=> $memberids
-		];
-
-		return view('events.random', $data);
-
+		return back();
 	}
 }

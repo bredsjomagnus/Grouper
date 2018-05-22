@@ -12,9 +12,20 @@
 	<br>
 	<?php
 	$randomurl = url('/events/randomize/'.$eventid);
+	$deleteall = url('/events/deleteall/'.$eventid);
 	?>
-	<a class='btn btn-default' href="{{ $randomurl }}">Slumpa</a>
-	<a class='btn btn-default' href="#">Rensa allt</a>
+	<form action="{{ route('devoptions') }}" method="POST">
+		<select name="choosingnumber">
+			<?php $optioncounter = 1; ?>
+			@foreach($choices as $choice)
+				<option value="{{$optioncounter}}">{{$optioncounter}}</option>
+				<?php $optioncounter++; ?>
+			@endforeach
+		</select>
+		<input type="hidden" name="eventid" value='{{$eventid}}'>
+		<input type="submit" name="randomizeall" value="Slumpa">
+		<input type="submit" name="deleteall" value="Rensa allt">
+	</form>
 	<br>
 	<br>
 	<ul class="nav nav-tabs">

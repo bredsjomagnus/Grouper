@@ -33,4 +33,14 @@ class DevTest extends TestCase
 		// print_r($switcharray);
 		$this->assertEquals($testarray, $switcharray);
 	}
+
+	// public function testRandomChoices() {
+	// 	$dev = new Dev();
+	// 	$switcharray = [0, 30, 35, 55, 65, 75, 100];
+	// 	$choicesids = [1,2,3,4,5,6];
+	// 	$memberids = [1,2,3,4,5,6];
+	// 	$memberchoice = $dev->randomChoices($memberids, $choicesids, $switcharray);
+	// 	// print_r($memberchoice);
+	// 	$this->assertEquals(5, count($memberchoice));
+	// }
 }

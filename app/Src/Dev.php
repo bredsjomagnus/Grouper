@@ -17,13 +17,13 @@ class Dev
 	public function weightArray($choicesids) {
 		$numberofchoices = count($choicesids);
 		$maxindex = $numberofchoices-1;
-		$difftospread = 100-5*$numberofchoices;
+		// $difftospread = 100-5*$numberofchoices;
 
 		$weightarray = [];
-		$basenumber = 1;
+		// $basenumber = 1;
 		foreach($choicesids as $choice) {
 			$weightarray[] = 1;
-			$basenumber++;
+			// $basenumber++;
 		}
 
 		while(array_sum($weightarray) < 100){
@@ -35,14 +35,18 @@ class Dev
 		// final pruning so that the sum of all percentvalues equals 100.
 		$i = 0;
 		while(array_sum($weightarray) > 100) {
+
+			//restart cycle
 			if($i == (count($weightarray) - 1)) {
 				$i = 0;
 			}
+
+			//take away one and move to next
 			$weightarray[$i] -= 1;
 			$i++;
 		}
 
-		$this->switchArray($weightarray);
+		// $this->switchArray($weightarray);
 		return $weightarray;
 	}
 
@@ -78,59 +82,40 @@ class Dev
 	* @param Array weighted values with percent chance [percent of first choice, percent of second choice,...]
 	*
 	*/
-	public function randomChoices($memberids, $choiceids, $weightarray) {
-		$numberofmembers = count($memberids);
-		$numberofchoices = count($choiceids);
-		$numberchoicespermember = 5;
-
-		// Filling choicepool with number of choices for every choice;
-		// $choicepool = [choiceid => number of this choice, choiceid => number of this choice,...]
-		$choicepool = [];
-		$counter = 0;
-		while(array_sum($choicepool) < ($numberofmembers)) {
-			foreach($choiceids as $choiceid) {
-				$choicepool[$choiceid] = ceil($numberofmembers * $weightarray[$counter]/100);
-				$counter++;
+	public function randomChoices($eventid, $memberids, $choiceids, $switcharray, $choosingnumber, $organization) {
+		$numberofchoices = $choosingnumber;
+		foreach($memberids as $member) {
+			$memberchoices = [];
+			while(count($memberchoices) < $numberofchoices) {
+				$notchoosen = true;
+				while($notchoosen) {
+					$rand = rand(1, 100);
+					for($i = 0; $i < count($switcharray)-1; $i++) {
+						if($rand >= $switcharray[$i] && $rand <= $switcharray[$i+1]) {
+							if(!in_array($choiceids[$i], $memberchoices)) {
+								if(count($memberchoices) < $numberofchoices) {
+									$memberchoices[] = $choiceids[$i];
+									$notchoosen = false;
+								}
+							}
+						}
+					}
+				}
+			}
+			foreach($memberchoices as $choiceid) {
+				$group = DB::table('groupmembers')->select('groupid')
+													->where('memberid',$member)
+													->get();
+				DB::table('memberchoices')->insert(
+						[
+							'eventid'		=> $eventid,
+							'memberid' 		=> $member,
+							'choiceid'		=> $choiceid,
+							'groupid'		=> $group[0]->groupid,
+							'organization'	=> $organization
+						]
+					);
 			}
 		}
-
-		// shuffle($memberids);
-		// $memberchoices = [];
-		// foreach($memberids as $memberid) {
-		// 	$choosen = [];
-		// 	while(count($choosen) < $numberchoicespermember) {
-		// 		$choice = rand(0, $numberofchoices-1);
-		// 		if(!in_array($choice, $choosen)) {
-		// 			// if($choicepool[$choiceids[$choice]] > 0) {
-		// 			// 	$memberchoices[$memberid][] = $choiceids[$choice];
-		// 			// 	$choicepool[$choiceids[$choice]] = $choicepool[$choiceids[$choice]] - 1;
-		// 			// 	$numbercounter--;
-		// 			// 	$choosen[] = $choice;
-		// 			// }
-		// 			if($choicepool[$choiceids[$choice]] > 0) {
-		// 				$memberchoices[$memberid][] = $choiceids[$choice];
-		//
-		// 				// denna raden gör att det kraschar eftersom att det är stor riska att det inte finns några val kvar
-		// 				$choicepool[$choiceids[$choice]] = $choicepool[$choiceids[$choice]] - 1;
-		// 				$choosen[] = $choice;
-		// 			}
-		//
-		// 		}
-		// 	}
-		// }
-
-		$memberchoices = [];
-		foreach($choicepool as $choiceid => $pool) {
-			shuffle($memberids);
-			$counter = 0;
-			// while($pool > 0) {
-			// 	$memberchoices[$memberids[$counter]][] = $choiceid;
-			// 	$pool--;
-			// 	$counter++;
-			// }
-		}
-
-
-		return $choicepool;
 	}
 }

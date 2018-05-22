@@ -55,4 +55,8 @@ class Memberchoice extends Model
 	public function resetGroup($groupid, $eventid) {
 		$this::where('groupid', $groupid)->where('eventid', $eventid)->delete();
 	}
+
+	public function resetEventChoices($eventid) {
+		$this::where('eventid', $eventid)->delete();
+	}
 }

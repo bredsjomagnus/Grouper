@@ -2,12 +2,12 @@ imports:
     - php
 
 filter:
-    excluded_paths: [vendor/*, test/*, app/Console/*, app/Exeptions/*, app/Providers/*]
+    excluded_paths: [vendor/*, test/*, app/Console/*, app/Exeptions/*, app/Providers/*, public/*]
 
 build:
     environment:
         php:
-            version: 7.2
+            version: 7.1
     tests:
         override:
             -

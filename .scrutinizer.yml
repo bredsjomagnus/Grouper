@@ -4,14 +4,14 @@ imports:
 filter:
     excluded_paths: [vendor/*, test/*, app/Console/*, app/Exeptions/*, app/Providers/*, public/*]
 
-build:
-    environment:
-        php:
-            version: 7.1
-    tests:
-        override:
-            -
-                command: phpunit --coverage-clover=my-coverage-file
-                coverage:
-                    file: "build/coverage.clover"
-                    format: php-clover
+# build:
+#     environment:
+#         php:
+#             version: 7.1
+#     tests:
+#         override:
+#             -
+#                 command: phpunit --coverage-clover=my-coverage-file
+#                 coverage:
+#                     file: "build/coverage.clover"
+#                     format: php-clover

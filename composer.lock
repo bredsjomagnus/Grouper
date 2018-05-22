@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1921154ed0d1e38a8507987db4859dcf",
-    "content-hash": "d5bca48e56bbf3a25645858fcab9c285",
+    "hash": "052e6d2e275b763dda15e82229fa5796",
+    "content-hash": "bb8af9e12b1fe75d21138c7542e9b44a",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -2930,16 +2930,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "6.0.3",
+            "version": "6.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "774a82c0c5da4c1c7701790c262035d235ab7856"
+                "reference": "52187754b0eed0b8159f62a6fa30073327e8c2ca"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/774a82c0c5da4c1c7701790c262035d235ab7856",
-                "reference": "774a82c0c5da4c1c7701790c262035d235ab7856",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/52187754b0eed0b8159f62a6fa30073327e8c2ca",
+                "reference": "52187754b0eed0b8159f62a6fa30073327e8c2ca",
                 "shasum": ""
             },
             "require": {
@@ -2989,7 +2989,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2018-04-06 15:39:20"
+            "time": "2018-04-29 14:59:09"
         },
         {
             "name": "phpunit/php-file-iterator",

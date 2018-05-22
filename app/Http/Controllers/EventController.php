@@ -119,13 +119,14 @@ class EventController extends Controller
 		$memberids			= $eventgroup->getMemberIdsInEvent($eventid); // [memberid, memberid,...]
 
 		$weightarray		= $dev->weightArray($choicesids);
-		$dev->randomChoices($memberids, $weightarray);
+		$choicepool			= $dev->randomChoices($memberids, $choicesids, $weightarray);
 
 
 		$data = [
 			"numberofchoices"	=> $numberofchoices,
 			"choicesids"		=> $choicesids,
 			"weightarray"		=> $weightarray,
+			"choicepool"		=> $choicepool,
 			"memberids"			=> $memberids
 		];
 

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /var/www/html/Programmering/Gruppindelare/Grouper/app/Models</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="../.css/nv.d3.min.css" rel="stylesheet" type="text/css">
+  <link href="../.css/style.css" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]>
+  <script src="../.js/html5shiv.min.js"></script>
+  <script src="../.js/respond.min.js"></script>
+  <![endif]-->
+ </head>
+ <body>
+  <header>
+   <div class="container">
+    <div class="row">
+     <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a href="../index.html">/var/www/html/Programmering/Gruppindelare/Grouper/app</a></li>
+        <li><a href="index.html">Models</a></li>
+        <li class="active">(Dashboard)</li>
+
+      </ol>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Choice.php.html#10">App\Models\Choice</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Event.php.html#9">App\Models\Event</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Eventchoice.php.html#8">App\Models\Eventchoice</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Eventgroup.php.html#9">App\Models\Eventgroup</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Group.php.html#8">App\Models\Group</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Groupmember.php.html#9">App\Models\Groupmember</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Member.php.html#10">App\Models\Member</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Memberchoice.php.html#10">App\Models\Memberchoice</a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Choice.php.html#10">App\Models\Choice</a></td><td class="text-right">156</td></tr>
+       <tr><td><a href="Group.php.html#8">App\Models\Group</a></td><td class="text-right">156</td></tr>
+       <tr><td><a href="Event.php.html#9">App\Models\Event</a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="Member.php.html#10">App\Models\Member</a></td><td class="text-right">110</td></tr>
+       <tr><td><a href="Eventgroup.php.html#9">App\Models\Eventgroup</a></td><td class="text-right">72</td></tr>
+       <tr><td><a href="Eventchoice.php.html#8">App\Models\Eventchoice</a></td><td class="text-right">56</td></tr>
+       <tr><td><a href="Memberchoice.php.html#10">App\Models\Memberchoice</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Groupmember.php.html#9">App\Models\Groupmember</a></td><td class="text-right">12</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Choice.php.html#14"><abbr title="App\Models\Choice::addChoices">addChoices</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Groupmember.php.html#20"><abbr title="App\Models\Groupmember::getGroupMembersByIds">getGroupMembersByIds</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Group.php.html#35"><abbr title="App\Models\Group::getGroupsByIds">getGroupsByIds</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Group.php.html#55"><abbr title="App\Models\Group::getGroupsBelongingToOrganization">getGroupsBelongingToOrganization</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Group.php.html#68"><abbr title="App\Models\Group::addGroup">addGroup</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Group.php.html#78"><abbr title="App\Models\Group::groupNameExists">groupNameExists</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Group.php.html#84"><abbr title="App\Models\Group::getGroupName">getGroupName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Group.php.html#96"><abbr title="App\Models\Group::getGroupSize">getGroupSize</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Group.php.html#120"><abbr title="App\Models\Group::editGroupName">editGroupName</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Group.php.html#139"><abbr title="App\Models\Group::deleteGroup">deleteGroup</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Member.php.html#26"><abbr title="App\Models\Member::addMembers">addMembers</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Eventgroup.php.html#65"><abbr title="App\Models\Eventgroup::getMemberIdsInEvent">getMemberIdsInEvent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Member.php.html#40"><abbr title="App\Models\Member::getMembers">getMembers</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Member.php.html#54"><abbr title="App\Models\Member::getMembersByObject">getMembersByObject</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Member.php.html#63"><abbr title="App\Models\Member::getMembersByIds">getMembersByIds</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Member.php.html#75"><abbr title="App\Models\Member::editMemberMembername">editMemberMembername</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Member.php.html#89"><abbr title="App\Models\Member::deleteMember">deleteMember</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Member.php.html#106"><abbr title="App\Models\Member::moveMember">moveMember</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Memberchoice.php.html#24"><abbr title="App\Models\Memberchoice::makeChoices">makeChoices</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Memberchoice.php.html#40"><abbr title="App\Models\Memberchoice::getMemberChoices">getMemberChoices</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Group.php.html#23"><abbr title="App\Models\Group::getGroups">getGroups</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Eventgroup.php.html#50"><abbr title="App\Models\Eventgroup::makeArrayfromRes">makeArrayfromRes</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Choice.php.html#24"><abbr title="App\Models\Choice::addChoice">addChoice</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Event.php.html#48"><abbr title="App\Models\Event::getNumberOfGroups">getNumberOfGroups</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Choice.php.html#31"><abbr title="App\Models\Choice::getChoicesBelongingToOrganization">getChoicesBelongingToOrganization</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Choice.php.html#35"><abbr title="App\Models\Choice::deletechoice">deletechoice</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Choice.php.html#39"><abbr title="App\Models\Choice::getChoice">getChoice</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Choice.php.html#43"><abbr title="App\Models\Choice::getAllChoices">getAllChoices</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Choice.php.html#47"><abbr title="App\Models\Choice::getChoicesByIds">getChoicesByIds</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Choice.php.html#60"><abbr title="App\Models\Choice::editChoice">editChoice</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Event.php.html#11"><abbr title="App\Models\Event::createEvent">createEvent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Event.php.html#35"><abbr title="App\Models\Event::getEventsBelongingToOrganization">getEventsBelongingToOrganization</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Event.php.html#65"><abbr title="App\Models\Event::getNumberOfMembers">getNumberOfMembers</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Eventgroup.php.html#46"><abbr title="App\Models\Eventgroup::deleteByEventid">deleteByEventid</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Event.php.html#96"><abbr title="App\Models\Event::getNumberOfChoices">getNumberOfChoices</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Event.php.html#104"><abbr title="App\Models\Event::deleteEvent">deleteEvent</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Eventchoice.php.html#11"><abbr title="App\Models\Eventchoice::deleteByChoiceid">deleteByChoiceid</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Eventchoice.php.html#15"><abbr title="App\Models\Eventchoice::deleteByEventid">deleteByEventid</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Eventchoice.php.html#19"><abbr title="App\Models\Eventchoice::getAllEventChoicesIds">getAllEventChoicesIds</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Eventchoice.php.html#38"><abbr title="App\Models\Eventchoice::getEventChoicesById">getEventChoicesById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Eventchoice.php.html#55"><abbr title="App\Models\Eventchoice::getNumberOfChoices">getNumberOfChoices</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Eventgroup.php.html#17"><abbr title="App\Models\Eventgroup::getAllEventGroupsIds">getAllEventGroupsIds</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Eventgroup.php.html#36"><abbr title="App\Models\Eventgroup::getEventGroupsById">getEventGroupsById</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Memberchoice.php.html#55"><abbr title="App\Models\Memberchoice::resetGroup">resetGroup</abbr></a></td><td class="text-right">0%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Choice.php.html#14"><abbr title="App\Models\Choice::addChoices">addChoices</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Memberchoice.php.html#24"><abbr title="App\Models\Memberchoice::makeChoices">makeChoices</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Event.php.html#11"><abbr title="App\Models\Event::createEvent">createEvent</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Event.php.html#65"><abbr title="App\Models\Event::getNumberOfMembers">getNumberOfMembers</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Groupmember.php.html#20"><abbr title="App\Models\Groupmember::getGroupMembersByIds">getGroupMembersByIds</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Group.php.html#120"><abbr title="App\Models\Group::editGroupName">editGroupName</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Member.php.html#89"><abbr title="App\Models\Member::deleteMember">deleteMember</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Member.php.html#54"><abbr title="App\Models\Member::getMembersByObject">getMembersByObject</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Member.php.html#26"><abbr title="App\Models\Member::addMembers">addMembers</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Group.php.html#139"><abbr title="App\Models\Group::deleteGroup">deleteGroup</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Eventgroup.php.html#65"><abbr title="App\Models\Eventgroup::getMemberIdsInEvent">getMemberIdsInEvent</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Group.php.html#35"><abbr title="App\Models\Group::getGroupsByIds">getGroupsByIds</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Choice.php.html#24"><abbr title="App\Models\Choice::addChoice">addChoice</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Eventgroup.php.html#50"><abbr title="App\Models\Eventgroup::makeArrayfromRes">makeArrayfromRes</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Eventgroup.php.html#36"><abbr title="App\Models\Eventgroup::getEventGroupsById">getEventGroupsById</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Eventchoice.php.html#38"><abbr title="App\Models\Eventchoice::getEventChoicesById">getEventChoicesById</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Eventchoice.php.html#19"><abbr title="App\Models\Eventchoice::getAllEventChoicesIds">getAllEventChoicesIds</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Choice.php.html#47"><abbr title="App\Models\Choice::getChoicesByIds">getChoicesByIds</abbr></a></td><td class="text-right">6</td></tr>
+       <tr><td><a href="Memberchoice.php.html#40"><abbr title="App\Models\Memberchoice::getMemberChoices">getMemberChoices</abbr></a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 6.0.4</a> using <a href="https://secure.php.net/" target="_top">PHP 7.2.5-1+ubuntu16.04.1+deb.sury.org+1</a> with <a href="https://xdebug.org/">Xdebug 2.6.0</a> and <a href="https://phpunit.de/">PHPUnit 7.1.4</a> at Tue May 22 12:33:56 CEST 2018.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../.js/jquery.min.js" type="text/javascript"></script>
+  <script src="../.js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../.js/holder.min.js" type="text/javascript"></script>
+  <script src="../.js/d3.min.js" type="text/javascript"></script>
+  <script src="../.js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([8,0,0,0,0,0,0,0,0,0,0,1], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([44,0,0,0,0,0,0,0,0,0,0,0], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[0,12,"<a href=\"Choice.php.html#10\">App\\Models\\Choice<\/a>"],[0,10,"<a href=\"Event.php.html#9\">App\\Models\\Event<\/a>"],[0,7,"<a href=\"Eventchoice.php.html#8\">App\\Models\\Eventchoice<\/a>"],[0,8,"<a href=\"Eventgroup.php.html#9\">App\\Models\\Eventgroup<\/a>"],[0,12,"<a href=\"Group.php.html#8\">App\\Models\\Group<\/a>"],[0,3,"<a href=\"Groupmember.php.html#9\">App\\Models\\Groupmember<\/a>"],[0,10,"<a href=\"Member.php.html#10\">App\\Models\\Member<\/a>"],[0,6,"<a href=\"Memberchoice.php.html#10\">App\\Models\\Memberchoice<\/a>"],[100,0,"<a href=\"Organizations.php.html#7\">App\\Models\\Organizations<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[0,3,"<a href=\"Choice.php.html#14\">App\\Models\\Choice::addChoices<\/a>"],[0,2,"<a href=\"Choice.php.html#24\">App\\Models\\Choice::addChoice<\/a>"],[0,1,"<a href=\"Choice.php.html#31\">App\\Models\\Choice::getChoicesBelongingToOrganization<\/a>"],[0,1,"<a href=\"Choice.php.html#35\">App\\Models\\Choice::deletechoice<\/a>"],[0,1,"<a href=\"Choice.php.html#39\">App\\Models\\Choice::getChoice<\/a>"],[0,1,"<a href=\"Choice.php.html#43\">App\\Models\\Choice::getAllChoices<\/a>"],[0,2,"<a href=\"Choice.php.html#47\">App\\Models\\Choice::getChoicesByIds<\/a>"],[0,1,"<a href=\"Choice.php.html#60\">App\\Models\\Choice::editChoice<\/a>"],[0,3,"<a href=\"Event.php.html#11\">App\\Models\\Event::createEvent<\/a>"],[0,1,"<a href=\"Event.php.html#35\">App\\Models\\Event::getEventsBelongingToOrganization<\/a>"],[0,1,"<a href=\"Event.php.html#48\">App\\Models\\Event::getNumberOfGroups<\/a>"],[0,3,"<a href=\"Event.php.html#65\">App\\Models\\Event::getNumberOfMembers<\/a>"],[0,1,"<a href=\"Event.php.html#96\">App\\Models\\Event::getNumberOfChoices<\/a>"],[0,1,"<a href=\"Event.php.html#104\">App\\Models\\Event::deleteEvent<\/a>"],[0,1,"<a href=\"Eventchoice.php.html#11\">App\\Models\\Eventchoice::deleteByChoiceid<\/a>"],[0,1,"<a href=\"Eventchoice.php.html#15\">App\\Models\\Eventchoice::deleteByEventid<\/a>"],[0,2,"<a href=\"Eventchoice.php.html#19\">App\\Models\\Eventchoice::getAllEventChoicesIds<\/a>"],[0,2,"<a href=\"Eventchoice.php.html#38\">App\\Models\\Eventchoice::getEventChoicesById<\/a>"],[0,1,"<a href=\"Eventchoice.php.html#55\">App\\Models\\Eventchoice::getNumberOfChoices<\/a>"],[0,1,"<a href=\"Eventgroup.php.html#17\">App\\Models\\Eventgroup::getAllEventGroupsIds<\/a>"],[0,2,"<a href=\"Eventgroup.php.html#36\">App\\Models\\Eventgroup::getEventGroupsById<\/a>"],[0,1,"<a href=\"Eventgroup.php.html#46\">App\\Models\\Eventgroup::deleteByEventid<\/a>"],[0,2,"<a href=\"Eventgroup.php.html#50\">App\\Models\\Eventgroup::makeArrayfromRes<\/a>"],[0,2,"<a href=\"Eventgroup.php.html#65\">App\\Models\\Eventgroup::getMemberIdsInEvent<\/a>"],[0,1,"<a href=\"Group.php.html#23\">App\\Models\\Group::getGroups<\/a>"],[0,2,"<a href=\"Group.php.html#35\">App\\Models\\Group::getGroupsByIds<\/a>"],[0,1,"<a href=\"Group.php.html#55\">App\\Models\\Group::getGroupsBelongingToOrganization<\/a>"],[0,1,"<a href=\"Group.php.html#68\">App\\Models\\Group::addGroup<\/a>"],[0,1,"<a href=\"Group.php.html#78\">App\\Models\\Group::groupNameExists<\/a>"],[0,1,"<a href=\"Group.php.html#84\">App\\Models\\Group::getGroupName<\/a>"],[0,1,"<a href=\"Group.php.html#96\">App\\Models\\Group::getGroupSize<\/a>"],[0,2,"<a href=\"Group.php.html#120\">App\\Models\\Group::editGroupName<\/a>"],[0,2,"<a href=\"Group.php.html#139\">App\\Models\\Group::deleteGroup<\/a>"],[0,3,"<a href=\"Groupmember.php.html#20\">App\\Models\\Groupmember::getGroupMembersByIds<\/a>"],[0,2,"<a href=\"Member.php.html#26\">App\\Models\\Member::addMembers<\/a>"],[0,1,"<a href=\"Member.php.html#40\">App\\Models\\Member::getMembers<\/a>"],[0,2,"<a href=\"Member.php.html#54\">App\\Models\\Member::getMembersByObject<\/a>"],[0,1,"<a href=\"Member.php.html#63\">App\\Models\\Member::getMembersByIds<\/a>"],[0,1,"<a href=\"Member.php.html#75\">App\\Models\\Member::editMemberMembername<\/a>"],[0,2,"<a href=\"Member.php.html#89\">App\\Models\\Member::deleteMember<\/a>"],[0,1,"<a href=\"Member.php.html#106\">App\\Models\\Member::moveMember<\/a>"],[0,3,"<a href=\"Memberchoice.php.html#24\">App\\Models\\Memberchoice::makeChoices<\/a>"],[0,2,"<a href=\"Memberchoice.php.html#40\">App\\Models\\Memberchoice::getMemberChoices<\/a>"],[0,1,"<a href=\"Memberchoice.php.html#55\">App\\Models\\Memberchoice::resetGroup<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

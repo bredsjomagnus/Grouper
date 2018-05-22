@@ -47,3 +47,6 @@ Route::get('/events/edit/{id}', 'EventController@editEvent')->name('editevent');
 Route::post('/events/makechoices', 'EventController@makeChoicesProcess')->name('makechoicesprocess');
 // Route::get('/events/randomize/{id}', 'EventController@randomizeEvent')->name('randomizeevent');
 Route::post('/events/devoptionsprocess', 'EventController@devOptions')->name('devoptions');
+
+// StatisticsController
+ Route::get('/statistics/event/{id}', 'StatisticsController@statisticsEvent');

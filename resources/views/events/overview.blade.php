@@ -11,8 +11,9 @@
 	<h1>Event overview</h1>
 	<br>
 	<?php
-	$randomurl = url('/events/randomize/'.$eventid);
-	$deleteall = url('/events/deleteall/'.$eventid);
+	$randomurl 		= url('/events/randomize/'.$eventid);
+	$deleteall 		= url('/events/deleteall/'.$eventid);
+	$statisticsurl 	= url('/statistics/event/'.$eventid);
 	?>
 	<form action="{{ route('devoptions') }}" method="POST">
 		<select name="choosingnumber">
@@ -26,6 +27,7 @@
 		<input type="submit" name="randomizeall" value="Slumpa">
 		<input type="submit" name="deleteall" value="Rensa allt">
 	</form>
+	<a href="{{ $statisticsurl }}">Statistics</a>
 	<br>
 	<br>
 	<ul class="nav nav-tabs">

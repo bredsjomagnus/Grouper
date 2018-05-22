@@ -30,6 +30,12 @@ SELECT * FROM memberchoices;
 
 SELECT memberid, GROUP_CONCAT(choiceid) as choices FROM memberchoices WHERE eventid = 1 GROUP BY memberid;
 
+SELECT choiceid, count(choiceid) AS numberofachoice FROM memberchoices WHERE eventid LIKE '%%' AND organization LIKE 'Klockarhagsskolan' GROUP BY choiceid;
+
+SELECT choiceid, sum(choiceid) AS sumofchoices FROM memberchoices WHERE eventid LIKE '%%' AND organization LIKE 'Klockarhagsskolan' GROUP BY choiceid;
+
+SELECT sum(choiceid) AS sumofchoices FROM memberchoices WHERE eventid LIKE '%%' AND organization LIKE 'Klockarhagsskolan';
+
 SELECT * FROM groupmembers;
 
 SELECT * FROM groupmembers WHERE groupid LIKE 1;

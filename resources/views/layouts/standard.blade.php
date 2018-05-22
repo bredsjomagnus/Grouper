@@ -45,6 +45,10 @@
 			</div>
 		</div>
 
+		<!-- FusionChart -->
+		<script type="text/javascript" src="{{ asset('js/fusioncharts.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/fusioncharts.charts.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/themes/fusioncharts.theme.fint.js') }}"></script>
 
 		<!-- JQuery -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>

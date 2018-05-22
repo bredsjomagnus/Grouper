@@ -59,4 +59,57 @@ class Memberchoice extends Model
 	public function resetEventChoices($eventid) {
 		$this::where('eventid', $eventid)->delete();
 	}
+
+	public function getStatisticsForEvent($eventid) {
+		$res = DB::select(
+				DB::raw(
+					"SELECT choiceid, COUNT(choiceid) AS numberofachoice FROM memberchoices WHERE eventid LIKE '".$eventid."' AND organization LIKE 'Klockarhagsskolan' GROUP BY choiceid;"
+					)
+			);
+
+		$all = 0;
+		foreach($res as $row) {
+			$all += $row->numberofachoice;
+		}
+
+		$barvalue = '"data": [';
+		foreach($res as $row) {
+			$choice = DB::table('choices')->where('id', $row->choiceid)->get();
+			$percent = round(($row->numberofachoice/$all)*100, 1);
+			$barvalue 	.= '{
+								"label": "'.$choice[0]->choicename.'",
+								"value": "'.$percent.'"
+							},';
+		}
+
+		// '"data": [{
+		// 					"label": "Consumer general",
+		// 					"value": "13"
+		// 				  }, {
+		// 					"label": "Enterprise internal app",
+		// 					"value": "83.7"
+		// 				  }, {
+		// 					"label": "Progressive Web Apps",
+		// 					"value": "25.1"
+		// 				  }, {
+		// 					"label": "Consumer social network",
+		// 					"value": "24"
+		// 				  }, {
+		// 					"label": "Desktop web apps",
+		// 					"value": "18.5"
+		// 				  }, {
+		// 					"label": "Desktop apps (electron, etc)",
+		// 					"value": "12.3"
+		// 				  }, {
+		// 					"label": "Consumer chat",
+		// 					"value": "12.2"
+		// 				  }, {
+		// 					"label": "Other",
+		// 					"value": "4.5"
+		// 				}]'
+		$barvalue = substr($barvalue, 0, -1);
+		$barvalue .= ']';
+
+		return $barvalue;
+	}
 }

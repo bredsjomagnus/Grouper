@@ -12,7 +12,6 @@ build:
     project_setup:
         before:
             - "make prepare"
-            - "mkdir build"
             - mysql -uroot -e 'CREATE DATABASE grouper'
             - mysql -uroot grouper < database/sql/grouper.sql
 

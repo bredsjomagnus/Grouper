@@ -10,12 +10,13 @@
    <script type="text/javascript" src="{{ asset('js/fusioncharts.js') }}"></script>
    <script type="text/javascript" src="{{ asset('js/fusioncharts.charts.js') }}"></script>
    <script type="text/javascript" src="{{ asset('js/themes/fusioncharts.theme.fint.js') }}"></script>
+
     <?php
 
-	$barChart = new FusionCharts("bar2d", "event-choices" , 600, 400, "chart-container", "json",
+	$barChart = new FusionCharts("bar2d", "event-choices" , 600, 400, "chart1-container", "json",
 		' {
 			"chart": {
-				"caption": "Choices",
+				"caption": "Choices - percent",
 				"numberSuffix": "%",
 				"paletteColors": "#876EA1",
 				"useplotgradientcolor": "0",
@@ -57,9 +58,17 @@
 				"toolTipBgColor": "#153957",
 				"theme": "fint"
 			  },
-			'.$values.'
+			'.$valuespercent.'
 		}');
+		$backurl = url("/events/edit/".$eventid);
         $barChart->render();
     ?>
-    <div id="chart-container"></div>
+	<?php  ?>
+	<div class="row">
+		<br>
+		<br>
+		<a class='btn btn-default' href={{ $backurl }}>Tillbaka</a>
+	</div>
+
+      <center><div id="chart1-container"></div></center>
 @endsection

@@ -28,7 +28,7 @@ class Dev
 
 		while(array_sum($weightarray) < 100){
 			$index = rand(0, $maxindex);
-			$weight = rand(1, 10);
+			$weight = rand(1, 3);
 			$weightarray[$index] += $weight;
 		}
 

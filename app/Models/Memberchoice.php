@@ -60,7 +60,7 @@ class Memberchoice extends Model
 		$this::where('eventid', $eventid)->delete();
 	}
 
-	public function getStatisticsForEvent($eventid) {
+	public function getPercentStatisticsForEvent($eventid) {
 		$res = DB::select(
 				DB::raw(
 					"SELECT choiceid, COUNT(choiceid) AS numberofachoice FROM memberchoices WHERE eventid LIKE '".$eventid."' AND organization LIKE 'Klockarhagsskolan' GROUP BY choiceid;"

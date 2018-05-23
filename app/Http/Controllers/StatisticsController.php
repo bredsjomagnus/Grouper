@@ -11,9 +11,10 @@ class StatisticsController extends Controller
     public function statisticsEvent($eventid) {
 		$memberchoice = new Memberchoice();
 
-		$barvalue = $memberchoice->getStatisticsForEvent($eventid);  //returns string with values for fusionchart
+		$barvaluepercent = $memberchoice->getPercentStatisticsForEvent($eventid);  //returns string with values for fusionchart
 		$data = [
-			"values" =>		$barvalue
+			"valuespercent" 	=> $barvaluepercent,
+			"eventid"			=> $eventid
 		];
 		return view('statistics.event', $data);
 	}

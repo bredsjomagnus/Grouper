@@ -27,9 +27,14 @@
 		<input type="submit" name="randomizeall" value="Slumpa">
 		<input type="submit" name="deleteall" value="Rensa allt">
 	</form>
-	<a href="{{ $statisticsurl }}">Statistics</a>
-	<br>
-	<br>
+
+
+	<div class="row event-underbar">
+		<a href="{{ $statisticsurl }}">Statistics</a>
+		<a href="#">Divide</a>
+	</div>
+
+
 	<ul class="nav nav-tabs">
 		<?php $counter = 1; ?>
 		@foreach($groups as $group)

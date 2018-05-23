@@ -6,19 +6,19 @@ filter:
 
 build:
     environment:
-        mysql: 5.5
         php: 7.1.12
 
     project_setup:
         before:
             - "make prepare"
-            - mysql -uroot -e 'CREATE DATABASE grouper'
-            - mysql -uroot grouper < database/sql/grouper.sql
+            - "mkdir builds"
+            - mysql -uroot -e 'CREATE DATABASE test'
+            - mysql -uroot test < database/sql/grouper.sql
 
     tests:
         override:
             -
-                command: "./vendor/bin/phpunit --configuration phpunit.xml"
+                command: "make test"
                 coverage:
-                    file: "build/coverage.clover"
+                    file: "builds/coverage.clover"
                     format: "php-clover"

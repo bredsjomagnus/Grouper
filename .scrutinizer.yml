@@ -12,9 +12,9 @@ build:
         before:
             - "make prepare"
             - "mkdir builds"
+            - "mysql -uroot -e 'CREATE DATABASE scrutinizer'"
+            - "mysql -uroot scrutinizer < database/sql/grouper.sql"
             - "php artisan config:cache"
-            - "mysql -uroot -e 'CREATE DATABASE test'"
-            - "mysql -uroot test < database/sql/grouper.sql"
 
     tests:
         stop_on_failure: true

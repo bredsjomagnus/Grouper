@@ -12,12 +12,11 @@ build:
         before:
             - "make prepare"
             - "mkdir builds"
+            - "php artisan config:cache"
             - "mysql -uroot -e 'CREATE DATABASE scrutinizer'"
             - "mysql -uroot scrutinizer < database/sql/grouper.sql"
-            - "php artisan config:cache"
 
     tests:
-        stop_on_failure: true
         override:
             -
                 command: "make test"

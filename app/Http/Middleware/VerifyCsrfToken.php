@@ -16,6 +16,7 @@ class VerifyCsrfToken extends Middleware
 		'/members/*',
 		'groups/*',
 		'choices/*',
-		'events/*'
+		'events/*',
+		'divide/*'
     ];
 }

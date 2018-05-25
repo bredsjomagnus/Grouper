@@ -14,6 +14,7 @@
 	$randomurl 		= url('/events/randomize/'.$eventid);
 	$deleteall 		= url('/events/deleteall/'.$eventid);
 	$statisticsurl 	= url('/statistics/event/'.$eventid);
+	$divideurl 		= url('/divide/event/'.$eventid.'?membercount='.count($members).'&choicecount='.count($choices).'&eventid='.$eventid);
 	?>
 	<form action="{{ route('devoptions') }}" method="POST">
 		<select name="choosingnumber">
@@ -31,7 +32,7 @@
 
 	<div class="row event-underbar">
 		<a href="{{ $statisticsurl }}">Statistics</a>
-		<a href="#">Divide</a>
+		<a href="{{ $divideurl }}">Divide</a>
 	</div>
 
 

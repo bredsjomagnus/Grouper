@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Memberchoice as Memberchoice;
+use App\Models\Eventgroup as Eventgroup;
 
 class DivideController extends Controller
 {
@@ -27,6 +29,28 @@ class DivideController extends Controller
 
 		if(isset($_POST['cancelbtn'])) {
 			return redirect('/events/edit/'.$eventid);
+		} else if($_POST['dividebtn']) {
+			// divide into event groups
+			return redirect('divide/event/result/'.$eventid);
 		}
+	}
+
+	public function divideResult($eventid) {
+		$memberchoice	= new Memberchoice();
+		$eventgroup		= new Eventgroup();
+
+		/*
+			$sortedchoices.
+			Associative array in ascending order:
+		 	array ['choiceid' => number of least popular choice,...]
+		*/
+		$sortedchoices	= $memberchoice->getSortSumOfChoicesForEvent($eventid);
+
+		$memberids		= $eventgroup->getMemberIdsInEvent($eventid); // [memberid, memberid,...]
+		$data = [
+			"sortedchoices"		=> $sortedchoices,
+			"memberids"			=> $memberids
+		];
+		return view('divide.result', $data);
 	}
 }

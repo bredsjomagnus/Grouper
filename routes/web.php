@@ -52,5 +52,6 @@ Route::post('/events/devoptionsprocess', 'EventController@devOptions')->name('de
  Route::get('/statistics/event/{id}', 'StatisticsController@statisticsEvent');
 
  // DivideController
- Route::get('/divide/event/{id}', 'DivideController@console')->name('divideconsole');
  Route::post('/divide/event/process', 'DivideController@concoleprocess')->name('divideconsoleprocess');
+ Route::get('/divide/event/result/{id}', 'DivideController@divideResult')->name('divideresult');
+ Route::get('/divide/event/{id}', 'DivideController@console')->name('divideconsole');

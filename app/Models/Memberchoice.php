@@ -60,12 +60,32 @@ class Memberchoice extends Model
 		$this::where('eventid', $eventid)->delete();
 	}
 
-	public function getPercentStatisticsForEvent($eventid) {
+	/**
+	* Get sum of all choices members have done for an event.
+	*
+	* @param Integer event id.
+	*
+	* @return Object result
+	*/
+	public function getSumOfChoicesForEvent($eventid) {
 		$res = DB::select(
 				DB::raw(
-					"SELECT choiceid, COUNT(choiceid) AS numberofachoice FROM memberchoices WHERE eventid LIKE '".$eventid."' AND organization LIKE 'Klockarhagsskolan' GROUP BY choiceid;"
+					"SELECT choiceid, COUNT(choiceid) AS numberofachoice FROM memberchoices WHERE eventid LIKE '".$eventid."' GROUP BY choiceid;"
 					)
 			);
+
+		return $res;
+	}
+
+	/**
+	* Method specificaly to create json-values for chart.
+	*
+	* @param Integer event id
+	*
+	* @return String json-object 'data' with values and labels for percent bar chart.
+	*/
+	public function getPercentStatisticsForEvent($eventid) {
+		$res = $this->getSumOfChoicesForEvent($eventid);
 
 		$all = 0;
 		foreach($res as $row) {
@@ -82,34 +102,28 @@ class Memberchoice extends Model
 							},';
 		}
 
-		// '"data": [{
-		// 					"label": "Consumer general",
-		// 					"value": "13"
-		// 				  }, {
-		// 					"label": "Enterprise internal app",
-		// 					"value": "83.7"
-		// 				  }, {
-		// 					"label": "Progressive Web Apps",
-		// 					"value": "25.1"
-		// 				  }, {
-		// 					"label": "Consumer social network",
-		// 					"value": "24"
-		// 				  }, {
-		// 					"label": "Desktop web apps",
-		// 					"value": "18.5"
-		// 				  }, {
-		// 					"label": "Desktop apps (electron, etc)",
-		// 					"value": "12.3"
-		// 				  }, {
-		// 					"label": "Consumer chat",
-		// 					"value": "12.2"
-		// 				  }, {
-		// 					"label": "Other",
-		// 					"value": "4.5"
-		// 				}]'
 		$barvalue = substr($barvalue, 0, -1);
 		$barvalue .= ']';
 
 		return $barvalue;
+	}
+
+	/**
+	* Get an associated array in ascending order over members choices in event
+	*
+	* @param Integer event id
+	*
+	* @return Array Associative array in ascending order ['choiceid' => number of choices for least popular choice, ...]
+	*/
+	public function getSortSumOfChoicesForEvent($eventid) {
+		$res = $this->getSumOfChoicesForEvent($eventid);
+
+		$choicesarray = [];
+		foreach($res as $row) {
+			$choicearray[$row->choiceid] = $row->numberofachoice;
+		}
+		asort($choicearray); // sort in asscending order
+
+		return $choicearray;
 	}
 }

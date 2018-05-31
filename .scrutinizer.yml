@@ -10,16 +10,19 @@ build:
 
     project_setup:
         before:
-            - "make prepare"
-            - "mkdir builds"
-            - "php artisan config:cache"
-            - "mysql -uroot -e 'CREATE DATABASE scrutinizer'"
-            - "mysql -uroot scrutinizer < database/sql/grouper.sql"
+            - php-scrutinizer-run
+            - make prepare
+            - mkdir builds
+            - php artisan config:cache
+            - mysql -uroot -e 'CREATE DATABASE scrutinizer'
+            - mysql -uroot scrutinizer < database/sql/grouper.sql
 
     tests:
-        override:
-            -
-                command: "make test"
-                coverage:
-                    file: "builds/coverage.clover"
-                    format: "php-clover"
+        nodes:
+            my-tests:
+                override:
+                    -
+                        command: make test
+                        coverage:
+                            file: "builds/coverage.clover"
+                            format: "php-clover"

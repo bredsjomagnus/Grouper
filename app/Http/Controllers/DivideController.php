@@ -45,8 +45,10 @@ class DivideController extends Controller
 		 	array ['choiceid' => number of least popular choice,...]
 		*/
 		$sortedchoices	= $memberchoice->getSortSumOfChoicesForEvent($eventid);
-
 		$memberids		= $eventgroup->getMemberIdsInEvent($eventid); // [memberid, memberid,...]
+
+		
+
 		$data = [
 			"sortedchoices"		=> $sortedchoices,
 			"memberids"			=> $memberids

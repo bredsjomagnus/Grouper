@@ -6,11 +6,10 @@ filter:
 
 build:
     environment:
-        php: 7.1.12
+        php: 7.1
 
     project_setup:
         before:
-            - php-scrutinizer-run
             - make prepare
             - mkdir builds
             - php artisan config:cache
@@ -18,11 +17,9 @@ build:
             - mysql -uroot scrutinizer < database/sql/grouper.sql
 
     tests:
-        nodes:
-            my-tests:
-                override:
-                    -
-                        command: make test
-                        coverage:
-                            file: "builds/coverage.clover"
-                            format: "php-clover"
+        override:
+            -
+                command: make test
+                coverage:
+                    file: "builds/coverage.clover"
+                    format: "php-clover"

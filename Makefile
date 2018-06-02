@@ -79,6 +79,9 @@ prepare:
 	@cp public/.env_dummy .env
 	@php artisan key:generate
 
+.PHONY: phpdoc
+phpdoc:
+	@sudo phpdoc
 
 
 # target: test               	- Run unittest and generate coverage

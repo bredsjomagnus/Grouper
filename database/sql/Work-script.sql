@@ -34,7 +34,9 @@ SELECT memberid, GROUP_CONCAT(choiceid) as choices FROM memberchoices WHERE even
 
 SELECT choiceid, count(choiceid) AS numberofachoice FROM memberchoices WHERE eventid LIKE '%%' AND organization LIKE 'Klockarhagsskolan' GROUP BY choiceid;
 
-SELECT choiceid, count(choiceid) AS numberofachoice FROM memberchoices WHERE eventid LIKE 2 AND organization LIKE 'Klockarhagsskolan' GROUP BY choiceid;
+SELECT choiceid, count(choiceid) AS numberofachoice FROM memberchoices WHERE eventid LIKE '2' AND organization LIKE 'Klockarhagsskolan' GROUP BY choiceid;
+
+SELECT memberid, GROUP_CONCAT(choiceid) as choices FROM memberchoices WHERE eventid = 2 GROUP BY memberid;
 
 -- --------------------------------
 

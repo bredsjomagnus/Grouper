@@ -8,7 +8,10 @@
 
 @section('content')
 <h1>RESULT</h1>
-<?php print_r($sortedchoices); ?>
-<br>
-<?php print_r($memberids); ?>
+<p>Members with no choice</p>
+<?php print_r($noeventgroup); ?>
+
+@foreach($divideresult as $result)
+<p>Memberid {{$result->memberid}}, Choiceid {{$result->choiceid}}</p>
+@endforeach
 @endsection

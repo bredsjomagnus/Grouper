@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Memberchoice as Memberchoice;
 use App\Models\Eventgroup as Eventgroup;
+use App\Models\Divideresult as Divideresult;
 
 class DivideController extends Controller
 {
@@ -38,20 +39,21 @@ class DivideController extends Controller
 	public function divideResult($eventid) {
 		$memberchoice	= new Memberchoice();
 		$eventgroup		= new Eventgroup();
+		$divide			= new Divideresult();
 
 		/*
-			$sortedchoices.
+			$choicetemplate.
 			Associative array in ascending order:
 		 	array ['choiceid' => number of least popular choice,...]
 		*/
-		$sortedchoices	= $memberchoice->getSortSumOfChoicesForEvent($eventid);
+		$choicetemplate	= $memberchoice->getSortSumOfChoicesForEvent($eventid);
 		$memberids		= $eventgroup->getMemberIdsInEvent($eventid); // [memberid, memberid,...]
-
-		
+		$noeventgroup 	= $memberchoice->handleMemberchoices($eventid, $choicetemplate, $memberids, 1, 20);
+		$divideresult 	= $divide->getDivideResult($eventid);
 
 		$data = [
-			"sortedchoices"		=> $sortedchoices,
-			"memberids"			=> $memberids
+			"noeventgroup"	=> $noeventgroup,
+			"divideresult"	=> $divideresult
 		];
 		return view('divide.result', $data);
 	}

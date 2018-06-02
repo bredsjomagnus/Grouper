@@ -1,0 +1,67 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Divideresult extends Model
+{
+    /*
+	* This model is to store final results after dividing into groups.
+	*
+	* Parameters:
+	* eventid
+	* memberid
+	* choiceid
+	*/
+
+	/**
+	* Get divide result for event
+	*
+	* @param Integer event id
+	*
+	* @return Object result
+	*/
+	public function getDivideResult($eventid) {
+		$res = $this::where('eventid', $eventid)->get();
+
+		return $res;
+	}
+
+	/**
+	* Reset prevous made choices for event
+	*
+	* @param Integer event id
+	*
+	* @return void
+	*/
+	public function resetPreviousChoices($eventid) {
+		$this::where('eventid', $eventid)->delete();
+	}
+
+	/**
+	* Put memberchoices selection into database
+	*
+	* @param Array $eventgrouparray is an associative array as [memberid => choiceid, ...]
+	*
+	* @return void
+	*/
+	public function setDivideResult($eventid, $eventgrouparray) {
+
+		/*
+		* Reset previous choices
+		*/
+		$this->resetPreviousChoices($eventid);
+
+		/*
+		* Store new choices
+		*/
+		foreach($eventgrouparray as $memberid => $choiceid) {
+			$this::insert([
+				"eventid" 	=> $eventid,
+				"memberid"	=> $memberid,
+				"choiceid"	=> $choiceid
+			]);
+		}
+	}
+}

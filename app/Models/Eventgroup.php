@@ -8,6 +8,10 @@ use App\Models\Groupmember as Groupmember;
 
 class Eventgroup extends Model
 {
+	/*
+	* This group is to link all the groups an event contains.
+	*/
+
     // use SoftDeletes;
 
 	/**
@@ -74,4 +78,5 @@ class Eventgroup extends Model
 		}
 		return $memberids;
 	}
+
 }

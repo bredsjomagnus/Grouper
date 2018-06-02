@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Eventchoice extends Model
 {
+
+	/*
+	* This model is to link all choices en event has to chooce from.
+	*/
+	
     // use SoftDeletes;
 	public function deleteByChoiceid($choiceid) {
 		$this::where('choiceid', $choiceid)->delete();
@@ -57,6 +62,6 @@ class Eventchoice extends Model
 		return count($choices);
 	}
 
-	
+
 
 }

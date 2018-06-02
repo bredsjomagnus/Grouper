@@ -8,6 +8,9 @@ use App\Models\Member as Member;
 
 class Groupmember extends Model
 {
+	/*
+	* This model is to link groups to members.
+	*/
     // use SoftDeletes;
 
 	/**

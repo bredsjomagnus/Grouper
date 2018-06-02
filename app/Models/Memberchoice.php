@@ -7,8 +7,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 use Illuminate\Support\Facades\DB;
 
+use App\Models\Divideresult as Divideresult;
+
 class Memberchoice extends Model
 {
+	/*
+	* This model is for all the multiple choices a member can do.
+	*/
+
     // use SoftDeletes;
 
 	/**
@@ -116,14 +122,89 @@ class Memberchoice extends Model
 	* @return Array Associative array in ascending order ['choiceid' => number of choices for least popular choice, ...]
 	*/
 	public function getSortSumOfChoicesForEvent($eventid) {
+		// get the count/sum of every choice for this event
 		$res = $this->getSumOfChoicesForEvent($eventid);
 
+		// put values in array
 		$choicesarray = [];
 		foreach($res as $row) {
 			$choicearray[$row->choiceid] = $row->numberofachoice;
 		}
-		asort($choicearray); // sort in asscending order
+		// sort array with respect to values in ascending order.
+		asort($choicearray);
 
 		return $choicearray;
+	}
+
+
+
+	/**
+	* Place members in event in eventgroups depending on members choice and choicetemplate
+	*
+	* @param Integer event id
+	* @param Array assocciated array sorted in ascending order ['choiceid' => number of least popular choice,...]
+	* @param Array member ids
+	*
+	* @return void
+	*/
+	public function handleMemberchoices($eventid, $choicetemplate, $memberids, $retrycap, $groupcap) {
+		$divide = new Divideresult();
+		$retrys = 0;
+
+		// Setting up $choicetemplate
+		$choicepool = [];
+		foreach($choicetemplate as $choiceid) {
+			$choicepool[$choiceid] = 0;
+		}
+		/*
+		* $memberchoices is assocciative array with memberid as key and choices ids in array as value
+		* [memberid => [choiceid, choiceid, choiceid,...], memberid => [choiceid, choiceid, choiceid], ...]
+		* The choices for that member is only for this event with event id = $eventid
+		*/
+		$memberchoices = $this->getMemberChoices($eventid);
+		$noeventgroup = [];
+		/*
+		* $eventgrouparray will be builed up to an assocciative array with memberid as key and choiceid as value.
+		*/
+		$eventgrouparray = [];
+		while($retrys < $retrycap) {
+			shuffle($memberids);
+			foreach($memberids as $memberid) {
+				$placedingroup = false;
+				foreach($choicetemplate as $choiceid) {
+					/*
+					* For every choiceid in template in order from least popular till most popular.
+					* If member has that choice and if that choice hasn't reached the groupcap,
+					* Place member in that group. Increase number of members in that choicepool.
+					*/
+					if(in_array($choiceid, $memberchoices[$memberid])) {
+						if($choicepool[$choiceid] < $groupcap) {
+							$eventgrouparray[$memberid] = $choiceid;
+							$choicepool[$choiceid] += 1;
+							$placedingroup = true;
+							break 1; // exit only the choicetemplate foreach
+						}
+					}
+				}
+				if(!$placedingroup) {
+					$noeventgroup[] = $memberid;
+				}
+			}
+			if(count($noeventgroup) < 1) {
+				$retrys = $retrycap;
+			} else {
+				$retrys++;
+			}
+		}
+
+
+
+		/*
+		* Set the result into the database
+		*/
+		$divide->setDivideResult($eventid, $eventgrouparray);
+
+
+		return $noeventgroup;
 	}
 }

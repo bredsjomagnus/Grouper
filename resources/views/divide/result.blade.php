@@ -7,11 +7,20 @@
 @endsection
 
 @section('content')
-<h1>RESULT</h1>
-<p>Members with no choice</p>
-<?php print_r($noeventgroup); ?>
 
-@foreach($divideresult as $result)
-<p>Memberid {{$result->memberid}}, Choiceid {{$result->choiceid}}</p>
+<h1>RESULT</h1>
+<h5>Members with no choice</h5>
+@foreach($noeventgroup as $nogroup)
+<p>{{ $members[$nogroup] }}</p>
 @endforeach
+<h3>Members with choices</h3>
+	@foreach($choices as $choiceid => $choicename)
+		<h4>{{$choicename}}</h4>
+		@foreach($divideresult as $result)
+			@if($result->choiceid == $choiceid)
+				<p>{{$members[$result->memberid]}}</p>
+			@endif
+		@endforeach
+	@endforeach
+
 @endsection

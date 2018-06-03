@@ -102,8 +102,12 @@ class Event extends Model
 	}
 
 	public function deleteEvent($id) {
+		DB::table('eventgroups')->where("eventid", $id)->delete();
+		DB::table('eventchoices')->where("eventid", $id)->delete();
+		DB::table('memberchoices')->where("eventid", $id)->delete();
+		DB::table('divideresults')->where("eventid", $id)->delete();
 		$this::find($id)->delete();
 	}
 
-	
+
 }

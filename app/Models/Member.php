@@ -60,8 +60,14 @@ class Member extends Model
 		return $members;
 	}
 
-	public function getMembersByIds($groupids) {
-		//
+	public function getMembersByIds($memberids) {
+		$members = [];
+
+		foreach($memberids as $memberid) {
+			$res = $this::find($memberid);
+			$members[$memberid] = $res->membername;
+		}
+		return $members;
 	}
 
 	/**

@@ -57,6 +57,16 @@ class Choice extends Model
 		return $choices;
 	}
 
+	public function getChoicesByIdsAssociative($choiceids) {
+		$choices = [];
+
+		foreach($choiceids as $choiceid) {
+			$res = $this::find($choiceid);
+			$choices[$choiceid] = $res->choicename;
+		}
+		return $choices;
+	}
+
 	public function editChoice($id, $newname) {
 		$choice = $this::find($id);
 		$choice->choicename = $newname;

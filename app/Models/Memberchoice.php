@@ -147,27 +147,28 @@ class Memberchoice extends Model
 	*
 	* @return void
 	*/
-	public function handleMemberchoices($eventid, $choicetemplate, $memberids, $retrycap, $groupcap) {
+	public function handleMemberchoicesWithTemplate($eventid, $choicetemplate, $memberids, $retrycap, $groupcap) {
 		$divide = new Divideresult();
 		$retrys = 0;
 
-		// Setting up $choicetemplate
-		$choicepool = [];
-		foreach($choicetemplate as $choiceid) {
-			$choicepool[$choiceid] = 0;
-		}
 		/*
 		* $memberchoices is assocciative array with memberid as key and choices ids in array as value
 		* [memberid => [choiceid, choiceid, choiceid,...], memberid => [choiceid, choiceid, choiceid], ...]
 		* The choices for that member is only for this event with event id = $eventid
 		*/
 		$memberchoices = $this->getMemberChoices($eventid);
-		$noeventgroup = [];
-		/*
-		* $eventgrouparray will be builed up to an assocciative array with memberid as key and choiceid as value.
-		*/
-		$eventgrouparray = [];
+
 		while($retrys < $retrycap) {
+			// Setting up $choicetemplate
+			$choicepool = [];
+			foreach($choicetemplate as $choiceid => $number) {
+				$choicepool[$choiceid] = 0;
+			}
+			$noeventgroup = [];
+			/*
+			* $eventgrouparray will be builed up to an assocciative array with memberid as key and choiceid as value.
+			*/
+			$eventgrouparray = [];
 			shuffle($memberids);
 			foreach($memberids as $memberid) {
 				$placedingroup = false;
@@ -182,7 +183,7 @@ class Memberchoice extends Model
 							$eventgrouparray[$memberid] = $choiceid;
 							$choicepool[$choiceid] += 1;
 							$placedingroup = true;
-							break 1; // exit only the choicetemplate foreach
+							// break 1; // exit only the choicetemplate foreach
 						}
 					}
 				}
@@ -197,7 +198,63 @@ class Memberchoice extends Model
 			}
 		}
 
+		/*
+		* Set the result into the database
+		*/
+		$divide->setDivideResult($eventid, $eventgrouparray);
 
+
+		return $noeventgroup;
+	}
+
+	public function handleMemberchoicesNoTemplate($eventid, $choicetemplate, $memberids, $retrycap, $groupcap) {
+		$divide = new Divideresult();
+		$retrys = 0;
+
+		/*
+		* $memberchoices is assocciative array with memberid as key and choices ids in array as value
+		* [memberid => [choiceid, choiceid, choiceid,...], memberid => [choiceid, choiceid, choiceid], ...]
+		* The choices for that member is only for this event with event id = $eventid
+		*/
+		$memberchoices = $this->getMemberChoices($eventid);
+
+		while($retrys < $retrycap) {
+			// Setting up $choicetemplate
+			$choicepool = [];
+			foreach($choicetemplate as $choiceid => $number) {
+				$choicepool[$choiceid] = 0;
+			}
+			$noeventgroup = [];
+			/*
+			* $eventgrouparray will be builed up to an assocciative array with memberid as key and choiceid as value.
+			*/
+			$eventgrouparray = [];
+			shuffle($memberids);
+			foreach($memberids as $memberid) {
+				$placedingroup = false;
+
+				$thismemberschoices = $memberchoices[$memberid];
+				shuffle($thismemberschoices);
+				foreach($thismemberschoices as $choiceid) {
+					if($choicepool[$choiceid] < $groupcap) {
+						$eventgrouparray[$memberid] = $choiceid;
+						$choicepool[$choiceid] += 1;
+						$placedingroup = true;
+						break 1; // exit only the choicetemplate foreach
+					}
+				}
+			}
+
+			if(!$placedingroup) {
+				$noeventgroup[] = $memberid;
+			}
+
+			if(count($noeventgroup) < 1) {
+				$retrys = $retrycap;
+			} else {
+				$retrys++;
+			}
+		}
 
 		/*
 		* Set the result into the database

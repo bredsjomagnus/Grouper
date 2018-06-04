@@ -14,45 +14,45 @@
 		<div class="row">
 			<div class="col-md-12">
 
-					<ul class='group-list'>
-						@foreach($groups as $group)
-							<?php
-							$editurl = url('/groups/edit/'.$group->id);
-							$deleteurl = url('/groups/delete/'.$group->id);
-							?>
-							<li class='group-list-item'>
-								<a class='paneldivlink' href="{{ $editurl }}">
-									<div class={{ in_array($group->id, $eventgroupids ) ? 'group-paneldiv': 'group-paneldiv' }}>
-										<center>
-											<table class='groupdashboardtable'>
-												<tr>
-													<td colspan='3' class='groupnamecell'><center>{{$group->groupname}}</center></td>
-												</tr>
-												<tr class='groupinforow'>
-													<td class='groupemptystylecell'></td>
-													<!-- $groupsizes is an associative array as follows [groupid => numberofmembers,...] -->
-													<td>
-														@if($groupsizes[$groupmemberscounter]->groupid == $group->id)
-															<span class='group-panelinfo'>Members: {{$groupsizes[$groupmemberscounter]->numberofmembers}} </span>
-														@endif
-													</td>
-													<td>
-														<a href='{{ in_array($group->id, $eventgroupids ) ? '#' : $deleteurl }}' onclick='return confirm("Do you want to delete this group along with all its members");'>
-															<span class="{{ in_array($group->id, $eventgroupids ) ? '': 'glyphicon glyphicon-trash' }}" aria-hidden="true"></span>
+				<ul class='group-list'>
+					@foreach($groups as $group)
+						<?php
+						$editurl = url('/groups/edit/'.$group->id);
+						$deleteurl = url('/groups/delete/'.$group->id);
+						?>
+						<li class='group-list-item'>
+							<a class='paneldivlink' href="{{ $editurl }}">
+								<div class={{ in_array($group->id, $eventgroupids ) ? 'group-paneldiv': 'group-paneldiv' }}>
+									<center>
+										<table class='groupdashboardtable'>
+											<tr>
+												<td colspan='3' class='groupnamecell'><center>{{$group->groupname}}</center></td>
+											</tr>
+											<tr class='groupinforow'>
+												<td class='groupemptystylecell'></td>
+												<!-- $groupsizes is an associative array as follows [groupid => numberofmembers,...] -->
+												<td>
+													@if($groupsizes[$groupmemberscounter]->groupid == $group->id)
+														<span class='group-panelinfo'>Members: {{$groupsizes[$groupmemberscounter]->numberofmembers}} </span>
+													@endif
+												</td>
+												<td>
+													<a href='{{ in_array($group->id, $eventgroupids ) ? '#' : $deleteurl }}' onclick='return confirm("Do you want to delete this group along with all its members");'>
+														<span class="{{ in_array($group->id, $eventgroupids ) ? '': 'glyphicon glyphicon-trash' }}" aria-hidden="true"></span>
 
-														</a>
-														<!-- $eventgroupids contains all ids of every group that is in an event -->
-														<span class='inevent-panelinfo'>{{ in_array($group->id, $eventgroupids ) ? 'IN EVENT': '' }}</span>
-													</td>
-												</tr>
-											</table>
-										</center>
-									</div>
-								</a>
-							</li>
-							<?php $groupmemberscounter++; ?>
-						@endforeach
-					</ul>
+													</a>
+													<!-- $eventgroupids contains all ids of every group that is in an event -->
+													<span class='inevent-panelinfo'>{{ in_array($group->id, $eventgroupids ) ? 'IN EVENT': '' }}</span>
+												</td>
+											</tr>
+										</table>
+									</center>
+								</div>
+							</a>
+						</li>
+						<?php $groupmemberscounter++; ?>
+					@endforeach
+				</ul>
 
 			</div>
 		<!-- /col-md-12 -->

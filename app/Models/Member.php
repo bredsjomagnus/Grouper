@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-use App\Models\Member as Member;
+// use App\Models\Member as Member;
+use App\Models\Group as Group;
+use App\Models\Memberchoice as Memberchoice;
 
 class Member extends Model
 {
@@ -66,6 +68,35 @@ class Member extends Model
 		foreach($memberids as $memberid) {
 			$res = $this::find($memberid);
 			$members[$memberid] = $res->membername;
+		}
+		return $members;
+	}
+
+	public function getMembersDivideInfo($memberids, $eventid) {
+		$memberchoice = new Memberchoice();
+
+		$members = [];
+		$memberchoices = $memberchoice->getMemberChoices($eventid);
+		foreach($memberids as $memberid) {
+			$group = new Group();
+			$res = $this::find($memberid);
+			$groupmemberres = DB::table('groupmembers')
+				->where('memberid', $memberid)
+				->get();
+			$groupname = $group->getGroupnameById($groupmemberres[0]->groupid);
+
+			$choicenames = [];
+			foreach($memberchoices[$memberid] as $memchoiceid) {
+				$choicename = DB::table('choices')->where('id', $memchoiceid)->get();
+				$choicenames[] = $choicename[0]->choicename;
+			}
+
+			$members[$memberid] = [
+				"membername"	=> $res->membername,
+				"groupname"		=> $groupname,
+				"choiceids"		=> $memberchoices[$memberid],
+				"choicenames"	=> $choicenames
+			];
 		}
 		return $members;
 	}

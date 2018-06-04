@@ -321,7 +321,79 @@ Table inside every paneldivlink
 	padding: 5px
 }
 
+/*
+* DIVIDE RESULT RULES
+*/
+.choicerow {
+	margin-bottom: 30px;
+}
+.divide-paneldiv {
+	padding: 5px 5px 5px 5px;
+	margin-bottom: 5px;
+	height: 70px;
+	width: 275px;
+	border: 1px solid gray;
+	/* border-radius: 5%; */
+	border-top: 5px solid #bdbdcc;
+	background-color: #eeeeee;
+	-webkit-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+	-moz-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+	box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+}
+.divide-paneldiv-active {
+	padding: 5px 5px 5px 5px;
+	margin-bottom: 5px;
+	height: 70px;
+	width: 275px;
+	border: 1px solid gray;
+	/* border-radius: 5%; */
+	border-top: 5px solid #bdbdcc;
+	background-color: #cdf2a6;
+	-webkit-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+	-moz-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+	box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+}
+.divide-paneldiv:hover {
+	padding: 5px 5px 5px 5px;
+	margin-bottom: 5px;
+	height: 70px;
+	width: 275px;
+	border: 1px solid gray;
+	/* border-radius: 5%; */
+	border-top: 5px solid #b1ba8b;
+	background-color: #dbe4b7;
+	-webkit-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+	-moz-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+	box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+}
 
+.divide-paneldiv-choice {
+	padding: 5px 5px 5px 5px;
+	margin-bottom: 5px;
+	height: 70px;
+	width: 275px;
+	border: 1px solid gray;
+	/* border-radius: 5%; */
+	border-top: 5px solid #bdbdcc;
+	background-color: #d4dbd5;
+	-webkit-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+	-moz-box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+	box-shadow: 1px 1px 2px 0 rgba(0,0,0,0.5);
+}
+
+.choice-column {
+	background-color: #eeeeee;
+	padding: 5px 5px 5px 5px;
+	font-weight: bolder;
+	width: 120%;
+}
+.choice-column-active {
+	background-color: #606060;
+	color: white;
+	padding: 5px 5px 5px 5px;
+	font-weight: bolder;
+	width: 120%;
+}
 
 .paneldivlink:hover {
 	text-decoration: none;

@@ -81,6 +81,10 @@
 		<!-- Script handeling editing members on one page -->
 			<script src="{{ URL::asset('js/editonpage.js') }}" type='text/javascript'></script>
 		@endif
+		@if(count($urlsegemnts) >= 4 && $urlsegemnts[0] == 'divide' && $urlsegemnts[1] == 'event' && $urlsegemnts[2] == 'result')
+		<!-- Script handeling editing members on one page -->
+			<script src="{{ URL::asset('js/divide.js') }}" type='text/javascript'></script>
+		@endif
 
 	</body>
 </html>

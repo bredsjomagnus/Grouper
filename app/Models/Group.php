@@ -85,6 +85,12 @@ class Group extends Model
 		return $this::find($id);
 	}
 
+	public function getGroupnameById($groupid) {
+		$group = $this::find($groupid);
+		$groupname = $group->groupname;
+		return $groupname;
+	}
+
 	/**
 	* Gets number of members of a group. By default all groups of an organization
 	*

@@ -57,6 +57,8 @@ class DivideController extends Controller
 
 		$memberids		= $eventgroup->getMemberIdsInEvent($eventid); // For this event [memberid, memberid,...]
 		$members		= $member->getMembersByIds($memberids); // For this event [memberid => membername, ]
+
+
 		/*
 			$choicetemplate.
 			Associative array in ascending order:
@@ -64,20 +66,25 @@ class DivideController extends Controller
 		*/
 		$choicetemplate	= $memberchoice->getSortSumOfChoicesForEvent($eventid);
 		// $noeventgroup 	= $memberchoice->handleMemberchoicesWithTemplate($eventid, $choicetemplate, $memberids, $retrys, $groupcap); // not working
+
 		$noeventgroup 	= $memberchoice->handleMemberchoicesNoTemplate($eventid, $choicetemplate, $memberids, $retrys, $groupcap);
+
 		$divideresult 	= $divide->getDivideResult($eventid);
 
 		$memberchoices 	= $memberchoice->getMemberChoices($eventid);
 
+		$memberinfo		= $member->getMembersDivideInfo($memberids, $eventid);
+
 		$data = [
+			"eventid"			=> $eventid,
 			"noeventgroup"		=> $noeventgroup,
 			"divideresult"		=> $divideresult,
 			"choices"			=> $choices,
 			"members"			=> $members,
 			"choicetemplate"	=> $choicetemplate,
-			"memberchoices"		=> $memberchoices
+			"memberchoices"		=> $memberchoices,
+			"memberinfo"		=> $memberinfo
 		];
-
 
 		// if(isset($choicetemplate)) {
 		// 	print_r($choicetemplate);
@@ -88,5 +95,19 @@ class DivideController extends Controller
 		// }
 
 		return view('divide.result', $data);
+	}
+
+	public function retrieve($eventid) {
+		$member			= new Member();
+		$memberchoice	= new Memberchoice();
+
+		$memberchoices 	= $memberchoice->getMemberChoices($eventid);
+
+        return response()
+					->json(
+						[
+							'msg' 	=> 'This is get method',
+							'data'	=> json_encode($memberchoices)
+						]);
 	}
 }

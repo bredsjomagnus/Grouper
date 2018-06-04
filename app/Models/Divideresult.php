@@ -64,4 +64,10 @@ class Divideresult extends Model
 			]);
 		}
 	}
+
+	public function moveMember($memberid, $choiceid, $eventid) {
+		$this::where('eventid', $eventid)
+	          ->where('memberid', $memberid)
+	          ->update(['choiceid' => $choiceid]);
+	}
 }

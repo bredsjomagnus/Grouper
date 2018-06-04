@@ -16,38 +16,30 @@ function markmember(memberid, memberchoices) {
 
 		$(".choice-column-active").addClass('choice-column').removeClass('choice-column-active');
 		choicesarray.forEach(function(choice) {
-
 			$("#choice_"+choice).addClass('choice-column-active').removeClass('choice-column');
-		  	console.log(choice);
+		  	// console.log(choice);
 		});
 	}
 }
-
+/**
+* Get memberchoices from database.
+*
+*/
 function markchoice(choiceid, eventid) {
-	// Här behöver jag alla medlemmar och deras val för att kunna markera de som har gjort just detta valet.
-	// console.log("choiceid: " + choiceid);
-	// var hostname = window.location.hostname;
-	// console.log("hostname: " + hostname);
-	// var protocol = window.location.protocol;
-	// console.log("protocol: " + protocol);
-	// var pathname = window.location.pathname;
-	// console.log("pathname: " + pathname);
-	// var href = window.location.href;
-	// console.log("href: " + href);
-	// console.log("hrefsplit: " + href.split('/'));
-	if($("#choice_"+choiceid).hasClass('divide-paneldiv-checked')){
-		$(".divide-paneldiv-choice").addClass('divide-paneldiv').removeClass('divide-paneldiv-choice');
+	if($("#choice_"+choiceid).hasClass('choice-column-active')){
+		// Just turn of active classes
+		$(".choice-column-active").addClass('choice-column').removeClass('choice-column-active');
 		$(".divide-paneldiv-active").addClass('divide-paneldiv').removeClass('divide-paneldiv-active');
+		$(".divide-paneldiv-choice").addClass('divide-paneldiv').removeClass('divide-paneldiv-choice');
 	} else {
+		// Get members choices from database
 		var divideretrieveurl = "http://localhost/Programmering/Gruppindelare/Grouper/public/divide/retrieve/"+eventid;
-		var memberschoices;
 		$.ajax({
 		    type:     "get",
 		    url:      divideretrieveurl,
 		    dataType: "json",
 		    success: function (response) {
-		        // console.log("response: " + response.data);
-				// memberschoices = response.data;
+				// response is jsonstring {msg: this is a get response, data: members choices}
 				iterateMemberChoices(response.data, choiceid);
 		    },
 			error: function(xhr, status, error) {
@@ -55,25 +47,53 @@ function markchoice(choiceid, eventid) {
 			}
 		});
 	}
-
-
 }
 
 function iterateMemberChoices(memberchoices, choiceid) {
 	// Make jsonstring into jsonobject.
 	let memberchoicesJSON = JSON.parse(memberchoices);
 
-	$(".divide-paneldiv-choice").addClass('divide-paneldiv').removeClass('divide-paneldiv-choice');
+	// Reset active classes
 	$(".divide-paneldiv-active").addClass('divide-paneldiv').removeClass('divide-paneldiv-active');
-	$(".divide-paneldiv-checked").addClass('').removeClass('divide-paneldiv-checked');
-	$("#choice_"+choiceid).addClass('divide-paneldiv-checked');
-	// Iterate over memberchoices.
+	$(".choice-column-active").addClass('choice-column').removeClass('choice-column-active');
+	$(".divide-paneldiv-choice").addClass('divide-paneldiv').removeClass('divide-paneldiv-choice');
+	$("#choice_"+choiceid).addClass('choice-column-active');
+
+	// Iterate over memberchoices.and find with memeber has this choice
 	Object.entries(memberchoicesJSON).forEach(function([key, value]) {
 		if(value.indexOf(choiceid) != -1) {
-			console.log("memberid: " +key);
+			// light up members with this choice
 			$("#"+key).addClass('divide-paneldiv-choice').removeClass('divide-paneldiv');
-
 		}
-
 	});
+}
+
+function moveMember(choiceid, eventid) {
+
+	// $.ajaxSetup({
+    //     headers: {
+    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     }
+    // });
+	let movingmember = $('.divide-paneldiv-active').attr( "id" );
+	var dividemoveurl = "http://localhost/Programmering/Gruppindelare/Grouper/public/divide/move?memberid="+movingmember+"&choiceid="+choiceid+"&eventid="+eventid;
+
+	console.log("choiceid: " +choiceid);
+	console.log("memberid: " + movingmember);
+	console.log("eventid: " + eventid);
+
+	// window.location.replace("{{ route('movemember') }}");
+	window.location.replace(dividemoveurl);
+	// $.ajax({
+	// 	type:		"post",
+	// 	url:		"{{ route('movemember') }}",
+	// 	success: function (response) {
+	// 		// response is jsonstring {msg: this is a get response, data: members choices}
+	// 		// iterateMemberChoices(response.data, choiceid);
+	// 		console.log("Moving member");
+	// 	},
+	// 	error: function(xhr, status, error) {
+	// 	  alert(xhr.responseText);
+	// 	}
+	// });
 }

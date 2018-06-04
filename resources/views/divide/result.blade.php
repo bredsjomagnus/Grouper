@@ -25,7 +25,7 @@
 				@endif
 				<div class="col-md-3">
 					<ul class='group-list'>
-						<h4 id='choice_{{$choiceid}}' class='choice-column' onclick="markchoice('{{$choiceid}}', '{{$eventid}}')">{{$choicename}}</h4>
+						<h4 id='choice_{{$choiceid}}' class='choice-column' onclick="markchoice('{{$choiceid}}', '{{$eventid}}')">{{$choicename}}<div id="link_{{$choiceid}}" onclick="moveMember('{{$choiceid}}', '{{$eventid}}')">Move to this choice</div></h4>
 						@foreach($divideresult as $result)
 							@if($result->choiceid == $choiceid)
 								<?php

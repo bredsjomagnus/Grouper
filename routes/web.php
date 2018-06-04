@@ -53,6 +53,8 @@ Route::post('/events/devoptionsprocess', 'EventController@devOptions')->name('de
 
  // DivideController
  Route::post('/divide/event/process', 'DivideController@concoleprocess')->name('divideconsoleprocess');
+ Route::post('/divide/event/result/{id}', 'DivideController@divideResult')->name('divideresult');
  Route::get('/divide/event/result/{id}', 'DivideController@divideResult')->name('divideresult');
  Route::get('/divide/event/{id}', 'DivideController@console')->name('divideconsole');
+ Route::get('/divide/move', 'DivideController@moveMember')->name('movemember');
  Route::get('/divide/retrieve/{id}', 'DivideController@retrieve')->name('divideretrieve');

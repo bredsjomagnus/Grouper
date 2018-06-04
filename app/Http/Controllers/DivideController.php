@@ -26,22 +26,22 @@ class DivideController extends Controller
 		return view('divide.console', $data);
 	}
 
-	public function concoleprocess(Request $request) {
-		// $cancelbtn		= $request->input('cancelbtn');
-		$dividebtn		= $request->input('dividebtn');
-		$eventid		= $request->input('eventid');
-		$retrys			= $request->input('numberretrys');
-		$groupcap		= $request->input('maxmembers');
+	// public function concoleprocess(Request $request) {
+	// 	// $cancelbtn		= $request->input('cancelbtn');
+	// 	$dividebtn		= $request->input('dividebtn');
+	// 	$eventid		= $request->input('eventid');
+	// 	$retrys			= $request->input('numberretrys');
+	// 	$groupcap		= $request->input('maxmembers');
+	//
+	// 	if(isset($_POST['cancelbtn'])) {
+	// 		return redirect('/events/edit/'.$eventid);
+	// 	} else if($_POST['dividebtn']) {
+	// 		// divide into event groups
+	// 		return redirect('divide/event/result/'.$eventid.'?numberretrys='.$retrys.'&maxmembers='.$groupcap.'&divide=yes');
+	// 	}
+	// }
 
-		if(isset($_POST['cancelbtn'])) {
-			return redirect('/events/edit/'.$eventid);
-		} else if($_POST['dividebtn']) {
-			// divide into event groups
-			return redirect('divide/event/result/'.$eventid.'?numberretrys='.$retrys.'&maxmembers='.$groupcap);
-		}
-	}
-
-	public function divideResult($eventid) {
+	public function divideResult(Request $request, $eventid) {
 		$memberchoice	= new Memberchoice();
 		$eventgroup		= new Eventgroup();
 		$divide			= new Divideresult();
@@ -49,8 +49,12 @@ class DivideController extends Controller
 		$choice			= new Choice();
 		$member			= new Member();
 
-		$retrys			= $_GET['numberretrys'];
-		$groupcap		= $_GET['maxmembers'];
+		// $retrys			= $_GET['numberretrys'];
+		// $groupcap		= $_GET['maxmembers'];
+		// $getdivide		= $_GET['divide'];
+		$retrys			= $request->input('numberretrys');
+		$groupcap		= $request->input('maxmembers');
+		$dividebtn		= $request->input('dividebtn');
 
 		$choiceids		= $eventchoice->getEventChoicesById($eventid); // For this event Array: [choiceid, choiceid,...]
 		$choices		= $choice->getChoicesByIdsAssociative($choiceids); // For this event; [['choiceid' => choiceid, 'choicename' => choicename],...]
@@ -67,7 +71,15 @@ class DivideController extends Controller
 		$choicetemplate	= $memberchoice->getSortSumOfChoicesForEvent($eventid);
 		// $noeventgroup 	= $memberchoice->handleMemberchoicesWithTemplate($eventid, $choicetemplate, $memberids, $retrys, $groupcap); // not working
 
-		$noeventgroup 	= $memberchoice->handleMemberchoicesNoTemplate($eventid, $choicetemplate, $memberids, $retrys, $groupcap);
+		/*
+		* Only divide into new groups if pressing right button
+		*/
+		if(isset($dividebtn)) {
+			$noeventgroup 	= $memberchoice->handleMemberchoicesNoTemplate($eventid, $choicetemplate, $memberids, $retrys, $groupcap);
+		} else {
+			$noeventgroup = [];
+		}
+
 
 		$divideresult 	= $divide->getDivideResult($eventid);
 
@@ -109,5 +121,22 @@ class DivideController extends Controller
 							'msg' 	=> 'This is get method',
 							'data'	=> json_encode($memberchoices)
 						]);
+	}
+
+	public function moveMember(Request $request) {
+		$divide		= new Divideresult();
+
+		$memberid 	= $_GET['memberid'];
+		$choiceid 	= $_GET['choiceid'];
+		$eventid 	= $_GET['eventid'];
+
+		$divide->moveMember($memberid, $choiceid, $eventid);
+		// $data = [
+		// 	"memberid"	=> $memberid,
+		// 	"choiceid"	=> $choiceid,
+		// 	"eventid"	=> $eventid
+		// ];
+
+		return redirect("divide/event/result/".$eventid);
 	}
 }

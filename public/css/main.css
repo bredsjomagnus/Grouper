@@ -394,6 +394,13 @@ Table inside every paneldivlink
 	font-weight: bolder;
 	width: 120%;
 }
+.choice-column-choice {
+	background-color: #60858d;
+	color: white;
+	padding: 5px 5px 5px 5px;
+	font-weight: bolder;
+	width: 120%;
+}
 
 .paneldivlink:hover {
 	text-decoration: none;

@@ -7,8 +7,9 @@
 @endsection
 
 @section('content')
+<?php $divideresulturl = url("/divide/event/result/".$eventid); ?>
 <h1>DIVIDE SETTINGS</h1>
-<form action="{{ route('divideconsoleprocess') }}" method="post">
+<form action="{{ $divideresulturl }}" method="post">
 	<table width=500px>
 		<tr width=80%>
 			<td>

@@ -25,7 +25,11 @@
 				@endif
 				<div class="col-md-3">
 					<ul class='group-list'>
-						<h4 id='choice_{{$choiceid}}' class='choice-column' onclick="markchoice('{{$choiceid}}', '{{$eventid}}')">{{$choicename}}<div id="link_{{$choiceid}}" onclick="moveMember('{{$choiceid}}', '{{$eventid}}')">Move to this choice</div></h4>
+						<div class='choiceheader'>
+							<h4 id='choice_{{$choiceid}}' class='choice-column' onclick="markchoice('{{$choiceid}}', '{{$eventid}}')">{{$choicename}}<div id="link_{{$choiceid}}" class='movememberhidden' onclick="moveMember('{{$choiceid}}', '{{$eventid}}')">
+								Move to this choice
+							</div></h4>
+						</div>
 						@foreach($divideresult as $result)
 							@if($result->choiceid == $choiceid)
 								<?php

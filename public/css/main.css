@@ -402,6 +402,23 @@ Table inside every paneldivlink
 	width: 120%;
 }
 
+.movememberhidden {
+	display: none;
+}
+
+.movemembershow {
+	display: inline;
+	float: right;
+	font-size: 12px;
+	text-decoration: underline;
+	padding-top: 5px;
+	padding-right: 5px;
+	cursor: pointer;
+}
+.choiceheader {
+	height: 50px;
+}
+
 .paneldivlink:hover {
 	text-decoration: none;
 }

@@ -10,9 +10,12 @@ function markmember(memberid, memberchoices) {
 	if($("#"+memberid).hasClass('divide-paneldiv-active')){
 		$(".divide-paneldiv-active").addClass('divide-paneldiv').removeClass('divide-paneldiv-active');
 		$(".choice-column-active").addClass('choice-column').removeClass('choice-column-active');
+		$(".movemembershow").addClass('movememberhidden').removeClass('movemembershow');
 	} else {
 		$(".divide-paneldiv-active").addClass('divide-paneldiv').removeClass('divide-paneldiv-active');
 		$("#"+memberid).addClass('divide-paneldiv-active').removeClass('divide-paneldiv');
+
+		$(".movememberhidden").addClass('movemembershow').removeClass('movememberhidden');
 
 		$(".choice-column-active").addClass('choice-column').removeClass('choice-column-active');
 		choicesarray.forEach(function(choice) {
@@ -69,31 +72,12 @@ function iterateMemberChoices(memberchoices, choiceid) {
 }
 
 function moveMember(choiceid, eventid) {
-
-	// $.ajaxSetup({
-    //     headers: {
-    //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //     }
-    // });
+	/*
+	* Redirecting to /divide/move with query string with info that change database and move member.
+	*/
 	let movingmember = $('.divide-paneldiv-active').attr( "id" );
 	var dividemoveurl = "http://localhost/Programmering/Gruppindelare/Grouper/public/divide/move?memberid="+movingmember+"&choiceid="+choiceid+"&eventid="+eventid;
 
-	console.log("choiceid: " +choiceid);
-	console.log("memberid: " + movingmember);
-	console.log("eventid: " + eventid);
-
-	// window.location.replace("{{ route('movemember') }}");
 	window.location.replace(dividemoveurl);
-	// $.ajax({
-	// 	type:		"post",
-	// 	url:		"{{ route('movemember') }}",
-	// 	success: function (response) {
-	// 		// response is jsonstring {msg: this is a get response, data: members choices}
-	// 		// iterateMemberChoices(response.data, choiceid);
-	// 		console.log("Moving member");
-	// 	},
-	// 	error: function(xhr, status, error) {
-	// 	  alert(xhr.responseText);
-	// 	}
-	// });
+
 }

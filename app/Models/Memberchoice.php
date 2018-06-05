@@ -276,7 +276,7 @@ class Memberchoice extends Model
 		/*
 		* Set the result into the database
 		*/
-		$divide->setDivideResult($eventid, $eventgrouparray);
+		$divide->setDivideResult($eventid, $eventgrouparray, $noeventgroup);
 
 
 		return $noeventgroup;

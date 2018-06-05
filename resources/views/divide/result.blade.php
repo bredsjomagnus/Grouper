@@ -24,7 +24,7 @@
 							Number of retrys:
 						</td>
 						<td align=left>
-							<input type="number" min=1 max=10 name="numberretrys" value="{{$numberretrys}}">
+							<input type="number" min=1 max=10000 name="numberretrys" value="{{$numberretrys}}">
 						</td>
 						<td align=left>
 							<input type="hidden" name="eventid" value="{{$eventid}}">
@@ -39,12 +39,53 @@
 </div>
 
 <h1>RESULT</h1>
-<h5>Members with no choice</h5>
-@if(isset($noeventgroup))
-	@foreach($noeventgroup as $nogroup)
-	<p>{{ $memberinfo[$nogroup]['membername'] }}</p>
-	@endforeach
-@endif
+
+<div class="row">
+	<div class="col-md-4">
+		<ul class='group-list'>
+			<div class='choiceheader'>
+				<h4>NO CHOICE</h4>
+			</div>
+			@foreach($divideresult as $result)
+				@if($result->choiceid == null)
+					<?php
+					$choicenames = "";
+					foreach($memberinfo[$result->memberid]['choicenames'] as $choicename) {
+						$choicenames .= $choicename .", ";
+					}
+					$choiceids = "";
+					foreach($memberinfo[$result->memberid]['choiceids'] as $memberinfochoiceid) {
+						$choiceids .= $memberinfochoiceid .";";
+					}
+					$hiddenname = "memberid[".$result->memberid."]";
+					$hiddeninput = "<input type='hidden' name='memberid[".$result->memberid."]' value='".$memberinfochoiceid."' >";
+					$choicenames = substr($choicenames, 0, -2);
+					$choiceids = substr($choiceids, 0, -1);
+					?>
+
+					<li>
+						<div id={{$result->memberid}} class="divide-paneldiv" onclick="markmember('{{$result->memberid}}','{{$choiceids}}')">
+							<table>
+								<tr>
+									<td class='group-panelinfo'>{{$memberinfo[$result->memberid]['groupname']}}</td>
+								</tr>
+								<tr>
+									<td>{{$memberinfo[$result->memberid]['membername']}}</td>
+								</tr>
+								<tr>
+									<td class='group-panelinfo'>Choices: {{$choicenames}}</td>
+								</tr>
+							</table>
+						</div>
+					</li>
+
+				@endif
+			@endforeach
+		</ul>
+	</div>
+</div>
+
+
 <h3>Members with choices</h3>
 <div class="row">
 	<div class="col-md-12">
@@ -90,7 +131,6 @@
 												<td class='group-panelinfo'>Choices: {{$choicenames}}</td>
 											</tr>
 										</table>
-										<input type='hidden' name='{{$hiddenname}}' value='{{$choiceid}}' >
 									</div>
 								</li>
 							@endif

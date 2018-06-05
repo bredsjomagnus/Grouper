@@ -75,9 +75,7 @@ class DivideController extends Controller
 		* Only divide into new groups if pressing right button
 		*/
 		if(isset($dividebtn)) {
-			$noeventgroup 	= $memberchoice->handleMemberchoicesNoTemplate($eventid, $choicetemplate, $memberids, $retrys, $groupcap);
-		} else {
-			$noeventgroup = [];
+			$memberchoice->handleMemberchoicesNoTemplate($eventid, $choicetemplate, $memberids, $retrys, $groupcap);
 		}
 
 
@@ -93,7 +91,6 @@ class DivideController extends Controller
 			"membercount"		=> $request->input('membercount'),
 			"mingroup"			=> $request->input('mingroup'),
 			"eventid"			=> $eventid,
-			"noeventgroup"		=> $noeventgroup,
 			"divideresult"		=> $divideresult,
 			"choices"			=> $choices,
 			"members"			=> $members,

@@ -46,7 +46,7 @@ class Divideresult extends Model
 	*
 	* @return void
 	*/
-	public function setDivideResult($eventid, $eventgrouparray) {
+	public function setDivideResult($eventid, $eventgrouparray, $noeventgroup) {
 
 		/*
 		* Reset previous choices
@@ -61,6 +61,14 @@ class Divideresult extends Model
 				"eventid" 	=> $eventid,
 				"memberid"	=> $memberid,
 				"choiceid"	=> $choiceid
+			]);
+		}
+
+		foreach($noeventgroup as $memberid) {
+			$this::insert([
+				"eventid" 	=> $eventid,
+				"memberid"	=> $memberid,
+				"choiceid"	=> null
 			]);
 		}
 	}

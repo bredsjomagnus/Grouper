@@ -30,6 +30,8 @@
 		<tr>
 			<td colspan=2 align=right style="padding-top: 20px">
 				<input type="hidden" name="eventid" value="{{$eventid}}">
+				<input type="hidden" name="membercount" value="{{$membercount}}">
+				<input type="hidden" name="mingroup" value="{{$mingroup}}">
 				<input type="submit" name="cancelbtn" value="Cancel">
 				<input type="submit" name="dividebtn" value="Divide into event groups">
 			</td>

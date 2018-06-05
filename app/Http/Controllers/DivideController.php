@@ -88,6 +88,10 @@ class DivideController extends Controller
 		$memberinfo		= $member->getMembersDivideInfo($memberids, $eventid);
 
 		$data = [
+			"groupcap"		=> $groupcap,
+			"numberretrys"		=> $retrys,
+			"membercount"		=> $request->input('membercount'),
+			"mingroup"			=> $request->input('mingroup'),
 			"eventid"			=> $eventid,
 			"noeventgroup"		=> $noeventgroup,
 			"divideresult"		=> $divideresult,

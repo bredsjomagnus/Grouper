@@ -8,11 +8,41 @@
 
 @section('content')
 <?php $counter = 1; ?>
+<div class="row">
+	<div class="col-md-12">
+		<center>
+			<form action="#" method="post">
+				<table width=70%>
+					<tr>
+						<td align=right>
+							Maximum members per choice:
+						</td>
+						<td align=left>
+							<input type="number" min={{$mingroup}} max={{$membercount}} name="maxmembers" value="{{$groupcap}}">
+						</td>
+						<td align=left>
+							Number of retrys:
+						</td>
+						<td align=left>
+							<input type="number" min=1 max=10 name="numberretrys" value="{{$numberretrys}}">
+						</td>
+						<td align=left>
+							<input type="hidden" name="eventid" value="{{$eventid}}">
+							<!-- <input type="submit" name="cancelbtn" value="Cancel"> -->
+							<input type="submit" name="dividebtn" value="Retry">
+						</td>
+					</tr>
+				</table>
+			</form>
+		</center>
+	</div>
+</div>
+
 <h1>RESULT</h1>
 <h5>Members with no choice</h5>
 @if(isset($noeventgroup))
 	@foreach($noeventgroup as $nogroup)
-	<p>{{ $members[$nogroup] }}</p>
+	<p>{{ $memberinfo[$nogroup]['membername'] }}</p>
 	@endforeach
 @endif
 <h3>Members with choices</h3>

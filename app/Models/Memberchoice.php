@@ -259,11 +259,12 @@ class Memberchoice extends Model
 						break 1; // exit only the choicetemplate foreach
 					}
 				}
+				if(!$placedingroup) {
+					$noeventgroup[] = $memberid;
+				}
 			}
 
-			if(!$placedingroup) {
-				$noeventgroup[] = $memberid;
-			}
+
 
 			if(count($noeventgroup) < 1) {
 				$retrys = $retrycap;

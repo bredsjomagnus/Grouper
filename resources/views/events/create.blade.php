@@ -31,6 +31,9 @@
 		<br>
 		<input type="submit" name="createeventsubmit" value="Create">
 	</form>
+	@if(isset($errormsg))
+		<p class='text-danger'>{{ $errormsg }}</p>
+	@endif
 </div>
 
 @endsection

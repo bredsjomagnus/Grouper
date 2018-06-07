@@ -73,6 +73,15 @@ class Divideresult extends Model
 		}
 	}
 
+	// VERKAR INTE FUNGERA SOM TÄNKT
+	// public function isThereNonGroupMembers($eventid) {
+	// 	$res = $this::where('eventid', $eventid)
+	// 			->where('choiceid', null)
+	// 			->get();
+	//
+	// 	return empty((array)$res);
+	// }
+
 	public function moveMember($memberid, $choiceid, $eventid) {
 		$this::where('eventid', $eventid)
 	          ->where('memberid', $memberid)

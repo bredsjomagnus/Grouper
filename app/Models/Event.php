@@ -30,6 +30,7 @@ class Event extends Model
 					]
 				);
 		}
+		return $eventid;
 	}
 
 	public function getEventsBelongingToOrganization($organization) {
@@ -107,6 +108,12 @@ class Event extends Model
 		DB::table('memberchoices')->where("eventid", $id)->delete();
 		DB::table('divideresults')->where("eventid", $id)->delete();
 		$this::find($id)->delete();
+	}
+
+	public function getEventName($eventid) {
+		$res = $this::where('id', $eventid)->get();
+
+		return $res[0]->eventname;
 	}
 
 

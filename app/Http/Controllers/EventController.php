@@ -44,11 +44,33 @@ class EventController extends Controller
 		$groups		= $request->input('groups');
 		$choices	= $request->input('choices');
 
-		if(isset($eventname) || trim($eventname) != '' && isset($groups) && isset($choices)) {
-			$event->createEvent(htmlspecialchars(trim($eventname)), 'Klockarhagsskolan', $groups, $choices);
+		if(isset($eventname) && trim($eventname) != '' && isset($groups) && isset($choices)) {
+			$eventid = $event->createEvent(htmlspecialchars(trim($eventname)), 'Klockarhagsskolan', $groups, $choices);
+			return redirect("/events/edit/".$eventid);
+		} else {
+			$group 		= new Group;
+			$choice		= new Choice;
+
+			$groups 	= $group->getGroupsBelongingToOrganization('Klockarhagsskolan');
+			$choices 	= $choice->getChoicesBelongingToOrganization('Klockarhagsskolan');
+
+			$groupsheight	= count($groups)*20;
+			$choicesheight	= count($choices)*20;
+
+			$errormsg = "You must choose at least one group and one choice and give the event a name";
+
+			$data =  [
+				"errormsg"		=> $errormsg,
+				"groups"		=> $groups,
+				"groupsheight"	=> $groupsheight."px",
+				"choices"		=> $choices,
+				"choicesheight"	=> $choicesheight."px",
+
+			];
+			return view('events.create', $data);
 		}
 
-		return redirect("/groups");
+
 	}
 
 	public function deleteEventProcess($id) {

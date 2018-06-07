@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\DB;
 use App\Models\Groupmember as Groupmember;
 
 class Eventgroup extends Model
@@ -79,4 +80,12 @@ class Eventgroup extends Model
 		return $memberids;
 	}
 
+	public function getNumberOfGroups($eventid) {
+		$groupsizes = DB::select(
+						DB::raw(
+							"SELECT eventid, count(eventid) AS numberofgroups FROM eventgroups WHERE eventid LIKE '".$eventid."' GROUP BY eventid"
+					));
+
+		return $groupsizes[0]->numberofgroups;
+	}
 }

@@ -11,40 +11,19 @@
 <div class="row">
 	<div class="col-md-12">
 		<center>
-			<form action="#" method="post">
-				<table width=70%>
-					<tr>
-						<td align=right>
-							Maximum members per choice:
-						</td>
-						<td align=left>
-							<input type="number" min={{$mingroup}} max={{$membercount}} name="maxmembers" value="{{$groupcap}}">
-						</td>
-						<td align=left>
-							Number of retrys:
-						</td>
-						<td align=left>
-							<input type="number" min=1 max=10000 name="numberretrys" value="{{$numberretrys}}">
-						</td>
-						<td align=left>
-							<input type="hidden" name="eventid" value="{{$eventid}}">
-							<!-- <input type="submit" name="cancelbtn" value="Cancel"> -->
-							<input type="submit" name="dividebtn" value="Retry">
-						</td>
-					</tr>
-				</table>
-			</form>
+			<p>fisk</p>
 		</center>
 	</div>
 </div>
 
-<h1>RESULT</h1>
+<h1>RESULT - {{$eventname}}</h1>
 
 <div class="row">
-	<div class="col-md-4">
+	<h4>Members not assigned to a choice</h4>
+	<div class="col-md-3">
 		<ul class='group-list'>
 			<div class='choiceheader'>
-				<h4>NO CHOICE</h4>
+				<h4 class='choice-column'>No choice</h4>
 			</div>
 			@foreach($divideresult as $result)
 				@if($result->choiceid == null)
@@ -83,11 +62,70 @@
 			@endforeach
 		</ul>
 	</div>
+	<div class="col-md-7 col-md-offset-1">
+		<div class="row">
+			<div class="col-md-3">
+				<form action="#" method="post">
+					<table width=70%>
+						<tr>
+							<td align=left>
+								Max group size:
+							</td>
+
+							<td align=left>
+								Iterations:
+							</td>
+						</tr>
+						<tr>
+							<td align=left>
+								<input type="number" min={{$mingroup}} max={{$membercount}} name="maxmembers" value="{{$groupcap}}">
+							</td>
+							<td align=left>
+								<input type="number" min=1 max=10000 name="numberretrys" value="{{$numberretrys}}">
+							</td>
+							<td align=left>
+								<input type="hidden" name="eventid" value="{{$eventid}}">
+								<!-- <input type="submit" name="cancelbtn" value="Cancel"> -->
+								<input type="submit" name="dividebtn" value="Retry">
+							</td>
+						</tr>
+					</table>
+				</form>
+			</div>
+
+		</div>
+
+
+		<div class="row">
+			<table class='table'>
+				<thead>
+					<th>Groups</th>
+					<th>Members</th>
+					<th>Choices</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{$numberofgroups}}</td>
+						<td>{{$numberofmembers}}</td>
+						<td>{{$numberofchoices}}</td>
+					</tr>
+				</tbody>
+			</table>
+			<?php $groupnames = "";
+			foreach($groups as $group) {
+				$groupnames .= $group['groupname'] .", ";
+			}
+			$groupnames = substr($groupnames, 0, -2);
+			?>
+		    <p class='text-muted'>Groups: <i>{{$groupnames}}</i></p>
+		</div>
+	</div>
 </div>
 
 
-<h3>Members with choices</h3>
+
 <div class="row">
+	<h4>Members assigned to a choice</h4>
 	<div class="col-md-12">
 		<form action="#" method="post">
 			@foreach($choices as $choiceid => $choicename)

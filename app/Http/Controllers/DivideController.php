@@ -9,6 +9,8 @@ use App\Models\Eventgroup as Eventgroup;
 use App\Models\Divideresult as Divideresult;
 use App\Models\Member as Member;
 use App\Models\Choice as Choice;
+use App\Models\Group as Group;
+use App\Models\Event as Event;
 
 class DivideController extends Controller
 {
@@ -48,6 +50,8 @@ class DivideController extends Controller
 		$eventchoice	= new Eventchoice();
 		$choice			= new Choice();
 		$member			= new Member();
+		$group			= new Group();
+		$event			= new Event();
 
 		// $retrys			= $_GET['numberretrys'];
 		// $groupcap		= $_GET['maxmembers'];
@@ -62,7 +66,7 @@ class DivideController extends Controller
 		$memberids		= $eventgroup->getMemberIdsInEvent($eventid); // For this event [memberid, memberid,...]
 		$members		= $member->getMembersByIds($memberids); // For this event [memberid => membername, ]
 
-
+		$eventname		= $event->getEventName($eventid);
 		/*
 			$choicetemplate.
 			Associative array in ascending order:
@@ -79,14 +83,24 @@ class DivideController extends Controller
 		}
 
 
-		$divideresult 	= $divide->getDivideResult($eventid);
+		$divideresult 		= $divide->getDivideResult($eventid);
+		// $nongroupmembers	= $divide->isThereNonGroupMembers($eventid);
 
-		$memberchoices 	= $memberchoice->getMemberChoices($eventid);
+		$memberchoices 		= $memberchoice->getMemberChoices($eventid);
+		$memberinfo			= $member->getMembersDivideInfo($memberids, $eventid);
 
-		$memberinfo		= $member->getMembersDivideInfo($memberids, $eventid);
+		// $numberofgroups 	= $eventgroup->getNumberOfGroups($eventid);
+		$eventgroups		= $eventgroup->getEventGroupsById($eventid); // All that events groups ids in array
+		$groups				= $group->getGroupsByIds($eventgroups); // All groups in events as [["groupid" => groupid, "groupname" => groupname],... ]
+
 
 		$data = [
-			"groupcap"		=> $groupcap,
+			"eventname"			=> $eventname,
+			"groups"			=> $groups,
+			"numberofgroups"	=> count($eventgroups),
+			"numberofmembers"	=> count($memberids),
+			"numberofchoices"	=> count($choiceids),
+			"groupcap"			=> $groupcap,
 			"numberretrys"		=> $retrys,
 			"membercount"		=> $request->input('membercount'),
 			"mingroup"			=> $request->input('mingroup'),
